@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\registerController;
+use App\Http\Controllers\sessionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,21 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-Route::get('/admin',[AdminController::class,'index'])
-->middleware('auth.admin')
-->name('admin.index');
+
+
+Route::get('/register',[registerController::class, 'create'])
+->name('register.index');
+
+Route::post('/register',[registerController::class, 'store'])
+->name('register.store');
+
+Route::get('/login',[sessionsController::class, 'create'])
+->name('login.index');
+
+Route::post('/login',[sessionsController::class, 'store'])
+->name('login.store');
+
+Route::get('/login/destroy',[sessionsController::class, 'destroy'])
+->name('login.destroy');
