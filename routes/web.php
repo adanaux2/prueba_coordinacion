@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('login', function () {
+    return view('login');
+});
 
 Route::get('/register',[registerController::class, 'create'])
 ->name('register.index');
@@ -35,3 +38,4 @@ Route::post('/login',[sessionsController::class, 'store'])
 
 Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 ->name('login.destroy');
+

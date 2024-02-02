@@ -19,6 +19,7 @@ class registerController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
+            // return response(json(request()));
         ]);
 
         $user = User::create(request(['name','email','password']));
