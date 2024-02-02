@@ -26,6 +26,6 @@ class sessionsController extends Controller
     public function destroy(){
         auth()->logout();
 
-        return redirect()->to('/');
+        return redirect()->to('login');
     }
 }
