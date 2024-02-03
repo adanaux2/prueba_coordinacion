@@ -17,11 +17,21 @@ use App\Http\Controllers\sessionsController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('login');
 });
 
-Route::get('login', function () {
-    return view('login');
+Route::get('admin', function () {
+    return view('admin');
+});
+Route::get('maestros', function () {
+    return view('maestros');
+});
+Route::get('coordinacion', function () {
+    return view('coordinacion');
+});
+
+Route::get('master', function () {
+    return view('layouts/master');
 });
 
 Route::get('/register',[registerController::class, 'create'])
