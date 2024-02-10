@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\maestrosController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\sessionsController;
 
@@ -48,4 +49,7 @@ Route::post('/login',[sessionsController::class, 'store'])
 
 Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 ->name('login.destroy');
+
+
+Route::resource('apiMaestros', maestrosController::class);
 
