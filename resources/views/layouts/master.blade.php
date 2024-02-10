@@ -18,8 +18,9 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="img/logo-azul.png" alt="universidad aztlan" height="150" width="140">
+            <img class="animation__shake" src="img/logo-aztlan-1.png" alt="AdminLTELogo" height="160" width="140">
         </div>
+
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -89,13 +90,10 @@
                     <div class="image">
                         <img src="img/logo-aztlan.png" width="190">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Bienvenido {{ auth()->user()->name }}</a>
-                    </div>
+                    {{-- <div class="info">
+                        <a href="#" class="d-block">Bienbenido {{ auth()->user()->name }}</a>
+                    </div> --}}
                 </div>
-
-                
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -156,10 +154,10 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2024-2025 <a href="https://universidadaztlan.edu.mx">Universidad Aztlán</a>.</strong>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 1.1.1
+                <b>Version</b> 3.2.0
             </div>
         </footer>
 
