@@ -41,6 +41,9 @@ Route::get('/register',[registerController::class, 'create'])
 Route::post('/register',[registerController::class, 'store'])
 ->name('register.store');
 
+Route::post('/register2',[registerController::class, 'store2'])
+->name('register.store2');
+
 Route::get('/login',[sessionsController::class, 'create'])
 ->name('login.index');
 
@@ -51,5 +54,5 @@ Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 ->name('login.destroy');
 
 
-Route::resource('apiMaestros', maestrosController::class);
+Route::apiResource('apiMaestros', maestrosController::class);
 
