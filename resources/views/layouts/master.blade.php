@@ -2,10 +2,14 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('name') | Dashboard</title>
+    {{-- vue 3 --}}
+    <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
+    {{-- axios --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
@@ -18,7 +22,8 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="img/logo-azul.png" alt="universidad aztlan" height="150" width="140">
+            <img class="animation__shake" src="img/logo-azul.png" alt="universidad aztlan" height="150"
+                width="140">
         </div>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -94,7 +99,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -156,7 +161,8 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2024-2025 <a href="https://universidadaztlan.edu.mx">Universidad Aztlán</a>.</strong>
+            <strong>Copyright &copy; 2024-2025 <a href="https://universidadaztlan.edu.mx">Universidad
+                    Aztlán</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.1.1
@@ -176,6 +182,8 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- Include jQuery VectorMap Plugin -->
+    <script src="js/jquery.vmap.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -197,9 +205,13 @@
     <script src="plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
 
-
-
+    {{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- muy importantes para la pagina -->
     <!-- AdminLTE App -->
     <script src="js/adminlte.js"></script>

@@ -29,4 +29,22 @@ class registerController extends Controller
 
 
     }
+    public function store2(Request $request){//esta funcion es utilizada por los administradores para crear nuevos usuarios
+        // Validar los datos del request
+    $validatedData = $request->validate([
+        
+        'name' => 'required',
+        'email' => 'required|email|unique:users', // Asegúrate de que el email sea único
+        'password' => 'required|min:4', // Asume que la contraseña debe tener al menos  6 caracteres
+    ]);
+
+    // Crear el usuario con los datos validados
+    $user = User::create([
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+        'password' =>$validatedData['password'], // Encriptar la contraseña antes de guardarla
+    ]);
+    // Retornar una respuesta
+    return response()->json(['message' => 'User created successfully', 'user' => $user],  201);
+    }
 }

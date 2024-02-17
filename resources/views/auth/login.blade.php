@@ -58,8 +58,8 @@
                 <div id="login">
                     <form id="loginform" method="POST">
                     @csrf
-                        <label for="email">Usuario</label>
-                        <input id="email" type="text" name="email" placeholder="email">
+                        <label for="name">Usuario</label>
+                        <input id="name" type="text" name="name" placeholder="name">
                         
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" placeholder="Contraseña" name="password">
