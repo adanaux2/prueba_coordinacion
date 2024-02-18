@@ -69,7 +69,13 @@
                             <div class="col-md-6">
                                 <input type="password" placeholder="Contraseña" class="form-control" v-model="password">
                             </div>
-
+                            <br>
+                            <div class="col-md-6">
+                                <select class="form-control" v-model="rol_S">
+                                    <option disabled>Elige una opción</option>
+                                    <option v-for="rol in roles" :value="rol.id_rol">@{{rol.rol}}</option>
+                                </select>
+                            </div>
 
                         </div>
                         <div class="modal-footer justify-content-between">

@@ -36,6 +36,7 @@ class registerController extends Controller
         'name' => 'required',
         'email' => 'required|email|unique:users', // Asegúrate de que el email sea único
         'password' => 'required|min:4', // Asume que la contraseña debe tener al menos  6 caracteres
+        'id_rol' => 'required',
     ]);
 
     // Crear el usuario con los datos validados
@@ -43,6 +44,7 @@ class registerController extends Controller
         'name' => $validatedData['name'],
         'email' => $validatedData['email'],
         'password' =>$validatedData['password'], // Encriptar la contraseña antes de guardarla
+        'id_rol' => $validatedData['id_rol'],
     ]);
     // Retornar una respuesta
     return response()->json(['message' => 'User created successfully', 'user' => $user],  201);

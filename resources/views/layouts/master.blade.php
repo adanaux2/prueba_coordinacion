@@ -92,7 +92,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div>
                     <div class="image">
-                        <img src="img/logo-aztlan.png" width="190">
+                        <img src="img/logo-aztlan.png" width="100">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Bienvenido {{ auth()->user()->name }}</a>

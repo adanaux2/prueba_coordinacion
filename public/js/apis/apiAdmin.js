@@ -1,5 +1,6 @@
 var apiAdmin = "http://localhost/prueba_coordinacion/public/apiMaestros";
 var saveUser = "http://localhost/prueba_coordinacion/public/register2";
+var apiroles = "http://localhost/prueba_coordinacion/public/apiRoles";
 
 // import axios from "axios";
 
@@ -9,14 +10,17 @@ const app = Vue.createApp({
         return {
             message: "¡Hola desde Vue  3!",
             usuarios: [],
+            roles:[],
             name: "",
             email: "",
             password: "",
+            rol_S:'',
         };
     },
     created() {
         // this.fetchData();
         this.obtenerDatos();
+        this.obtenerRoles();
     },
     methods: {
         sayHello() {
@@ -33,6 +37,19 @@ const app = Vue.createApp({
                     console.error("Hubo un error al obtener los datos:", error);
                 });
         },
+        obtenerRoles: function () {
+            window.axios
+                .get(apiroles)
+                .then((response) => {
+                    // console.log(response.data);
+                    this.roles=response.data;
+                    console.log(this.roles);
+                })
+                .catch((error) => {
+                    console.error("Hubo un error al obtener los datos:", error);
+                });
+        },
+    
 
         openModal: function () {
             $(exampleModal).modal("show"); // Usa jQuery para mostrar la ventana modal
@@ -44,6 +61,7 @@ const app = Vue.createApp({
                 name: this.name,
                 email: this.email,
                 password: this.password,
+                id_rol: this.rol_S
             };
 
             console.log(user);
