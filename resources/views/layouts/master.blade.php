@@ -10,11 +10,12 @@
     <script src="https://unpkg.com/vue/dist/vue.global.prod.js"></script>
     {{-- axios --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="css/adminlte.min.css">
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -51,6 +52,8 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
+                
+                <a class="nav-link">{{ auth()->user()->name }}</a>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login.destroy') }}" role="button">
@@ -94,9 +97,9 @@
                     <div class="image">
                         <img src="img/logo-aztlan.png" width="100">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Bienvenido {{ auth()->user()->name }}</a>
-                    </div>
+                    {{-- <div class="info">
+                        <a href="#" class="d-block"></a>
+                    </div> --}}
                 </div>
 
 
@@ -119,19 +122,19 @@
                                 <li class="nav-item">
                                     <a href="./index.html" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
+                                        <p>Maestros</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="./index2.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
+                                        <p>Materias</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="./index3.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
+                                        <p>Asignaciones</p>
                                     </a>
                                 </li>
                             </ul>
@@ -148,8 +151,8 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-md-12">
                             @yield('content')
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -177,14 +180,11 @@
     </div>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="js/bootstrap.bundle.min.js"></script>
     
-    {{-- <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script> --}}
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
 
     {{-- sweet alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -193,8 +193,14 @@
     <script src="js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="js/demo.js"></script>
+    <script src="js/summernote-bs4.min.js"></script>
+    <script src="js/moment.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="js/pages/dashboard.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    @stack('scripts')
+
 </body>
 
 </html>

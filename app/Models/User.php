@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -17,12 +19,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $with=['rol'];
     protected $fillable = [
         'name',
         'email',
         'password',
         'id_rol',
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +50,9 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password){
         $this->attributes['password']=bcrypt($password);
+    }
+
+    public function rol(){
+        return $this->hasMany(Roles::class,'id_rol','id_rol');
     }
 }

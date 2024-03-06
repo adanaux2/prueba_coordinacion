@@ -6,6 +6,7 @@ use App\Http\Controllers\maestrosController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\rolesController;
 use App\Http\Controllers\sessionsController;
+use App\Http\Controllers\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,5 @@ Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 Route::apiResource('apiMaestros', maestrosController::class);
 
 Route::apiResource('apiRoles', rolesController::class);
+
+Route::apiResource('apiUser',userController::class);
