@@ -37,6 +37,15 @@ Route::get('master', function () {
     return view('layouts/master');
 });
 
+
+
+
+
+Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
+
+
+
+
 Route::get('/register',[registerController::class, 'create'])
 ->name('register.index');
 

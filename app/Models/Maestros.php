@@ -14,5 +14,5 @@ class Maestros extends Model
     // Establece la clave primaria personalizada
     protected $primaryKey = 'matricula';
     // Define los atributos que pueden ser asignados en masa
-    protected $fillable = ['nombre', 'apellido_p', 'apellido_m','correo','curp'];
+    protected $fillable = ['nombre', 'apellido_p', 'apellido_m', 'correo', 'curp'];
 }
