@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\maestrosController;
+use App\Http\Controllers\profesController;
+use App\Http\Controllers\profesorController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\rolesController;
 use App\Http\Controllers\sessionsController;
@@ -65,8 +67,11 @@ Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 ->name('login.destroy');
 
 
-Route::apiResource('apiMaestros', maestrosController::class);
+Route::post('/registerProfes',[profesorController::class, 'store'])
+->name('registerProfes.store');
+
+
 
 Route::apiResource('apiRoles', rolesController::class);
-
 Route::apiResource('apiUser',userController::class);
+Route::apiResource('apiProfe',profesorController::class);

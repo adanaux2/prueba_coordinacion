@@ -49,13 +49,13 @@
                 {{-- <h1>@{{ maestrosObtenidos }}</h1> --}}
                 <div v-show="vista==1">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-12">
                             <table id="dataTable">
                                 <thead>
                                     <tr>
                                         {{-- <th>ID</th> --}}
                                         <th>Nombre</th>
-                                        <th>Apellidos</th>
+                                        <th>Licenciatura</th>
                                         <th>Correo Electrónico</th>
                                         <th>Curp</th>
                                         {{-- <th>Rol</th> --}}
@@ -65,9 +65,9 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="m in maestrosObtenidos">
-                                        <td>@{{ m.nombre }}</td>
-                                        <td>@{{ m.apellido_p }} @{{ m.apellido_m }}</td>
-                                        <td>@{{ m.correo }}</td>
+                                        <td>@{{ m.nombre_c }}</td>
+                                        <td>@{{ m.licenciatura }}</td>
+                                        <td>@{{ m.correo_institucional}}</td>
                                         <td>@{{ m.curp }}</td>
                                         {{-- <td>@{{ u.created_at }}</td> --}}
                                         {{-- <td>
@@ -121,6 +121,9 @@
                                         <input type="password" placeholder="Contraseña" class="form-control"
                                             v-model="password">
                                     </div>
+                                    {{-- <div class="col-md-12">
+                                        <input type="number" placeholder="Matricula" class="form-control" v-model="matricula">
+                                    </div> --}}
                                     <br>
                                     <h6>Grado de estudios</h6>
                                     <div class="col-md-12">
@@ -140,17 +143,17 @@
                                     <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Cedula profecional Maestria" class="form-control"
-                                            v-model="c_licenciatura">
+                                            v-model="c_maestria">
                                     </div>
                                     <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Doctorado" class="form-control"
-                                            v-model="maestria">
+                                            v-model="doctorado">
                                     </div>
                                     <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Cedula profecional Doctorado"
-                                            class="form-control" v-model="c_licenciatura">
+                                            class="form-control" v-model="c_doctorado">
                                     </div>
                                     <br>
                                     <h6>Inglés</h6>
@@ -178,12 +181,12 @@
                                     <h6>Datos generales</h6>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Nombre completo" class="form-control"
-                                            v-model.trim="nombre_c"  @input="convertirAMayusculas()">
+                                            v-model="nombre_c">
                                     </div>
                                     <br>
                                     <div class="col-md-12">
                                         <input type="domicilio" placeholder="Domicilio" class="form-control"
-                                            v-model="email">
+                                            v-model="domicilio">
                                     </div>
                                     <br>
                                     <div class="col-md-12">
@@ -193,12 +196,17 @@
                                     <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Correo institucional" class="form-control"
-                                            v-model="correo">
+                                            v-model="correo_institucional">
                                     </div>
                                     <br>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Género" class="form-control"
-                                            v-model="genero">
+                                        {{-- <input type="text" placeholder="Género" class="form-control"
+                                            v-model="genero"> --}}
+                                        <select class="form-control" :value v-model="genero">
+                                            <option disabled>Selecciona una opcion</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        </select>
                                     </div>
                                     <br>
                                     <div class="col-md-12">
@@ -224,33 +232,33 @@
                                     <h6>Contácto 1</h6>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Nombre de contacto 1" class="form-control"
-                                            v-model="nombre_Contacto">
+                                            v-model="nombre_contacto">
                                     </div>
 
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Relación" class="form-control"
-                                            v-model="relacion_Contacto">
+                                            v-model="relacion_contacto">
                                     </div>
 
                                     <div class="col-md-12">
                                         <input type="number" placeholder="Teléfono" class="form-control"
-                                            v-model="telefono_Contacto">
+                                            v-model="telefono_contacto">
                                     </div>
                                     <br>
                                     <h6>Contácto 2(Opcional)</h6>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Nombre de contacto 2" class="form-control"
-                                            v-model="nombre_Contacto2">
+                                            v-model="nombre_contacto2">
                                     </div>
 
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Relación" class="form-control"
-                                            v-model="relacion_Contacto2">
+                                            v-model="relacion_contacto2">
                                     </div>
 
                                     <div class="col-md-12">
                                         <input type="number" placeholder="Teléfono" class="form-control"
-                                            v-model="telefono_Contacto2">
+                                            v-model="telefono_contacto2">
                                     </div>
 
 
@@ -270,7 +278,7 @@
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" @click="guardarUsuario()" v-if="agregar==true">
+                            <button type="button" class="btn btn-primary" @click="guardarUsuario()">
                                 <i class="fa-solid fa-floppy-disk"></i>
                             </button>
                             {{-- <button type="button" class="btn btn-primary" @click="actualizarUser()" v-if="agregar==false">
