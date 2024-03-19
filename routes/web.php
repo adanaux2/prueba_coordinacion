@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\licenciaturaController;
 use App\Http\Controllers\maestrosController;
+use App\Http\Controllers\materiasControler;
 use App\Http\Controllers\profesController;
 use App\Http\Controllers\profesorController;
 use App\Http\Controllers\registerController;
@@ -44,7 +46,7 @@ Route::get('master', function () {
 
 
 Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
-
+Route::view('mate','/views_coordinacion/materias');
 
 
 
@@ -75,3 +77,5 @@ Route::post('/registerProfes',[profesorController::class, 'store'])
 Route::apiResource('apiRoles', rolesController::class);
 Route::apiResource('apiUser',userController::class);
 Route::apiResource('apiProfe',profesorController::class);
+Route::apiResource('apiMaterias',materiasControler::class);
+Route::apiResource('apiLicenciaturas',licenciaturaController::class);
