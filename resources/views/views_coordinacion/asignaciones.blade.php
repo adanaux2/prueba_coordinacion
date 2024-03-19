@@ -5,7 +5,6 @@
 @section('content')
 
     @if (auth()->user()->id_rol == 2)
-        
         <h1>
             vista Asignaciones
         </h1>
