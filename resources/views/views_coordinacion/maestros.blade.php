@@ -44,46 +44,32 @@
 
             </div>
             {{-- final de vista 0 --}}
-            {{-- vista 0 --}}
+            {{-- vista 1 --}}
             <div class="row" v-show="vista==1">
                 {{-- <h1>@{{ maestrosObtenidos }}</h1> --}}
-                <div v-show="vista==1">
-                    <div class="row">
-                        <div class="col-12">
-                            <table id="dataTable">
-                                <thead>
-                                    <tr>
-                                        {{-- <th>ID</th> --}}
-                                        <th>Nombre</th>
-                                        <th>Licenciatura</th>
-                                        <th>Correo Electrónico</th>
-                                        <th>Curp</th>
-                                        {{-- <th>Rol</th> --}}
-                                        {{-- <th>Fecha de creación</th> --}}
-                                        {{-- <th>Opciones</th> --}}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="m in maestrosObtenidos">
-                                        <td>@{{ m.nombre_c }}</td>
-                                        <td>@{{ m.licenciatura }}</td>
-                                        <td>@{{ m.correo_institucional}}</td>
-                                        <td>@{{ m.curp }}</td>
-                                        {{-- <td>@{{ u.created_at }}</td> --}}
-                                        {{-- <td>
 
-                                            <button class="btn" style="background-color: #353281"
-                                                @click="editarUser(u.id)"><i class="fa-solid fa-pen-to-square"></i></button>
+                <div class="col-md-10" >
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
 
-                                            <button class="btn" style="margin-left: 5px; background-color: #c72b2c"
-                                                @click="eliminarUsuario(u.id)"><i class="fa-solid fa-trash"></i></button>
-                                        </td> --}}
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                <th>Nombre</th>
+                                <th>Licenciatura</th>
+                                <th>Correo Electrónico</th>
+                                <th>Curp</th>
 
-                    </div>
+                        </thead>
+                        <tbody>
+                            <tr v-for="m in maestrosObtenidos">
+                                <td>@{{ m.nombre_c }}</td>
+                                <td>@{{ m.licenciatura }}</td>
+                                <td>@{{ m.correo_institucional }}</td>
+                                <td>@{{ m.curp }}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
             {{-- final de vista 0 --}}

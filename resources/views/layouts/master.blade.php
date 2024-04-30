@@ -132,7 +132,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
+                                    <a href="asignacion" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Asignaciones</p>
                                     </a>

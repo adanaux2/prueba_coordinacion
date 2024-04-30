@@ -55,7 +55,6 @@ const app = Vue.createApp({
             };
 
             console.log(materia);
-
             axios
                 .post(apiMaterias, materia)
                 .then((response) => {
@@ -63,7 +62,7 @@ const app = Vue.createApp({
                     Swal.fire({
                         position: "top-center",
                         icon: "success",
-                        title: "Usuario registrado",
+                        title: "Asignatura registrada",
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -71,6 +70,7 @@ const app = Vue.createApp({
                 .catch((error) => {
                     console.error("Error submitting form:", error);
                 });
+            $(exampleModal).modal("hide");
         },
     },
 });

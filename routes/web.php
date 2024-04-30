@@ -47,7 +47,7 @@ Route::get('master', function () {
 
 Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
 Route::view('mate','/views_coordinacion/materias');
-
+Route::view('asignacion','/views_coordinacion/asignaciones');
 
 
 Route::get('/register',[registerController::class, 'create'])
@@ -67,7 +67,6 @@ Route::post('/login',[sessionsController::class, 'store'])
 
 Route::get('/login/destroy',[sessionsController::class, 'destroy'])
 ->name('login.destroy');
-
 
 Route::post('/registerProfes',[profesorController::class, 'store'])
 ->name('registerProfes.store');
