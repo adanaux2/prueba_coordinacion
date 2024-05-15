@@ -10,9 +10,9 @@ class ImportController extends Controller
 {
     public function importUsuarios(Request $request)
     {
-        Excel::import(new UsersImport, 'users.xlsx');
+        // Excel::import(new UsersImport, 'users.xlsx');
 
-        return redirect('/')->with('success', 'All good!');
+        // return redirect('/')->with('success', 'All good!');
     }
     public function import()
     {
@@ -21,8 +21,28 @@ class ImportController extends Controller
     public function import2(Request $request)
     {
         //    dd("imp");
-        $file = $request->file('file');
-        Excel::import(new UsersImport, $file);
+         // Validar el request
+         $request->validate([
+            'file' => 'required|file|mimes:xls,xlsx',
+            'id_rvoe' => 'required|string',
+        ]);
+         // Obtener el archivo y el id_rvoe
+         $file = $request->file('file');
+         $id_rvoe = $request->input('id_rvoe');
+ 
+         // Procesar la importación del archivo y pasar el id_rvoe
+         Excel::import(new UsersImport($id_rvoe), $file);
+ 
+ 
+         // Realizar cualquier acción adicional con el id_rvoe
+         // Por ejemplo, podrías guardar el id_rvoe en la base de datos, asociarlo con los usuarios importados, etc.
+ 
+         // Devolver una respuesta
+         return response()->json(['message' => 'Usuarios importados exitosamente', 'id_rvoe' => $id_rvoe]);
+ 
+
+        // $file = $request->file('file');
+        // Excel::import(new UsersImport, $file);
         
     }
 }

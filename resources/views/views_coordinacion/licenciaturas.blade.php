@@ -65,12 +65,10 @@
                             <div class="card-body">
                                 <div class="card col-12" v-for="rvoe in licenciatura.rvoe">
                                     <div class="card-body">
-                                        <div class="card card-danger collapsed-card">
+                                        <div class="card card-info collapsed-card">
                                             <div class="card-header">
                                                 <h3 class="card-title"> @{{ rvoe.id_rvoe }}</h3>
-                                                <button type="button" class="btn btn-tool">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </button>
+                                             
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                         <i class="fas fa-minus"></i>
@@ -81,7 +79,23 @@
                                             </div>
                                             <!-- /.card-header -->
                                             <div class="card-body">
-                                                The body of the card
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Identificador</th>
+                                                        <th scope="col">Asignatura</th>
+                                                        {{-- <th scope="col">Handle</th> --}}
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr v-for="materia in rvoe.materias">
+                                                        <th scope="row">1</th>
+                                                        <td>@{{materia.name}}</td>
+                                                        <td>@{{materia.materia}}</td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
                                             </div>
                                             <!-- /.card-body -->
                                         </div>
