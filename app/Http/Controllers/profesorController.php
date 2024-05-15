@@ -91,6 +91,7 @@ class profesorController extends Controller
     public function show($id)
     {
         //
+        return Profesor::find($id);
     }
 
     /**
@@ -114,5 +115,11 @@ class profesorController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getMaestro($request){
+        // return $request;
+        $maestros = Profesor::where('curp', $request)->get();
+    
+        return $maestros[0];
     }
 }

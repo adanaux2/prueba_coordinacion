@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materias;
+use App\Models\Licenciaturas_rvoe;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class materiasControler extends Controller
+class licenciaturas_rvoeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class materiasControler extends Controller
     public function index()
     {
         //
-        return Materias::all();
+        return Licenciaturas_rvoe::all();
     }
 
     /**
@@ -27,23 +26,7 @@ class materiasControler extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-
-
-            // nivel de ingles
-            'materia' => 'required',//required obliga a que este valor no este vacio
-            'cuatrimestre' => 'required',
-            'id_licenciatura' => 'nullable',
-
-        ]);
-
-        DB::table('materias')->insert($validatedData);
-        // Retornar una respuesta
-        return response()->json(['message' => $validatedData, 'materia' => $request],  201);
-
-        
-
-        
+        //
     }
 
     /**

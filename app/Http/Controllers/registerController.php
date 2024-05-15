@@ -37,7 +37,7 @@ class registerController extends Controller
         'email' => 'required|email|unique:users', // Asegúrate de que el email sea único
         'password' => 'required|min:4', // Asume que la contraseña debe tener al menos 4 caracteres
         'id_rol' => 'required',
-        'curp'=>'required'
+        'curp'=>'nullable'
     ]);
 
     // Crear el usuario con los datos validados

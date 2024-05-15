@@ -11,6 +11,10 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\rolesController;
 use App\Http\Controllers\sessionsController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\licenciaturas_rvoeController;
+use App\Http\Controllers\liscController;
+use App\Http\Controllers\rvoeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,35 +50,47 @@ Route::get('master', function () {
 
 
 Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
-Route::view('mate','/views_coordinacion/materias');
-Route::view('asignacion','/views_coordinacion/asignaciones');
+Route::view('mate', '/views_coordinacion/materias');
+Route::view('asignacion', '/views_coordinacion/asignaciones');
+Route::view('licenciaturas', '/views_coordinacion/licenciaturas');
 
 
-Route::get('/register',[registerController::class, 'create'])
-->name('register.index');
+Route::get('/register', [registerController::class, 'create'])
+    ->name('register.index');
 
-Route::post('/register',[registerController::class, 'store'])
-->name('register.store');
+Route::post('/register', [registerController::class, 'store'])
+    ->name('register.store');
 
-Route::post('/register2',[registerController::class, 'store2'])
-->name('register.store2');
+Route::post('/register2', [registerController::class, 'store2'])
+    ->name('register.store2');
 
-Route::get('/login',[sessionsController::class, 'create'])
-->name('login.index');
+Route::get('/login', [sessionsController::class, 'create'])
+    ->name('login.index');
 
-Route::post('/login',[sessionsController::class, 'store'])
-->name('login.store');
+Route::post('/login', [sessionsController::class, 'store'])
+    ->name('login.store');
 
-Route::get('/login/destroy',[sessionsController::class, 'destroy'])
-->name('login.destroy');
+Route::get('/login/destroy', [sessionsController::class, 'destroy'])
+    ->name('login.destroy');
 
-Route::post('/registerProfes',[profesorController::class, 'store'])
-->name('registerProfes.store');
-
+Route::post('/registerProfes', [profesorController::class, 'store'])
+    ->name('registerProfes.store');
 
 
 Route::apiResource('apiRoles', rolesController::class);
-Route::apiResource('apiUser',userController::class);
-Route::apiResource('apiProfe',profesorController::class);
-Route::apiResource('apiMaterias',materiasControler::class);
-Route::apiResource('apiLicenciaturas',licenciaturaController::class);
+Route::apiResource('apiUser', userController::class);
+Route::apiResource('apiProfe', profesorController::class);
+Route::apiResource('apiMaterias', materiasControler::class);
+Route::apiResource('apiLicenciaturas', licenciaturaController::class);
+Route::apiResource('apiLisc', liscController::class);
+Route::apiResource('apiR', rvoeController::class);
+Route::apiResource('apiL', licenciaturas_rvoeController::class);
+// rutas parametrizadas
+
+Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
+
+
+// importar exel
+
+Route::get('/import', [importController::class, 'import']);
+Route::post('/import', [importController::class, 'import2']);

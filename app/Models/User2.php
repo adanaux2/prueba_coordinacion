@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Materias extends Model
+class User2 extends Model
 {
     use HasFactory;
-    protected $table = 'materias';
+    protected $table = 'user';
     public $timestamps = false;
+
     // Establece la clave primaria personalizada
-    protected $primaryKey = 'id_materia';
+    protected $primaryKey = 'id';
     // Define los atributos que pueden ser asignados en masa
-    protected $fillable = ['id_materia', 'materia', 'cuatrimestre', 'id_rvoe'];
+    protected $fillable = ['name','email'];
 }

@@ -1,6 +1,9 @@
-var apiMaterias = "http://localhost/prueba_coordinacion/public/apiMaterias";
-var apiLicenciaturas =
-    "http://localhost/prueba_coordinacion/public/apiLicenciaturas";
+var ruta = document.querySelector("[name=route]").value;
+
+var apiMaterias =ruta + "/apiMaterias";
+var apiR =ruta + "/apiR";
+var importar = ruta + "/importar";
+var importar2= ruta + "/import";
 
 // Crear una instancia de Vue
 const app = Vue.createApp({
@@ -8,10 +11,11 @@ const app = Vue.createApp({
         return {
             mensaje: "apiMaterias desde vue 3",
             materias: [],
-            licenciaturasObtenidas: [],
+            rObtenidas: [],
             nMateria: "",
             cuatrimestre: "",
             licenciatura: "",
+            id_rvoe:'',
         };
     },
     created() {
@@ -36,16 +40,14 @@ const app = Vue.createApp({
                 });
         },
         obtenerLicenciaturas: function () {
-            window.axios
-                .get(apiLicenciaturas)
-                .then((response) => {
-                    // console.log(response.data);
-                    this.licenciaturasObtenidas = response.data;
-                    console.log(this.licenciaturasObtenidas);
-                })
-                .catch((error) => {
-                    console.error("Hubo un error al obtener los datos:", error);
-                });
+            window.axios.get(apiR).then((response) => {
+                // console.log(response.data);
+                this.rObtenidas = response.data;
+                // console.log(this.licenciaturasObtenidas);
+            });
+            // .catch((error) => {
+            //     console.error("Hubo un error al obtener los datos:", error);
+            // });
         },
         guardarMateria: function () {
             const materia = {
@@ -71,6 +73,27 @@ const app = Vue.createApp({
                     console.error("Error submitting form:", error);
                 });
             $(exampleModal).modal("hide");
+        },
+        importarUsuarios: function () {
+            const formData = new FormData();
+            formData.append("file", this.$refs.fileInput.files[0]);
+            formData.append("id_rvoe", this.id_rvoe); // Agregar id_rvoe al FormData
+
+
+            axios
+                .post(importar2, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    alert("Usuarios importados exitosamente.");
+                })
+                .catch((error) => {
+                    console.error("Error al importar usuarios:", error);
+                    alert("Hubo un error al importar usuarios.");
+                });
         },
     },
 });

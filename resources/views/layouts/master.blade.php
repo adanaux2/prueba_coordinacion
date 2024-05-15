@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/adminlte.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css">
-    
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -52,7 +52,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                
+
                 <a class="nav-link">{{ auth()->user()->name }}</a>
 
                 <li class="nav-item">
@@ -118,26 +118,35 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="coordinacion_maestros" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Maestros</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="mate" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Materias</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="asignacion" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asignaciones</p>
-                                    </a>
-                                </li>
-                            </ul>
+                            @if (auth()->user()->id_rol == 2)
+                                <!-- Código a ejecutar si $condition1 es verdadero -->
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="coordinacion_maestros" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Maestros</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="licenciaturas" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Licenciaturas y RVOES</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="mate" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Materias</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="asignacion" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Asignaciones</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endif
                         </li>
                     </ul>
                 </nav>
@@ -180,7 +189,7 @@
     </div>
     <!-- ./wrapper -->
 
-    
+
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materias;
+use App\Models\Lisc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class materiasControler extends Controller
+class liscController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class materiasControler extends Controller
     public function index()
     {
         //
-        return Materias::all();
+        return Lisc::all();
     }
 
     /**
@@ -27,23 +27,7 @@ class materiasControler extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-
-
-            // nivel de ingles
-            'materia' => 'required',//required obliga a que este valor no este vacio
-            'cuatrimestre' => 'required',
-            'id_licenciatura' => 'nullable',
-
-        ]);
-
-        DB::table('materias')->insert($validatedData);
-        // Retornar una respuesta
-        return response()->json(['message' => $validatedData, 'materia' => $request],  201);
-
-        
-
-        
+        //
     }
 
     /**
@@ -78,5 +62,9 @@ class materiasControler extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getLiscMaterias()
+    {
+        
     }
 }

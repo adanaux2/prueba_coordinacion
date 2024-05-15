@@ -9,22 +9,68 @@
             <h1>
                 vista materias
                 @{{ mensaje }}
+
             </h1>
+            <h6>Carga en este espacio tu archivo excel</h6>
             <div class="row">
-            </div>
-            <div class="col-3">
-                <div class="small-box bg-warning">
-                    <div class="inner" style="background:rgb(36, 194, 57)">
-                        <h3>+</h3>
-                        <p>Registar Materias</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa-solid fa-book"></i>
-                    </div>
-                    <a class="small-box-footer" style="background:rgb(30, 161, 47)" @click="openModal()">Ver más <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                
+               
+                <div class="input-group col-7">
+                    <input type="file" class="form-control" ref="fileInput" accept=".xls, .xlsx" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+                        aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" @click="importarUsuarios()">Importar Usuarios</button>
                 </div>
-            </div> {{-- inicio de ventana modal --}}
+                {{-- <input type="file" ref="fileInput" accept=".xls, .xlsx">
+                <button @click="importarUsuarios">Importar Usuarios</button> --}}
+                {{-- <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file">
+                    <input type="submit" value="IMPORTAR">
+                </form> --}}
+            </div>
+            <br>
+            <h6>Selecciona el Rvoe al que pertenecen las asignaturas a ingresar</h6>
+            <div class="row">
+                <div class="col-7">
+                    <select class="form-control" v-model="id_rvoe">
+                        <option disabled>Elige una licenciatura</option>
+                        <option v-for="l in rObtenidas" :value="l.id_rvoe">
+                            @{{ l.id_rvoe }}</option>
+                    </select>
+                </div>
+            </div>
+            {{-- <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@{{ materias.length }}</h3>
+
+                            <p>Materias</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <a class="small-box-footer">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="small-box bg-warning">
+                        <div class="inner" style="background:rgb(36, 194, 57)">
+                            <h3>+</h3>
+                            <p>Registar Materias</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <a class="small-box-footer" style="background:rgb(30, 161, 47)" @click="openModal()">Ver más <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div> --}}
+
+
+            {{-- inicio de ventana modal --}}
             <!-- Modal -->
             <div class="modal fade" id="exampleModal">
                 <div class="modal-dialog">
@@ -57,12 +103,13 @@
                                 </select>
                             </div>
                             <br>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <select class="form-control" v-model="licenciatura">
                                     <option disabled>Elige una licenciatura</option>
-                                    <option v-for="l in licenciaturasObtenidas" :value="l.id_licenciatura">@{{ l.licenciatura }}</option>
+                                    <option v-for="l in licenciaturasObtenidas" :value="l.id_licenciatura">
+                                        @{{ l.licenciatura }}</option>
                                 </select>
-                            </div>
+                            </div> --}}
 
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -92,4 +139,5 @@
     @push('scripts')
         <script type="module" src="js/apis/apiMaterias.js"></script>
     @endpush
+    <input type="hidden" name="route" value="{{url('/')}}">
 @endsection
