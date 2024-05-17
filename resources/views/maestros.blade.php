@@ -68,12 +68,12 @@
                                         <h5>MARTES</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="martes1"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="martes2"></p>
                                             </div>
                                         </div>
 
@@ -84,12 +84,12 @@
                                         <h5>MIÉRCOLES</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="miercoles1"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="miercoles2"></p>
                                             </div>
                                         </div>
 
@@ -100,12 +100,12 @@
                                         <h5>JUEVES</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>MATUTINO 8:00-10:00  <input type="checkbox" id="myCheckbox" v-model="jueves1"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>NOCTURNO 20:00-22:00  <input type="checkbox" id="myCheckbox" v-model="jueves2"></p>
                                             </div>
                                         </div>
 
@@ -116,17 +116,17 @@
                                         <h5>SÁBADO MATUTÍNO </h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>7:00-9:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>7:00-9:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado1"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>9:00-11:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>9:00-11:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado2"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>11:00-13:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>11:00-13:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado3"></p>
                                             </div>
                                         </div>
 
@@ -137,17 +137,17 @@
                                         <h5>SÁBADO VESPERTINO</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>13:00-15:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>13:00-15:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado4"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>15:00-17:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>15:00-17:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado5"></p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p>17:00-19:00 HRS  <input type="checkbox" id="myCheckbox" v-model="isChecked"></p>
+                                                <p>17:00-19:00 HRS  <input type="checkbox" id="myCheckbox" v-model="sabado6"></p>
                                             </div>
                                         </div>
 

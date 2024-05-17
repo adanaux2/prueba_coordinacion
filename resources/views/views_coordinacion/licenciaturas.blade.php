@@ -89,8 +89,8 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <tr v-for="materia in rvoe.materias">
-                                                        <th scope="row">1</th>
+                                                        <tr v-for="(materia, index) in rvoe.materias" :key="index">
+                                                        <th scope="row">@{{ index + 1 }}</th>
                                                         <td>@{{materia.name}}</td>
                                                         <td>@{{materia.materia}}</td>
                                                       </tr>

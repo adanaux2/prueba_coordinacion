@@ -10,6 +10,26 @@ const app = Vue.createApp({
             principal: 0,
             maestro: [],
             curpConsultaGet: curpValue,
+
+            martes1:'',
+            martes2:'',
+            miercoles1:'',
+            miercoles2:'',
+            jueves1:'',
+            jueves2:'',
+            sabado1:'',
+            sabado2:'',
+            sabado3:'',
+            sabado4:'',
+            sabado5:'',
+            sabado6:'',
+            domingo1:'',
+            domingo2:'',
+            domingo3:'',
+
+
+
+            
         };
     },
     created() {},
