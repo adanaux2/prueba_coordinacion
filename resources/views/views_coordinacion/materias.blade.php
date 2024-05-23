@@ -18,7 +18,7 @@
                 <div class="input-group col-7">
                     <input type="file" class="form-control" ref="fileInput" accept=".xls, .xlsx" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
                         aria-label="Upload">
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" @click="importarUsuarios()">Importar Usuarios</button>
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" @click="importarUsuarios()">Importar materias</button>
                 </div>
                 {{-- <input type="file" ref="fileInput" accept=".xls, .xlsx">
                 <button @click="importarUsuarios">Importar Usuarios</button> --}}

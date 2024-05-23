@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\disponibilidadController;
 use App\Http\Controllers\licenciaturaController;
 use App\Http\Controllers\maestrosController;
 use App\Http\Controllers\materiasControler;
@@ -85,9 +86,11 @@ Route::apiResource('apiLicenciaturas', licenciaturaController::class);
 Route::apiResource('apiLisc', liscController::class);
 Route::apiResource('apiR', rvoeController::class);
 Route::apiResource('apiL', licenciaturas_rvoeController::class);
+Route::apiResource('apiDisp', disponibilidadController::class);
 // rutas parametrizadas
 
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
+Route::get('getDisposicion/{id}', [disponibilidadController::class, 'ConsultaP']);
 
 
 // importar exel

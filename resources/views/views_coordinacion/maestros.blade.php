@@ -285,4 +285,5 @@
     @push('scripts')
         <script type="module" src="js/apis/apiMaestrosCoordinacion.js"></script>
     @endpush
+    <input type="hidden" name="route" value="{{url('/')}}">
 @endsection
