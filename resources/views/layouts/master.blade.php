@@ -79,27 +79,28 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary ">
-            <!-- Brand Logo -->
-            {{-- <a href="index3.html" class="brand-link">
-                <img src="img/logo-aztlan.png" width="80" class="brand-image"
-                    style="opacity: .8">
-            
-            </a> --}}
-            {{-- <div>
-                <center><img src="img/logo-aztlan.png" width="150" ></center>
-            </div> --}}
-
+        <aside class="main-sidebar sidebar-dark-danger elevation-4">
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div>
-                    <div class="image">
+                    {{-- <div class="image">
                         <img src="img/logo-aztlan.png" width="100">
-                    </div>
-                    {{-- <div class="info">
-                        <a href="#" class="d-block"></a>
                     </div> --}}
+                    {{-- <div class="info">
+                        <a href="#" class="d-block">
+                            <img src="img/logo-aztlan.png" width="100">
+                        </a>
+                    </div> --}}
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                          <img src="img/logo-aztlan.png" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                          <a href="#" class="d-block">Alexander Pierce</a>
+                        </div>
+                      </div>
+                   
                 </div>
 
 
@@ -183,7 +184,7 @@
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
+           
         </aside>
         <!-- /.control-sidebar -->
     </div>

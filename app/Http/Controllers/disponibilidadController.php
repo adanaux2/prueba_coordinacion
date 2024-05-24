@@ -78,6 +78,17 @@ class disponibilidadController extends Controller
     public function destroy($id)
     {
         //
+        // Buscar el elemento por id
+        $element = Disponibilidad::find($id);
+
+        if ($element) {
+            // Eliminar el elemento
+            $element->delete();
+            return response()->json(['message' => 'Elemento eliminado correctamente.'], 200);
+        } else {
+            return response()->json(['message' => 'Elemento no encontrado.'], 404);
+        }
+    
     }
     public function ConsultaP($request){
         // return $request;

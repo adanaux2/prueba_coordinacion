@@ -423,8 +423,12 @@
                                             <p>@{{ dia.horario[0].hora }}</p>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div v-show="mostrar==0">
+                                <div v-if="mostrar==1">
+                                    <button class="btn btn-dark" @clicK="eliminarDisp()">Eliminar disponibilidad</button>
+                                </div>
+                                <div v-if="mostrar==0">
                                     <h3>Aún no llenas tu disponibilidad</h3>
                                 </div>
                             </div>

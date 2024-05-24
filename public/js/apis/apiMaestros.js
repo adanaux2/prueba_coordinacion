@@ -1,7 +1,7 @@
 var ruta = document.querySelector("[name=route]").value;
 var getProfe = ruta + "/getMaestro";
 var apiDisposicion = ruta + "/apiDisp";
-var getDisp = "http://localhost/prueba_coordinacion/public/getDisposicion";
+var getDisp = ruta + "/getDisposicion";
 
 const curpValue = document.getElementById("curpInput").value;
 
@@ -30,13 +30,10 @@ const app = Vue.createApp({
             domingo1: [],
             domingo2: [],
             domingo3: [],
-
             //traer Disp
             disp: [],
-
             //mostrar datos disponibilidad
-
-            mostrar:0,
+            mostrar: 0,
         };
     },
     created() {
@@ -63,9 +60,8 @@ const app = Vue.createApp({
                     // console.log(this.id_maestro);
                 })
                 .catch((error) => {
-                    console.error("Error al obtener el maestro:", error);
+                    // console.error("Error al obtener el maestro:", error);
                 });
-          
         },
         importarUsuarios: function () {
             const formData = new FormData();
@@ -121,22 +117,23 @@ const app = Vue.createApp({
                             // console.log("exito");
                         })
                         .catch((error) => {
-                            console.error("Error submitting form:", error);
+                            // console.error("Error submitting form:", error);
                         });
-                    // console.log(disp);
+                    
 
                     Swal.fire({
-                        position: "top-center",
+                        position: "center",
                         icon: "success",
                         title: "Datos guardados",
                         showConfirmButton: false,
                         timer: 1500,
                     });
+
                 } else {
                     // console.log("existe un error en array horarios" + value);
                 }
             });
-            this.getDisp();
+            location.reload();
         },
         getDisp: function () {
             // console.log(this.id_maestro);
@@ -146,14 +143,30 @@ const app = Vue.createApp({
                     this.disp = response.data;
                     if (this.disp.length >= 0) {
                         //esta variable permite saber si se cuenta o no con una disposicion planteada
-                        this.mostrar=1;
+                        this.mostrar = 1;
                     }
                     // console.log(this.disp);
                     // console.log(this.id_maestro);
                 })
                 .catch((error) => {
-                    console.error("Error al obtener el maestro:", error);
+                    // console.error("Error al obtener el maestro:", error);
                 });
+        },
+        eliminarDisp: function () {
+            // alert('eliminar dispo')
+            this.disp.forEach((element) => {
+                // console.log(element.id_disp);
+                axios.delete(apiDisposicion + '/'+ element.id_disp)
+                .then(response => {
+                    console.log(response.data.message);
+                    // Aquí puedes emitir un evento o actualizar la lista de elementos
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error(error.response.data.message);
+                });
+            });
+            
         },
     },
 });
