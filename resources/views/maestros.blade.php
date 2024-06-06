@@ -190,7 +190,7 @@
 
 
                                     </div>
-                                    <button class="btn btn-dark" @click="guardarDisposicion()" v-if="mostrar==0">
+                                    <button class="btn btn-dark"  v-if="mostrar==0">
                                         Guardar
                                     </button>
                                     <div class="row" v-if="mostrar==1">
@@ -199,25 +199,80 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_2">
-                                    The European languages are members of the same family. Their separate existence is a
-                                    myth.
-                                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only
-                                    differ
-                                    in their grammar, their pronunciation and their most common words. Everyone realizes why
-                                    a
-                                    new common language would be desirable: one could refuse to pay expensive translators.
-                                    To
-                                    achieve this, it would be necessary to have uniform grammar, pronunciation and more
-                                    common
-                                    words. If several languages coalesce, the grammar of the resulting language is more
-                                    simple
-                                    and regular than that of the individual languages.
+                                    <div class="row">
+                                        <div class="card col-12" v-for="licenciatura in lisc">
+                                            <div class="card-body">
+                                                <div class="card card-danger collapsed-card">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">@{{ licenciatura.licenciatura }}</h3>
+                        
+                                                        <div class="card-tools">
+                                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                <i class="fas fa-minus"></i>
+                                                            </button>
+                                                        </div>
+                                                        <!-- /.card-tools -->
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <div class="card-body">
+                                                        <div class="card col-12" v-for="rvoe in licenciatura.rvoe">
+                                                            <div class="card-body">
+                                                                <div class="card card-info collapsed-card">
+                                                                    <div class="card-header">
+                                                                        <h3 class="card-title"> @{{ rvoe.id_rvoe }}</h3>
+                                                                     
+                                                                        <div class="card-tools">
+                                                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                                                <i class="fas fa-minus"></i>
+                                                                            </button>
+                                                                            
+                                                                        </div>
+                                                                        <!-- /.card-tools -->
+                                                                    </div>
+                                                                    <!-- /.card-header -->
+                                                                    <div class="card-body">
+                                                                        <table class="table">
+                                                                            <thead>
+                                                                              <tr>
+                                                                                <th scope="col">#</th>
+                                                                                <th scope="col">Identificador</th>
+                                                                                <th scope="col">Asignatura</th>
+                                                                                <th scope="col">Acción</th>
+                                                                              </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr v-for="(materia, index) in rvoe.materias" :key="index">
+                                                                                <th scope="row">@{{ index + 1 }}</th>
+                                                                                <td>@{{materia.name}}</td>
+                                                                                <td>@{{materia.materia}}</td>
+                                                                                <td>
+                                                                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                                        <input type="checkbox" class="custom-control-input" :id="'customSwitch' + index" v-model="materia.selected"   @change="handleCheckboxChange(materia)">
+                                                                                        <label class="custom-control-label"  :for="'customSwitch' + index"></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                              </tr>
+                                                                            </tbody>
+                                                                          </table>
+                                                                    </div>
+                                                                    <!-- /.card-body -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default" @click="saveSelected()">Guardar Seleccionados</button>
                                 </div>
                             </div>
                             <!-- /.tab-content -->
                         </div><!-- /.card-body -->
                     </div>
                     <!-- ./card -->
+                  
                 </div>
 
 

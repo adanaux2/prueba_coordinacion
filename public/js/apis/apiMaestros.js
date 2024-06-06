@@ -2,6 +2,8 @@ var ruta = document.querySelector("[name=route]").value;
 var getProfe = ruta + "/getMaestro";
 var apiDisposicion = ruta + "/apiDisp";
 var getDisp = ruta + "/getDisposicion";
+var LiscMaterias = ruta + "/apiLisc";
+var apiMapa= ruta+ "/apiMapa";
 
 const curpValue = document.getElementById("curpInput").value;
 
@@ -12,6 +14,7 @@ const app = Vue.createApp({
             mensaje: curpValue,
             principal: 0,
             maestro: [],
+            lisc: [],
             curpConsultaGet: curpValue,
             id_maestro: "",
 
@@ -34,16 +37,24 @@ const app = Vue.createApp({
             disp: [],
             //mostrar datos disponibilidad
             mostrar: 0,
+            // selected:'',
+            MateriasSeleccionadas: [],
         };
     },
     created() {
         this.getMaestro();
         // this.getDisp();
+        this.obtenerLisc();
     },
-
+    watch: {
+        // selected(newValue) {
+        //     console.log(`El valor de selected ha cambiado a: ${newValue}`);
+        // }
+    },
     methods: {
         vista1: function () {
             this.principal = 1;
+            this.getMaestro();
             this.getDisp();
         },
         vista2: function () {
@@ -119,7 +130,6 @@ const app = Vue.createApp({
                         .catch((error) => {
                             // console.error("Error submitting form:", error);
                         });
-                    
 
                     Swal.fire({
                         position: "center",
@@ -128,7 +138,6 @@ const app = Vue.createApp({
                         showConfirmButton: false,
                         timer: 1500,
                     });
-
                 } else {
                     // console.log("existe un error en array horarios" + value);
                 }
@@ -137,36 +146,69 @@ const app = Vue.createApp({
         },
         getDisp: function () {
             // console.log(this.id_maestro);
-            axios
-                .get(getDisp + "/" + this.id_maestro)
-                .then((response) => {
-                    this.disp = response.data;
-                    if (this.disp.length >= 0) {
-                        //esta variable permite saber si se cuenta o no con una disposicion planteada
-                        this.mostrar = 1;
-                    }
-                    // console.log(this.disp);
-                    // console.log(this.id_maestro);
-                })
-                .catch((error) => {
-                    // console.error("Error al obtener el maestro:", error);
-                });
+            axios.get(getDisp + "/" + this.id_maestro).then((response) => {
+                this.disp = response.data;
+                if (this.disp.length >= 0) {
+                    //esta variable permite saber si se cuenta o no con una disposicion planteada
+                    this.mostrar = 1;
+                }
+                // console.log(response);
+                // console.log(this.id_maestro);
+            });
+            // .catch((error) => {
+            //     console.error(response);
+            // });
         },
         eliminarDisp: function () {
             // alert('eliminar dispo')
             this.disp.forEach((element) => {
                 // console.log(element.id_disp);
-                axios.delete(apiDisposicion + '/'+ element.id_disp)
-                .then(response => {
-                    console.log(response.data.message);
-                    // Aquí puedes emitir un evento o actualizar la lista de elementos
-                    location.reload();
-                })
-                .catch(error => {
-                    console.error(error.response.data.message);
-                });
+                axios
+                    .delete(apiDisposicion + "/" + element.id_disp)
+                    .then((response) => {
+                        console.log(response.data.message);
+                        // Aquí puedes emitir un evento o actualizar la lista de elementos
+                        location.reload();
+                    })
+                    .catch((error) => {
+                        console.error(error.response.data.message);
+                    });
             });
-            
+        },
+        obtenerLisc: function () {
+            window.axios
+                .get(LiscMaterias)
+                .then((response) => {
+                    // console.log(response.data);
+                    this.lisc = response.data;
+                    console.log(this.lisc);
+                })
+                .catch((error) => {
+                    console.error("Hubo un error al obtener los datos:", error);
+                });
+        },
+        saveSelected: function () {
+            alert("guardar");
+            console.log(this.MateriasSeleccionadas);
+            // console.log(this.id_maestro);
+            // this.maestro;
+        },
+        handleCheckboxChange: function (materia) {
+            if (materia.selected) {
+                // Lógica para enviar los datos de la materia seleccionada
+                console.log(materia);
+                materia.id_profe = this.id_maestro;
+                this.MateriasSeleccionadas.push(materia);
+                axios.post(apiMapa, {
+                    materias: this.MateriasSeleccionadas
+                  })
+                  .then(response => {
+                    console.log('Materias guardadas:', response.data);
+                  })
+                  .catch(error => {
+                    console.error('Error al guardar las materias:', error);
+                  });
+            }
         },
     },
 });

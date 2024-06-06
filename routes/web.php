@@ -15,6 +15,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\licenciaturas_rvoeController;
 use App\Http\Controllers\liscController;
+use App\Http\Controllers\MapaController;
 use App\Http\Controllers\rvoeController;
 
 /*
@@ -87,6 +88,7 @@ Route::apiResource('apiLisc', liscController::class);
 Route::apiResource('apiR', rvoeController::class);
 Route::apiResource('apiL', licenciaturas_rvoeController::class);
 Route::apiResource('apiDisp', disponibilidadController::class);
+Route::apiResource('apiMapa',MapaController::class);
 // rutas parametrizadas
 
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);

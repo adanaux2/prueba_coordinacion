@@ -19,6 +19,10 @@ const app = Vue.createApp({
         this.obtenerLisc();
         this.obtenerLiscenciaturas();
     },
+    watch:{
+
+        
+    },
 
     methods: {
         openModal: function () {
