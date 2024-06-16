@@ -3,7 +3,7 @@ var getProfe = ruta + "/getMaestro";
 var apiDisposicion = ruta + "/apiDisp";
 var getDisp = ruta + "/getDisposicion";
 var LiscMaterias = ruta + "/apiLisc";
-var apiMapa= ruta+ "/apiMapa";
+var apiMapa = ruta + "/apiMapa";
 
 const curpValue = document.getElementById("curpInput").value;
 
@@ -37,8 +37,11 @@ const app = Vue.createApp({
             disp: [],
             //mostrar datos disponibilidad
             mostrar: 0,
+            //mostrar datos de mapa curricular guardado
+            mostrar2: 0,
             // selected:'',
             MateriasSeleccionadas: [],
+            MapaGuardado: [],
         };
     },
     created() {
@@ -56,11 +59,13 @@ const app = Vue.createApp({
             this.principal = 1;
             this.getMaestro();
             this.getDisp();
+            this.getMapa();
         },
         vista2: function () {
             this.principal = 2;
             // this.getMaestro();
             this.getDisp();
+            this.getMapa();
         },
         getMaestro: function () {
             axios
@@ -192,6 +197,24 @@ const app = Vue.createApp({
             console.log(this.MateriasSeleccionadas);
             // console.log(this.id_maestro);
             // this.maestro;
+            axios
+                .post(apiMapa, {
+                    materias: this.MateriasSeleccionadas,
+                })
+                .then((response) => {
+                    // console.log("Materias guardadas:", response.data);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Datos guardados",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    location.reload();
+                })
+                .catch((error) => {
+                    console.error("Error al guardar las materias:", error);
+                });
         },
         handleCheckboxChange: function (materia) {
             if (materia.selected) {
@@ -199,16 +222,53 @@ const app = Vue.createApp({
                 console.log(materia);
                 materia.id_profe = this.id_maestro;
                 this.MateriasSeleccionadas.push(materia);
-                axios.post(apiMapa, {
-                    materias: this.MateriasSeleccionadas
-                  })
-                  .then(response => {
-                    console.log('Materias guardadas:', response.data);
-                  })
-                  .catch(error => {
-                    console.error('Error al guardar las materias:', error);
-                  });
             }
+        },
+        getMapa: function () {
+            axios.get(apiMapa + "/" + this.id_maestro).then((response) => {
+                this.MapaGuardado = response.data;
+                if (this.MapaGuardado.length >= 0) {
+                    //esta variable permite saber si se cuenta o no con una disposicion planteada
+                    // this.mostrar = 1;
+                    this.mostrar2 = 1;
+                    console.log(this.MapaGuardado);
+                }
+                // console.log(response);
+                // console.log(this.id_maestro);
+            });
+        },
+        EliminarMapa: function () {
+            Swal.fire({
+                title: "Eliminar?",
+                text: "Estas seguro de eliminar tu mapa curricular?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminar!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // console.log(this.MapaGuardado)
+                    this.MapaGuardado.forEach((element) => {
+                        // console.log(element.id_mapa);
+                        axios
+                            .delete(apiMapa + "/" + element.id_mapa)
+                            .then((response) => {
+                                console.log(response.data.message);
+                                
+                            })
+                            .catch((error) => {
+                                console.error(error.response.data.message);
+                            });
+                    });
+                    Swal.fire({
+                        title: "Información eliminada!",
+                        text: "Tu mapa curricular fue eliminado.",
+                        icon: "success",
+                    });
+                    location.reload();
+                }
+            });
         },
     },
 });

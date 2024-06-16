@@ -20,12 +20,13 @@
                         <div class="inner">
                             <h3>150</h3>
 
-                            <p>Consultar</p>
+                            <p>Crear grupos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer" @click="agregarGrupo()">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mt-4">
@@ -72,7 +73,8 @@
                                     <p>LICENCIATURA EN: </p>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" placeholder="Nombre" class="form-control" disabled v-model="usuarioSeleccionado.nombre_c">
+                                    <input type="text" placeholder="Nombre" class="form-control" disabled
+                                        v-model="usuarioSeleccionado.nombre_c">
                                     <br>
                                     <input disabled class="form-control" v-model="usuarioSeleccionado.licenciatura">
                                 </div>
@@ -171,7 +173,8 @@
                                     <p>LICENCIATURA EN: </p>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" placeholder="Nombre" class="form-control" disabled v-model="usuarioSeleccionado.nombre_c">
+                                    <input type="text" placeholder="Nombre" class="form-control" disabled
+                                        v-model="usuarioSeleccionado.nombre_c">
                                     <br>
                                     <input disabled class="form-control" v-model="usuarioSeleccionado.licenciatura">
                                 </div>
@@ -283,10 +286,56 @@
                                         <td>@{{ m.licenciatura }}</td>
                                         <td>@{{ m.correo_institucional }}</td>
                                         <td>@{{ m.curp }}</td>
-                                        <td><button class="btn btn-danger" @click="agregarUsuario(m)">Agregar</button></td>
+                                        <td><button class="btn btn-danger" @click="agregarUsuario(m)">Agregar</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- fin de modal --}}
+
+            {{-- modal --}}
+            <div class="modal fade" id="modalNG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal Agregar grupos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Licenciatura en:</h6>
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-control" id="" v-model="licenciaturaSelected">
+                                        <option disabled>Selecciona una licenciatura</option>
+                                        <option value="lic.licenciatura" v-for="lic in lisc">@{{ lic.licenciatura }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>RVOE:</h6>
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-control" id="">
+                                        <option disabled>Selecciona el RVOE</option>
+                                        <option value="" v-for="lic in lisc">@{{ lic.licenciatura }}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -305,4 +354,5 @@
     @push('scripts')
         <script type="module" src="js/apis/apiAsignaciones.js"></script>
     @endpush
+    <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection

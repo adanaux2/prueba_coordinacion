@@ -1,5 +1,10 @@
-var apiProfe = "http://localhost/prueba_coordinacion/public/apiProfe";
+var ruta = document.querySelector("[name=route]").value;
+
+var apiProfe = "/apiProfe";
 // Crear una instancia de Vue
+var Lisc = ruta + "/apiLisc";
+
+
 const app = Vue.createApp({
     data() {
         return {
@@ -7,10 +12,13 @@ const app = Vue.createApp({
             principal: 0,
             ProfesObtenidos: [],
             usuarioSeleccionado: {},
+            lisc: [],
+
         };
     },
     created() {
         this.obtenerProfe();
+        this.obtenerLisc();
     },
 
     methods: {
@@ -54,7 +62,22 @@ const app = Vue.createApp({
         },
         cerrarModal:function(){
             $("#modalP").modal("hide");
-        }
+        },
+        agregarGrupo:function(){
+            $("#modalNG").modal("show");
+        },
+        obtenerLisc: function () {
+            window.axios
+                .get(Lisc)
+                .then((response) => {
+                    // console.log(response.data);
+                    this.lisc = response.data;
+                    console.log(this.lisc);
+                })
+                .catch((error) => {
+                    console.error("Hubo un error al obtener los datos:", error);
+                });
+        },
     },
 });
 

@@ -31,7 +31,7 @@ class MapaController extends Controller
 
         // Validar la solicitud si es necesario
         $validated = $request->validate([
-            
+
             'materias.*.id_profe' => 'required|integer',
             'materias.*.id_materia' => 'required|integer'
         ]);
@@ -57,6 +57,12 @@ class MapaController extends Controller
     public function show($id)
     {
         //
+        $mapaCurricular = MapaCurricular::where('id_profe', $id)->get();
+        // Check if any records were found
+        if ($mapaCurricular->isEmpty()) {
+            return response()->json(['message' => 'No records found for the given professor ID'], 404);
+        }
+        return $mapaCurricular;
     }
 
     /**
@@ -80,5 +86,14 @@ class MapaController extends Controller
     public function destroy($id)
     {
         //
+        $element = MapaCurricular::find($id);
+
+        if ($element) {
+            // Eliminar el elemento
+            $element->delete();
+            return response()->json(['message' => 'Elemento eliminado correctamente.'], 200);
+        } else {
+            return response()->json(['message' => 'Elemento no encontrado.'], 404);
+        }
     }
 }

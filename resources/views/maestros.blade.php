@@ -199,10 +199,10 @@
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="tab_2">
-                                    <div class="row">
+                                    <div class="row" v-if="mostrar2==0">
                                         <div class="card col-12" v-for="licenciatura in lisc">
                                             <div class="card-body">
-                                                <div class="card card-danger collapsed-card">
+                                                <div class="card card-danger collapsed-card" >
                                                     <div class="card-header">
                                                         <h3 class="card-title">@{{ licenciatura.licenciatura }}</h3>
                         
@@ -265,7 +265,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-default" @click="saveSelected()">Guardar Seleccionados</button>
+                                    <button class="btn btn-default" v-if="mostrar2==0" @click="saveSelected()">Guardar Seleccionados</button>
+                                    <div class="row" v-if="mostrar2==1">
+                                        <h3>Eliminar mapa curricular actual</h3>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.tab-content -->
@@ -287,6 +290,8 @@
                             <li class="nav-item"><a class="nav-link active" href="#tab_3" data-toggle="tab">Datos
                                     personales</a></li>
                             <li class="nav-item"><a class="nav-link" href="#tab_4" data-toggle="tab">Disponibilidad</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#tab_5" data-toggle="tab">Mapa curricular</a>
                             </li>
 
                         </ul>
@@ -485,6 +490,24 @@
                                 </div>
                                 <div v-if="mostrar==0">
                                     <h3>Aún no llenas tu disponibilidad</h3>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tab_5">
+                                <div class="callout callout-info" v-for="materia in MapaGuardado" v-if="mostrar2==1">
+
+                                    {{-- <h5>hola mundo</h5> --}}
+                                    <div v-for="mat in materia.materias">
+                                        <h6>@{{mat.materia}}</h6>
+                                        <h6>RVOE @{{mat.id_rvoe}}</h6>
+                                    </div>
+                                    
+                                </div>
+                                <div v-if="mostrar2==1" @clicK="EliminarMapa()">
+                                    <button class="btn btn-dark">Eliminar mapa curricular</button>
+                                </div>
+                                <div v-if="mostrar2==0">
+                                    <h3>Aún no llenas tu mapa curricular</h3>
                                 </div>
                             </div>
                         </div>
