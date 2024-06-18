@@ -13,6 +13,9 @@ const app = Vue.createApp({
             ProfesObtenidos: [],
             usuarioSeleccionado: {},
             lisc: [],
+            licenciaturaSelected:'',
+            licRvoe:[],
+            year:'',
 
         };
     },
@@ -20,8 +23,27 @@ const app = Vue.createApp({
         this.obtenerProfe();
         this.obtenerLisc();
     },
+    watch: {
+        licenciaturaSelected(newValue, licenciaturaSelecte) {
+        //   console.log(`El mensaje ha cambiado de '${licenciaturaSelecte}' a '${newValue}'`);
+        window.axios
+                .get(Lisc + '/' + newValue)
+                .then((response) => {
+                    // console.log(response.data);
+                    this.licRvoe= response.data.rvoe;
+                    // console.log(this.licRvoe);
+                    this.updateYear();
+                })
+                .catch((error) => {
+                    console.error("Hubo un error al obtener los datos:", error);
+                });
+        }
+    },
 
     methods: {
+        updateYear() {
+            this.year = new Date().getFullYear();
+        },
         vista1: function () {
             this.principal = 1;
         },

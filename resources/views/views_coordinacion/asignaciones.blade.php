@@ -320,7 +320,8 @@
                                 <div class="col-8">
                                     <select class="form-control" id="" v-model="licenciaturaSelected">
                                         <option disabled>Selecciona una licenciatura</option>
-                                        <option value="lic.licenciatura" v-for="lic in lisc">@{{ lic.licenciatura }}</option>
+                                        <option :value="lic.id_licenciatura" v-for="lic in lisc">@{{ lic.licenciatura }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -330,12 +331,52 @@
                                     <h6>RVOE:</h6>
                                 </div>
                                 <div class="col-8">
-                                    <select class="form-control" id="">
+                                    <select class="form-control" id="" v-model="rvoeSelected">
                                         <option disabled>Selecciona el RVOE</option>
-                                        <option value="" v-for="lic in lisc">@{{ lic.licenciatura }}</option>
+                                        <option :value="rvoe.id_rvoe" v-for="rvoe in licRvoe">@{{ rvoe.id_rvoe }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Periodo:</h6>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control" id="" v-model="periodoSelected">
+                                        <option disabled>Selecciona el periodo</option>
+                                        <option value="">Enero - Abril</option>
+                                        <option value="">Mayo - Agosto</option>
+                                        <option value="">Septiembre - Diciembre</option>
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" v-model="year" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Cuatrimestre:</h6>
+                                </div>
+                                <div class="col-8">
+                                    <select class="form-control" id="" v-model="cuatriSelected">
+                                        <option disabled>Selecciona el cuatrimestre</option>
+                                        <option value="1">Primer cuatrimestre</option>
+                                        <option value="2">Segundo cuatrimestre</option>
+                                        <option value="3">Tercer cuatrimestre</option>
+                                        <option value="4">Cuarto cuatrimestre</option>
+                                        <option value="5">Quinto cuatrimestre</option>
+                                        <option value="6">Sexto cuatrimestre</option>
+                                        <option value="7">Septimo cuatrimestre</option>
+                                        <option value="8">Octavo cuatrimestre</option>
+                                        <option value="9">Noveno cuatrimestre</option>
+                                        <option value="10">Décimo cuatrimestre</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

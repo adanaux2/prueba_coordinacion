@@ -190,7 +190,7 @@
 
 
                                     </div>
-                                    <button class="btn btn-dark"  v-if="mostrar==0">
+                                    <button class="btn btn-dark"  v-if="mostrar==0" @click="guardarDisposicion()">
                                         Guardar
                                     </button>
                                     <div class="row" v-if="mostrar==1">

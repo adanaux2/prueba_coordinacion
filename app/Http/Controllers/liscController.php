@@ -39,6 +39,7 @@ class liscController extends Controller
     public function show($id)
     {
         //
+        return Lisc::find($id);
     }
 
     /**
