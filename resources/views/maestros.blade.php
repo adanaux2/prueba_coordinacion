@@ -246,9 +246,13 @@
                                                                                 <td>@{{materia.name}}</td>
                                                                                 <td>@{{materia.materia}}</td>
                                                                                 <td>
-                                                                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                                    {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                                                                         <input type="checkbox" class="custom-control-input" :id="'customSwitch' + index" v-model="materia.selected"   @change="handleCheckboxChange(materia)">
                                                                                         <label class="custom-control-label"  :for="'customSwitch' + index"></label>
+                                                                                    </div> --}}
+                                                                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                                                                        <input type="checkbox" class="custom-control-input" :id="'customSwitch' + materia.id_materia" v-model="materia.selected" @change="handleCheckboxChange(materia)">
+                                                                                        <label class="custom-control-label" :for="'customSwitch' + materia.id_materia"></label>
                                                                                     </div>
                                                                                 </td>
                                                                               </tr>

@@ -3,7 +3,7 @@ var ruta = document.querySelector("[name=route]").value;
 var apiProfe = "/apiProfe";
 // Crear una instancia de Vue
 var Lisc = ruta + "/apiLisc";
-
+var materias = ruta + "/getMaterias/";
 
 const app = Vue.createApp({
     data() {
@@ -13,10 +13,13 @@ const app = Vue.createApp({
             ProfesObtenidos: [],
             usuarioSeleccionado: {},
             lisc: [],
-            licenciaturaSelected:'',
-            licRvoe:[],
-            year:'',
-
+            licenciaturaSelected: "",
+            licRvoe: [],
+            year: "",
+            cuatriSelected: 0,
+            materias: [],
+            rvoeSelected: "",
+            periodoSelected: "",
         };
     },
     created() {
@@ -24,20 +27,30 @@ const app = Vue.createApp({
         this.obtenerLisc();
     },
     watch: {
-        licenciaturaSelected(newValue, licenciaturaSelecte) {
-        //   console.log(`El mensaje ha cambiado de '${licenciaturaSelecte}' a '${newValue}'`);
-        window.axios
-                .get(Lisc + '/' + newValue)
+        licenciaturaSelected(newValue) {
+            window.axios
+                .get(Lisc + "/" + newValue)
                 .then((response) => {
                     // console.log(response.data);
-                    this.licRvoe= response.data.rvoe;
+                    this.licRvoe = response.data.rvoe;
                     // console.log(this.licRvoe);
                     this.updateYear();
                 })
                 .catch((error) => {
                     console.error("Hubo un error al obtener los datos:", error);
                 });
-        }
+        },
+        cuatriSelected(newValue2) {
+            window.axios
+                .get(materias + newValue2 + "/" + this.rvoeSelected)
+                .then((response) => {
+                    this.materias = response.data;
+                    console.log(this.materias);
+                })
+                .catch((error) => {
+                    console.error("Hubo un error al obtener los datos:", error);
+                });
+        },
     },
 
     methods: {
@@ -82,10 +95,10 @@ const app = Vue.createApp({
             console.log(this.usuarioSeleccionado);
             this.cerrarModal();
         },
-        cerrarModal:function(){
+        cerrarModal: function () {
             $("#modalP").modal("hide");
         },
-        agregarGrupo:function(){
+        agregarGrupo: function () {
             $("#modalNG").modal("show");
         },
         obtenerLisc: function () {

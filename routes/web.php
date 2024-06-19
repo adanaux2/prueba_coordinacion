@@ -93,7 +93,7 @@ Route::apiResource('apiMapa',MapaController::class);
 
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
 Route::get('getDisposicion/{id}', [disponibilidadController::class, 'ConsultaP']);
-
+Route::get('getMaterias/{cuatri}/{id_rvoe}', [liscController::class, 'getLiscMaterias']);
 
 // importar exel
 

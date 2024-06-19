@@ -344,11 +344,11 @@
                                     <h6>Periodo:</h6>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-control" id="" v-model="periodoSelected">
+                                    <select class="form-control" v-model="periodoSelected">
                                         <option disabled>Selecciona el periodo</option>
-                                        <option value="">Enero - Abril</option>
-                                        <option value="">Mayo - Agosto</option>
-                                        <option value="">Septiembre - Diciembre</option>
+                                        <option value="1">Enero - Abril</option>
+                                        <option value="2">Mayo - Agosto</option>
+                                        <option value="3">Septiembre - Diciembre</option>
                                     </select>
                                 </div>
                                 <div class="col-2">
@@ -374,6 +374,26 @@
                                         <option value="9">Noveno cuatrimestre</option>
                                         <option value="10">Décimo cuatrimestre</option>
                                     </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col 12">
+                                    <h5 class="text-center">El grupo contará con las siguientes materias:</h5>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Identificador</th>
+                                            <th scope="col">Materia</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr v-for="mat in materias">
+                                            <th scope="row">@{{mat.name}}</th>
+                                            <td>@{{mat.materia}}</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
                                 </div>
                             </div>
 
