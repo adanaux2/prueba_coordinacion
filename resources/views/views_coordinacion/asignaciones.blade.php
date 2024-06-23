@@ -346,13 +346,24 @@
                                 <div class="col-6">
                                     <select class="form-control" v-model="periodoSelected">
                                         <option disabled>Selecciona el periodo</option>
-                                        <option value="1">Enero - Abril</option>
-                                        <option value="2">Mayo - Agosto</option>
-                                        <option value="3">Septiembre - Diciembre</option>
+                                        <option value="Enero - Abril">Enero - Abril</option>
+                                        <option value="Mayo - Agosto">Mayo - Agosto</option>
+                                        <option value="Septiembre - Diciembre">Septiembre - Diciembre</option>
                                     </select>
                                 </div>
                                 <div class="col-2">
                                     <input type="text" v-model="year" class="form-control" disabled>
+                                    {{-- <p>@{{ id }}</p> --}}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Identificador</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input type="text" v-model="id" class="form-control" disabled>
+
                                 </div>
                             </div>
                             <br>
@@ -382,25 +393,26 @@
                                     <h5 class="text-center">El grupo contará con las siguientes materias:</h5>
                                     <table class="table">
                                         <thead>
-                                          <tr>
-                                            <th scope="col">Identificador</th>
-                                            <th scope="col">Materia</th>
-                                          </tr>
+                                            <tr>
+                                                <th scope="col">Identificador</th>
+                                                <th scope="col">Materia</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                          <tr v-for="mat in materias">
-                                            <th scope="row">@{{mat.name}}</th>
-                                            <td>@{{mat.materia}}</td>
-                                          </tr>
+                                            <tr v-for="mat in materias">
+                                                <th scope="row">@{{ mat.name }}</th>
+                                                <td>@{{ mat.materia }}</td>
+                                            </tr>
                                         </tbody>
-                                      </table>
+                                    </table>
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary" @click="guardarGrupo()">Save changes</button>
+                            {{-- <button type="button" class="btn btn-primary" @click="guardarMateriasGrupos()">Save changes</button> --}}
                         </div>
                     </div>
                 </div>

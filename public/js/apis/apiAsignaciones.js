@@ -4,6 +4,8 @@ var apiProfe = "/apiProfe";
 // Crear una instancia de Vue
 var Lisc = ruta + "/apiLisc";
 var materias = ruta + "/getMaterias/";
+var apiGrupo = ruta + "/apiGrupo";
+var apimatG = ruta + "/apimatG";
 
 const app = Vue.createApp({
     data() {
@@ -20,11 +22,13 @@ const app = Vue.createApp({
             materias: [],
             rvoeSelected: "",
             periodoSelected: "",
+            id: "",
         };
     },
     created() {
         this.obtenerProfe();
         this.obtenerLisc();
+        this.generateUniqueId();
     },
     watch: {
         licenciaturaSelected(newValue) {
@@ -112,6 +116,76 @@ const app = Vue.createApp({
                 .catch((error) => {
                     console.error("Hubo un error al obtener los datos:", error);
                 });
+        },
+        generateUniqueId() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0"); // Los meses empiezan desde 0
+            const day = String(now.getDate()).padStart(2, "0");
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            const seconds = String(now.getSeconds()).padStart(2, "0");
+            // const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+            // Concatenar todos los valores en una sola cadena
+            // this.id = `${year}${month}${day}${hours}${minutes}${seconds}${milliseconds}`;
+            this.id = `${year}${month}${day}${hours}${minutes}${seconds}`;
+            // this.id = uuid.v4();
+            // console.log('ID generado:', this.id);
+        },
+        guardarGrupo: function () {
+            const grupo = {
+                id_grupo: this.id,
+                id_licenciatura: this.licenciaturaSelected,
+                id_rvoe: this.rvoeSelected,
+                periodo: this.periodoSelected,
+                anio: this.year,
+                cuatrimestre: this.cuatriSelected,
+            };
+            console.log(grupo);
+
+            axios
+                .post(apiGrupo, grupo)
+                .then((response) => {
+                    // console.log("exito");
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Grupo registrado",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    this.guardarMateriasGrupos();
+                })
+                .catch((error) => {
+                    console.error("Error submitting form:", error);
+                });
+            $("#modalNG").modal("hide");
+        },
+        guardarMateriasGrupos: function () {
+            const materias = this.materias.map((mat) => ({
+                id_materia: mat.id_materia,
+                id_grupo: this.id,
+                name: mat.name,
+                materia: mat.materia,
+            }));
+
+            console.log(materias);
+
+            // Función para enviar una petición POST
+            const enviarPeticion = async (materia) => {
+                try {
+                    const response = await axios.post(apimatG, materia);
+                    console.log("Respuesta del servidor:", response.data);
+                } catch (error) {
+                    console.error("Error al enviar la petición:", error);
+                }
+            };
+
+            // Enviar una petición por cada objeto en el arreglo
+            materias.forEach((materia) => {
+                enviarPeticion(materia);
+            });
         },
     },
 });

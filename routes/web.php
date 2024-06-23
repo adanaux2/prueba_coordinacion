@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\disponibilidadController;
+use App\Http\Controllers\gruposController;
 use App\Http\Controllers\licenciaturaController;
 use App\Http\Controllers\maestrosController;
 use App\Http\Controllers\materiasControler;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\licenciaturas_rvoeController;
 use App\Http\Controllers\liscController;
 use App\Http\Controllers\MapaController;
+use App\Http\Controllers\materiasGruposController;
 use App\Http\Controllers\rvoeController;
 
 /*
@@ -89,6 +91,8 @@ Route::apiResource('apiR', rvoeController::class);
 Route::apiResource('apiL', licenciaturas_rvoeController::class);
 Route::apiResource('apiDisp', disponibilidadController::class);
 Route::apiResource('apiMapa',MapaController::class);
+Route::apiResource('apiGrupo',gruposController::class);
+Route::apiResource('apimatG',materiasGruposController::class);
 // rutas parametrizadas
 
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
