@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MapaCurricular;
 use App\Models\Profesor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,7 @@ class profesorController extends Controller
 
 
             // nivel de ingles
-            'habla' => 'required',//required obliga a que este valor no este vacio
+            'habla' => 'required', //required obliga a que este valor no este vacio
             'escribe' => 'required',
             'lee' => 'required',
 
@@ -42,7 +43,7 @@ class profesorController extends Controller
 
             'licenciatura' => 'required',
             'c_licenciatura' => 'required',
-            'maestria' => 'nullable',//nullable permite que el valor pueda ser vacio
+            'maestria' => 'nullable', //nullable permite que el valor pueda ser vacio
             'c_maestria' => 'nullable',
             'doctorado' => 'nullable',
             'c_doctorado' => 'nullable',
@@ -116,10 +117,17 @@ class profesorController extends Controller
     {
         //
     }
-    public function getMaestro($request){
+    public function getMaestro($request)
+    {
         // return $request;
         $maestros = Profesor::where('curp', $request)->get();
-    
+
         return $maestros[0];
+    }
+    public function consultaProfesor($id_materia)
+    {
+        
+        $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
+        return $consulta;
     }
 }

@@ -147,6 +147,12 @@
                                             <p>Asignaciones</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="asignar" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Asignar</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             @endif
                         </li>

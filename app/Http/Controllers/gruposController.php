@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupos;
+use App\Models\Materias;
+use App\Models\MateriasGrupos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,6 +58,7 @@ class gruposController extends Controller
     public function show($id)
     {
         //
+        return Grupos::find($id);
     }
 
     /**
@@ -79,5 +82,11 @@ class gruposController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getMaterias($id){
+        // return $id;
+        // return Materias::where('id',$id);
+        return MateriasGrupos::where('id_grupo', $id)->get();
+
     }
 }

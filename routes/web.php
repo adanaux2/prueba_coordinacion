@@ -57,7 +57,7 @@ Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
 Route::view('mate', '/views_coordinacion/materias');
 Route::view('asignacion', '/views_coordinacion/asignaciones');
 Route::view('licenciaturas', '/views_coordinacion/licenciaturas');
-
+Route::view('asignar','/views_coordinacion/asignar');
 
 Route::get('/register', [registerController::class, 'create'])
     ->name('register.index');
@@ -98,7 +98,8 @@ Route::apiResource('apimatG',materiasGruposController::class);
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
 Route::get('getDisposicion/{id}', [disponibilidadController::class, 'ConsultaP']);
 Route::get('getMaterias/{cuatri}/{id_rvoe}', [liscController::class, 'getLiscMaterias']);
-
+Route::get('getMate/{id}', [gruposController::class, 'getMaterias']);
+Route::get('getConsultaProfe/{id_materia}', [profesorController::class, 'consultaProfesor']);
 // importar exel
 
 Route::get('/import', [importController::class, 'import']);

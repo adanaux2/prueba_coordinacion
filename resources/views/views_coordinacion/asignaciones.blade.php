@@ -54,7 +54,6 @@
                         <div class="card-body">
                             <div class="col-md-12 d-flex justify-content-center align-items-center">
                                 <h1>ASIGNACIÓN DE MATERIAS / MÓDULO I
-
                                 </h1>
                                 <br>
                                 <button class="btn btn-danger" @click="verModal()">

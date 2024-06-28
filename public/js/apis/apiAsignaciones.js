@@ -1,6 +1,6 @@
 var ruta = document.querySelector("[name=route]").value;
 
-var apiProfe = "/apiProfe";
+var apiProfe = ruta + "/apiProfe";
 // Crear una instancia de Vue
 var Lisc = ruta + "/apiLisc";
 var materias = ruta + "/getMaterias/";
@@ -26,7 +26,7 @@ const app = Vue.createApp({
         };
     },
     created() {
-        this.obtenerProfe();
+        // this.obtenerProfe();
         this.obtenerLisc();
         this.generateUniqueId();
     },
@@ -65,6 +65,7 @@ const app = Vue.createApp({
             this.principal = 1;
         },
         obtenerProfe: function () {
+            alert('buscando');
             window.axios
                 .get(apiProfe)
                 .then((response) => {
@@ -72,20 +73,20 @@ const app = Vue.createApp({
                     this.ProfesObtenidos = response.data;
                     console.log(this.ProfesObtenidos);
 
-                    $(document).ready(function () {
-                        $("#dataTable").DataTable({
-                            language: {
-                                lengthMenu:
-                                    "Mostrando _MENU_ elementos en esta pagina",
-                                zeroRecords: "Sin coincidencias",
-                                info: "Página _PAGE_ de _PAGES_",
-                                infoEmpty: "Sin datos disponibles",
-                                infoFiltered:
-                                    "(Filtrado de  _MAX_ datos en total)",
-                                search: "Buscar:",
-                            },
-                        });
-                    });
+                    // $(document).ready(function () {
+                    //     $("#dataTable").DataTable({
+                    //         language: {
+                    //             lengthMenu:
+                    //                 "Mostrando _MENU_ elementos en esta pagina",
+                    //             zeroRecords: "Sin coincidencias",
+                    //             info: "Página _PAGE_ de _PAGES_",
+                    //             infoEmpty: "Sin datos disponibles",
+                    //             infoFiltered:
+                    //                 "(Filtrado de  _MAX_ datos en total)",
+                    //             search: "Buscar:",
+                    //         },
+                    //     });
+                    // });
                 })
                 .catch((error) => {
                     console.error("Hubo un error al obtener los datos:", error);
@@ -93,6 +94,7 @@ const app = Vue.createApp({
         },
         verModal: function () {
             $("#modalP").modal("show");
+            this.obtenerProfe();
         },
         agregarUsuario: function (usuario) {
             this.usuarioSeleccionado = { ...usuario };

@@ -11,7 +11,7 @@ class MapaCurricular extends Model
     protected $table = 'mapa_curricular';
 
     public $timestamps = false;
-    protected $with = ['materias'];
+    protected $with = ['materias','profesor'];
     // Establece la clave primaria personalizada
     protected $primaryKey = 'id_mapa';
    
@@ -22,5 +22,10 @@ class MapaCurricular extends Model
     {
         //  Obtener el ID de licenciatura asociado con esta instancia de Licenciatura
         return $this->hasMany(Materias::class, 'id_materia', 'id_materia');
+    }
+    public function profesor()
+    {
+        //  Obtener el ID de licenciatura asociado con esta instancia de Licenciatura
+        return $this->hasMany(Profesor::class, 'id_profe', 'id_profe');
     }
 }
