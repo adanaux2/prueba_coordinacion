@@ -125,8 +125,7 @@ class profesorController extends Controller
         return $maestros[0];
     }
     public function consultaProfesor($id_materia)
-    {
-        
+    {   
         $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
         return $consulta;
     }

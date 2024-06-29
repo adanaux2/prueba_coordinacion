@@ -56,6 +56,9 @@
                             <strong>Periodo:</strong>
                             @{{ unGrupo.periodo }} <strong>Cuatrimestre:</strong> @{{ unGrupo.cuatrimestre }}
                         </p>
+                        <p>
+                            <strong>Turno:</strong> @{{ unGrupo.turno }}  <strong>Fecha de inicio:</strong> @{{ unGrupo.fecha_inicio }}  <strong>Fecha de fin:</strong> @{{ unGrupo.fecha_fin }}
+                        </p>
                         <div class="container">
                             <div class="table-responsive">
                                 <table class="table">

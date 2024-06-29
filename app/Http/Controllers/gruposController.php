@@ -40,6 +40,9 @@ class gruposController extends Controller
             'periodo' => 'required',
             'anio' => 'required',
             'cuatrimestre' => 'required',
+            'turno' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required',
 
 
         ]);
@@ -83,10 +86,10 @@ class gruposController extends Controller
     {
         //
     }
-    public function getMaterias($id){
+    public function getMaterias($id)
+    {
         // return $id;
         // return Materias::where('id',$id);
         return MateriasGrupos::where('id_grupo', $id)->get();
-
     }
 }

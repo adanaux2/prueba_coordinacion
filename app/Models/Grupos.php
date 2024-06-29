@@ -17,7 +17,8 @@ class Grupos extends Model
     protected $primaryKey = 'id_grupo';
 
     // Define los atributos que pueden ser asignados en masa
-    protected $fillable = ['id_grupo', 'id_licenciatura', 'id_rvoe', 'periodo', 'anio', 'cuatrimestre'];
+    protected $fillable = ['id_grupo', 'id_licenciatura', 'id_rvoe', 'periodo', 'anio', 'cuatrimestre', 'turno', 'fecha_inicio', 'fecha_
+    fin'];
 
     public function name()
     {

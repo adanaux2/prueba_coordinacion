@@ -23,6 +23,9 @@ const app = Vue.createApp({
             rvoeSelected: "",
             periodoSelected: "",
             id: "",
+            turnoSelected: "",
+            fechaInicio: "",
+            fechaFin: "",
         };
     },
     created() {
@@ -65,7 +68,7 @@ const app = Vue.createApp({
             this.principal = 1;
         },
         obtenerProfe: function () {
-            alert('buscando');
+            alert("buscando");
             window.axios
                 .get(apiProfe)
                 .then((response) => {
@@ -143,6 +146,9 @@ const app = Vue.createApp({
                 periodo: this.periodoSelected,
                 anio: this.year,
                 cuatrimestre: this.cuatriSelected,
+                turno: this.turnoSelected,
+                fecha_inicio: this.fechaInicio,
+                fecha_fin: this.fechaFin,
             };
             console.log(grupo);
 

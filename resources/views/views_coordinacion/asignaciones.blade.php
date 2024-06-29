@@ -370,7 +370,7 @@
                                 <div class="col-4">
                                     <h6>Cuatrimestre:</h6>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-4">
                                     <select class="form-control" id="" v-model="cuatriSelected">
                                         <option disabled>Selecciona el cuatrimestre</option>
                                         <option value="1">Primer cuatrimestre</option>
@@ -385,6 +385,32 @@
                                         <option value="10">Décimo cuatrimestre</option>
                                     </select>
                                 </div>
+                                <div class="col-4">
+                                    <select class="form-control" id="" v-model="turnoSelected">
+                                        <option disabled>Selecciona el turno</option>
+                                        <option value="Matutino">Matutino</option>
+                                        <option value="Nocturo">Nocturo</option>
+                                        <option value="Sabatino vespertino">Sabatino vespertino</option>
+                                        <option value="Sabatino matutino">Sabatino matutino</option>
+                                        <option value="Dominical">Dominical</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Fecha de inicio</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input type="date" v-model="fechaInicio" class="form-control">
+                                </div>
+                                <div class="col-3">
+                                    <h6>Fecha de fin</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input type="date" v-model="fechaFin" class="form-control">
+                                </div>
+                               
                             </div>
                             <br>
                             <div class="row">
