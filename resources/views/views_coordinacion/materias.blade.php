@@ -6,11 +6,11 @@
 
     @if (auth()->user()->id_rol == 2)
         <div id="apiMaterias">
-            <h1>
+            {{-- <h1>
                 vista materias
                 @{{ mensaje }}
 
-            </h1>
+            </h1> --}}
             <h6>Carga en este espacio tu archivo excel</h6>
             <div class="row">
                 

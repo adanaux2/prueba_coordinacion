@@ -35,6 +35,9 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// Ruta POST para manejar el inicio de sesión
+Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+
 Route::get('admin', function () {
     return view('admin');
 });
@@ -71,8 +74,8 @@ Route::post('/register2', [registerController::class, 'store2'])
 Route::get('/login', [sessionsController::class, 'create'])
     ->name('login.index');
 
-Route::post('/login', [sessionsController::class, 'store'])
-    ->name('login.store');
+// Route::post('/login', [sessionsController::class, 'store'])
+//     ->name('login.store');
 
 Route::get('/login/destroy', [sessionsController::class, 'destroy'])
     ->name('login.destroy');

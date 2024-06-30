@@ -56,8 +56,8 @@
             
             <div id="contenedorcentrado">
                 <div id="login">
-                    <form id="loginform" method="POST">
-                    @csrf
+                    <form method="POST" action="{{ route('login.store') }}">
+                        @csrf <!-- Token CSRF -->
                         <label for="name">Usuario</label>
                         <input id="name" type="text" name="name" placeholder="name">
                         

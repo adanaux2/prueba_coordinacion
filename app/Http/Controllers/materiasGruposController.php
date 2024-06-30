@@ -56,6 +56,7 @@ class materiasGruposController extends Controller
     public function show($id)
     {
         //
+        return MateriasGrupos::find($id);
     }
 
     /**
@@ -67,8 +68,12 @@ class materiasGruposController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = MateriasGrupos::findOrFail($id);
+        $item->update($request->all());
+
+        return response()->json($item, 200);
     }
+
 
     /**
      * Remove the specified resource from storage.

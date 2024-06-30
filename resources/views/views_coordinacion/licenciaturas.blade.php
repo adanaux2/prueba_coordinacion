@@ -6,10 +6,10 @@
 
     @if (auth()->user()->id_rol == 2)
         <div id="apiLic">
-            <h1>
+            {{-- <h1>
                 @{{ mensaje }}
 
-            </h1>
+            </h1> --}}
             {{-- <div>
                 <input type="file" ref="fileInput" accept=".xls, .xlsx">
                 <button @click="importarUsuarios">Importar Usuarios</button>
