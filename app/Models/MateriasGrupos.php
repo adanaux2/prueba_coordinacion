@@ -15,5 +15,5 @@ class MateriasGrupos extends Model
     protected $primaryKey = 'id';
 
     // Define los atributos que pueden ser asignados en masa
-    protected $fillable = ['id','id_profesor', 'name_profesor','id_materia', 'id_grupo', 'name', 'materia', 'hora'];
+    protected $fillable = ['id','id_profesor', 'name_profesor','id_materia', 'id_grupo', 'name', 'materia', 'hora','hora_fin','modulo'];
 }

@@ -123,6 +123,7 @@ const app = Vue.createApp({
             this.guardarMaestro();
             this.destruirDT();
             this.obtenerDatos();
+            
         },
         guardarMaestro: function () {
             const maestro = {
@@ -176,6 +177,7 @@ const app = Vue.createApp({
                 .catch((error) => {
                     console.error("Error submitting form:");
                 });
+                $("#exampleModal").modal("hide");
         },
         destruirDT: function () {
             $(document).ready(function () {

@@ -12,7 +12,7 @@ class Grupos extends Model
 
     public $timestamps = false;
 
-    protected $with = ['name'];
+    protected $with = ['name','mate'];
     // Establece la clave primaria personalizada
     protected $primaryKey = 'id_grupo';
 
@@ -23,5 +23,8 @@ class Grupos extends Model
     public function name()
     {
         return $this->hasMany(Licenciatura::class, 'id_licenciatura', 'id_licenciatura');
+    }
+    public function mate(){
+        return $this->hasMany(MateriasGrupos::class, 'id_grupo', 'id_grupo');
     }
 }

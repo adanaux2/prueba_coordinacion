@@ -389,7 +389,7 @@
                                     <select class="form-control" id="" v-model="turnoSelected">
                                         <option disabled>Selecciona el turno</option>
                                         <option value="Matutino">Matutino</option>
-                                        <option value="Nocturo">Nocturo</option>
+                                        <option value="Nocturno">Nocturo</option>
                                         <option value="Sabatino vespertino">Sabatino vespertino</option>
                                         <option value="Sabatino matutino">Sabatino matutino</option>
                                         <option value="Dominical">Dominical</option>
