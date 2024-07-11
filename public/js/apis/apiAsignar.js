@@ -53,204 +53,10 @@ const app = Vue.createApp({
             switch (newValue) {
                 case "Nocturno":
                 case "Matutino":
-                    //obtener las fechas del modulo 1
-                    const fecha_inicio = this.GrupoFI;
-                    const fecha_fin = this.GrupoFF;
-                    const meses = 2;
-                    const fechaInicial = dayjs(fecha_inicio);
-                    const fechaFF = dayjs(fecha_fin);
-
-                    const mesesObjetos = [];
-
-                    const MARTES = 2;
-                    const MIERCOLES = 3;
-                    const JUEVES = 4;
-
-                    let currentFecha = fechaInicial;
-
-                    const fechaFin = fechaInicial.add(meses, "month");
-
-                    const semanaExamenes = [];
-
-                    while (currentFecha.isBefore(fechaFin)) {
-                        const dayOfWeek = currentFecha.day();
-                        const esUltimaSemana = currentFecha.isAfter(
-                            fechaFin.subtract(1, "week")
-                        );
-                        if (
-                            dayOfWeek === MARTES ||
-                            dayOfWeek === MIERCOLES ||
-                            dayOfWeek === JUEVES
-                        ) {
-                            const mes = currentFecha.format("MMMM");
-                            const diaSemana = currentFecha.format("dddd");
-                            const fecha = currentFecha.format("DD");
-
-                            if (esUltimaSemana) {
-                                semanaExamenes.push({
-                                    dia: diaSemana,
-                                    fecha: fecha,
-                                    mes: mes,
-                                });
-                            } else {
-                                let mesObjeto = mesesObjetos.find(
-                                    (m) => m.mes === mes
-                                );
-                                if (!mesObjeto) {
-                                    mesObjeto = {
-                                        mes: mes,
-                                        Martes: [],
-                                        Miércoles: [],
-                                        Jueves: [],
-                                    };
-                                    mesesObjetos.push(mesObjeto);
-                                }
-
-                                if (dayOfWeek === MARTES) {
-                                    mesObjeto.Martes.push(fecha);
-                                } else if (dayOfWeek === MIERCOLES) {
-                                    mesObjeto.Miércoles.push(fecha);
-                                } else if (dayOfWeek === JUEVES) {
-                                    mesObjeto.Jueves.push(fecha);
-                                }
-                            }
-                        }
-                        currentFecha = currentFecha.add(1, "day");
-                    }
-                    //obtener las fechas de el modulo 2
-                    let currentFecha2 = fechaFin;
-                    const fechaFin2 = fechaFF;
-                    const mesesObjetos2 = [];
-                    const semanaExamenes2 = [];
-
-                    while (currentFecha2.isBefore(fechaFin2)) {
-                        const dayOfWeek2 = currentFecha2.day();
-                        const esUltimaSemana2 = currentFecha2.isAfter(
-                            fechaFin2.subtract(1, "week")
-                        );
-                        if (
-                            dayOfWeek2 === MARTES ||
-                            dayOfWeek2 === MIERCOLES ||
-                            dayOfWeek2 === JUEVES
-                        ) {
-                            const mes = currentFecha2.format("MMMM");
-                            const diaSemana = currentFecha2.format("dddd");
-                            const fecha = currentFecha2.format("DD");
-
-                            if (esUltimaSemana2) {
-                                semanaExamenes2.push({
-                                    dia: diaSemana,
-                                    fecha: fecha,
-                                    mes: mes,
-                                });
-                            } else {
-                                let mesObjeto2 = mesesObjetos2.find(
-                                    (m) => m.mes === mes
-                                );
-                                if (!mesObjeto2) {
-                                    mesObjeto2 = {
-                                        mes: mes,
-                                        Martes: [],
-                                        Miércoles: [],
-                                        Jueves: [],
-                                    };
-                                    mesesObjetos2.push(mesObjeto2);
-                                }
-
-                                if (dayOfWeek2 === MARTES) {
-                                    mesObjeto2.Martes.push(fecha);
-                                } else if (dayOfWeek2 === MIERCOLES) {
-                                    mesObjeto2.Miércoles.push(fecha);
-                                } else if (dayOfWeek2 === JUEVES) {
-                                    mesObjeto2.Jueves.push(fecha);
-                                }
-                            }
-                        }
-                        currentFecha2 = currentFecha2.add(1, "day");
-                    }
-
-                    this.fechasMo1 = mesesObjetos;
-                    this.fechasMo2 = mesesObjetos2;
-                    this.semanaExamenes = semanaExamenes;
-                    this.semanaExamenes2 = semanaExamenes2;
-
-                    // console.log(this.fechasMo2);
-                    // console.log(this.semanaExamenes2);
-                    // console.log(fechaFin);
-                    // console.log(this.materiasModulo1);
-                    // alert("Turno Matutino");
+                    this.claseEntreSemana();
                     break;
                 case "Sabatino vespertino":
-                    // Obtener las fechas del módulo 1
-                    const fecha_inicio3 = this.GrupoFI;
-                    const meses2 = 2;
-                    const fechaInicial3 = dayjs(fecha_inicio3);
-                    const mesesObjetos3 = [];
-
-                    const SABADO = 6;
-
-                    let currentFecha3 = fechaInicial3;
-
-                    const fechaFin3 = fechaInicial3.add(meses2, "month");
-
-                    const semanaExamenes3 = [];
-
-                    let ultimoSabadoMesFinal = null;
-                    let agregarFechasAMesesObjetos = true;
-
-                    while (currentFecha3.isBefore(fechaFin3)) {
-                        const dayOfWeek = currentFecha3.day();
-                        if (dayOfWeek === SABADO) {
-                            const mes = currentFecha3.format("MMMM");
-                            const diaSemana = currentFecha3.format("dddd");
-                            const fecha = currentFecha3.format("DD");
-
-                            // Verifica si es el último sábado del mes final
-                            if (
-                                currentFecha3.month() ===
-                                    fechaFin3.subtract(1, "month").month() &&
-                                currentFecha3.add(7, "day").month() !==
-                                    currentFecha3.month()
-                            ) {
-                                ultimoSabadoMesFinal = {
-                                    dia: diaSemana,
-                                    fecha: fecha,
-                                    mes: mes,
-                                };
-                                agregarFechasAMesesObjetos = false; // Detener la adición de fechas a mesesObjetos3
-                            } else if (agregarFechasAMesesObjetos) {
-                                // Asegúrate de que el sábado esté dentro del rango y que sigamos añadiendo fechas
-                                let mesObjeto = mesesObjetos3.find(
-                                    (m) => m.mes === mes
-                                );
-                                if (!mesObjeto) {
-                                    mesObjeto = {
-                                        mes: mes,
-                                        Sábados: [],
-                                    };
-                                    mesesObjetos3.push(mesObjeto);
-                                }
-
-                                mesObjeto.Sábados.push(fecha);
-                            }
-                        }
-                        currentFecha3 = currentFecha3.add(1, "day");
-                    }
-
-                    // Añadir el último sábado del mes final a semanaExamenes3
-                    if (ultimoSabadoMesFinal) {
-                        semanaExamenes3.push(ultimoSabadoMesFinal);
-                    }
-
-                    //segundo modulo
-
-                    this.fechasMo1 = mesesObjetos3;
-
-                    this.semanaExamenes = semanaExamenes3;
-
-                    console.log(this.fechasMo1);
-                    console.log(this.semanaExamenes);
-
+                    this.claseFinDeSemana();
                     break;
                 case "3":
                     alert("Turno Nocturno");
@@ -546,6 +352,215 @@ const app = Vue.createApp({
             const doc = new window.jspdf.jsPDF();
             doc.text("¡Hola! Este es un PDF generado desde Vue.js.", 10, 10);
             doc.save("documento.pdf");
+        },
+        claseEntreSemana: function () {
+            dayjs.locale('es');
+            //obtener las fechas del modulo 1
+
+            const fecha_inicio = this.GrupoFI;
+            const fecha_fin = this.GrupoFF;
+            const meses = 2;
+            const fechaInicial = dayjs(fecha_inicio);
+            const fechaFF = dayjs(fecha_fin);
+
+            const mesesObjetos = [];
+
+            const MARTES = 2;
+            const MIERCOLES = 3;
+            const JUEVES = 4;
+
+            let currentFecha = fechaInicial;
+
+            const fechaFin = fechaInicial.add(meses, "month");
+
+            const semanaExamenes = [];
+
+            while (currentFecha.isBefore(fechaFin)) {
+                const dayOfWeek = currentFecha.day();
+                const esUltimaSemana = currentFecha.isAfter(
+                    fechaFin.subtract(1, "week")
+                );
+                if (
+                    dayOfWeek === MARTES ||
+                    dayOfWeek === MIERCOLES ||
+                    dayOfWeek === JUEVES
+                ) {
+                    const mes = currentFecha.format("MMMM");
+                    const diaSemana = currentFecha.format("dddd");
+                    const fecha = currentFecha.format("DD");
+
+                    if (esUltimaSemana) {
+                        semanaExamenes.push({
+                            dia: diaSemana,
+                            fecha: fecha,
+                            mes: mes,
+                        });
+                    } else {
+                        let mesObjeto = mesesObjetos.find((m) => m.mes === mes);
+                        if (!mesObjeto) {
+                            mesObjeto = {
+                                mes: mes,
+                                Martes: [],
+                                Miércoles: [],
+                                Jueves: [],
+                            };
+                            mesesObjetos.push(mesObjeto);
+                        }
+
+                        if (dayOfWeek === MARTES) {
+                            mesObjeto.Martes.push(fecha);
+                        } else if (dayOfWeek === MIERCOLES) {
+                            mesObjeto.Miércoles.push(fecha);
+                        } else if (dayOfWeek === JUEVES) {
+                            mesObjeto.Jueves.push(fecha);
+                        }
+                    }
+                }
+                currentFecha = currentFecha.add(1, "day");
+            }
+            //obtener las fechas de el modulo 2
+            let currentFecha2 = fechaFin;
+            const fechaFin2 = fechaFF;
+            const mesesObjetos2 = [];
+            const semanaExamenes2 = [];
+
+            while (currentFecha2.isBefore(fechaFin2)) {
+                const dayOfWeek2 = currentFecha2.day();
+                const esUltimaSemana2 = currentFecha2.isAfter(
+                    fechaFin2.subtract(1, "week")
+                );
+                if (
+                    dayOfWeek2 === MARTES ||
+                    dayOfWeek2 === MIERCOLES ||
+                    dayOfWeek2 === JUEVES
+                ) {
+                    const mes = currentFecha2.format("MMMM");
+                    const diaSemana = currentFecha2.format("dddd");
+                    const fecha = currentFecha2.format("DD");
+
+                    if (esUltimaSemana2) {
+                        semanaExamenes2.push({
+                            dia: diaSemana,
+                            fecha: fecha,
+                            mes: mes,
+                        });
+                    } else {
+                        let mesObjeto2 = mesesObjetos2.find(
+                            (m) => m.mes === mes
+                        );
+                        if (!mesObjeto2) {
+                            mesObjeto2 = {
+                                mes: mes,
+                                Martes: [],
+                                Miércoles: [],
+                                Jueves: [],
+                            };
+                            mesesObjetos2.push(mesObjeto2);
+                        }
+
+                        if (dayOfWeek2 === MARTES) {
+                            mesObjeto2.Martes.push(fecha);
+                        } else if (dayOfWeek2 === MIERCOLES) {
+                            mesObjeto2.Miércoles.push(fecha);
+                        } else if (dayOfWeek2 === JUEVES) {
+                            mesObjeto2.Jueves.push(fecha);
+                        }
+                    }
+                }
+                currentFecha2 = currentFecha2.add(1, "day");
+            }
+
+            this.fechasMo1 = mesesObjetos;
+            this.fechasMo2 = mesesObjetos2;
+            this.semanaExamenes = semanaExamenes;
+            this.semanaExamenes2 = semanaExamenes2;
+
+            // console.log(this.fechasMo2);
+            // console.log(this.semanaExamenes2);
+            // console.log(fechaFin);
+            // console.log(this.materiasModulo1);
+            // alert("Turno Matutino");
+        },
+        claseFinDeSemana: function () {
+            dayjs.locale('es');
+            const inicio = this.GrupoFI;
+            const fechaInicial = dayjs(inicio);
+            const fechaFin = dayjs(this.GrupoFF);
+
+            const SABADO = 6;
+            const mesesObjetos = [];
+            const semanaExamenes = [];
+
+            let fechaActual = fechaInicial;
+
+            while (
+                fechaActual.isBefore(fechaFin) ||
+                fechaActual.isSame(fechaFin)
+            ) {
+                if (fechaActual.day() === SABADO) {
+                    const mes = fechaActual.format("MMMM");
+                    const dia = fechaActual.format("DD");
+
+                    let mesObjeto = mesesObjetos.find((m) => m.mes === mes);
+                    if (!mesObjeto) {
+                        mesObjeto = { mes, sabados: [] };
+                        mesesObjetos.push(mesObjeto);
+                    }
+                    mesObjeto.sabados.push(dia);
+
+                    semanaExamenes.push({
+                        dia: fechaActual.format("dddd"),
+                        diaNumero: dia,
+                        mes,
+                    });
+                }
+                fechaActual = fechaActual.add(1, "day");
+            }
+
+            // Dividir los meses en dos arreglos de a dos meses cada uno
+            const grupo1 = mesesObjetos.slice(0, 2);
+            const grupo2 = mesesObjetos.slice(2, 4);
+
+            // Quitar la última fecha de cada bimestre y guardarlas en las variables correspondientes
+            let fechaExamenes1 = null;
+            let fechaExamenes2 = null;
+
+            if (
+                grupo1.length > 0 &&
+                grupo1[grupo1.length - 1].sabados.length > 0
+            ) {
+                const ultimoSabadoGrupo1 =
+                    grupo1[grupo1.length - 1].sabados.pop();
+                fechaExamenes1 = {
+                    dia: ultimoSabadoGrupo1,
+                    mes: grupo1[grupo1.length - 1].mes,
+                };
+            }
+
+            if (
+                grupo2.length > 0 &&
+                grupo2[grupo2.length - 1].sabados.length > 0
+            ) {
+                const ultimoSabadoGrupo2 =
+                    grupo2[grupo2.length - 1].sabados.pop();
+                fechaExamenes2 = {
+                    dia: ultimoSabadoGrupo2,
+                    mes: grupo2[grupo2.length - 1].mes,
+                };
+            }
+
+            this.fechasMo1 = grupo1;
+            this.fechasMo2 = grupo2;
+            // this.fechaExamenes1 = fechaExamenes1;
+            // this.fechaExamenes2 = fechaExamenes2;
+            this.semanaExamenes = fechaExamenes1;
+            this.semanaExamenes2 = fechaExamenes2;
+
+            // console.log(this.fechasMo1);
+            // console.log(this.fechasMo2);
+            // console.log(this.fechaExamenes1);
+            // console.log(this.fechaExamenes2);
+            // console.log(this.semanaExamenes);
         },
     },
     computed: {

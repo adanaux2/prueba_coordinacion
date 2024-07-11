@@ -145,9 +145,10 @@
                                     <tr>
                                         <th></th>
                                         <td colspan="3"></td>
-                                                <template v-for="fe in fechasMo1">
-                                                    <td v-for="dia in fe.Sábados">@{{ dia }} @{{ fe.mes }}</td>
-                                                </template>
+                                        <template v-for="fe in fechasMo1">
+                                            <td v-for="dia in fe.sabados">@{{ dia }} @{{ fe.mes }}
+                                            </td>
+                                        </template>
                                         <td></td>
                                     </tr>
                                     <tr v-for="materias in materiasModulo1">
@@ -168,55 +169,58 @@
                                         <th class="text-center" colspan="2">Exámenes</th>
                                         <th class="text-center">@{{ materias.materia }}</th>
                                         <th class="text-center"></th>
-                                        <th class="text-center" colspan="8">@{{ semanaExamenes[0].fecha }} de @{{ semanaExamenes[0].mes }}</th>
+                                        <th class="text-center" colspan="8">@{{ semanaExamenes.dia }} de
+                                            @{{ semanaExamenes.mes }}</th>
                                     </tr>
 
                                 </tbody>
                             </table>
                             <table class="table table-bordered"
-                            v-if="turno==='Dominical' || turno==='Sabatino vespertino' || turno==='Sabatino matutino'">
-                            <thead>
-                                <tr>
-                                    <th scope="col">C</th>
-                                    <th scope="col">Asignatura</th>
-                                    <th scope="col">Docente</th>
-                                    <th scope="col">Horario</th>
-                                    <th scope="col" colspan="7" class="text-center">Módulo 2</th>
-                                    <th scope="col" rowspan="2">Total horas</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th></th>
-                                    <td colspan="3"></td>
-                                            <template v-for="fe in fechasMo1">
-                                                <td v-for="dia in fe.Sábados">@{{ dia }} @{{ fe.mes }}</td>
-                                            </template>
-                                    <td></td>
-                                </tr>
-                                <tr v-for="materias in materiasModulo2">
-                                    <th scope="row"></th>
-                                    <td>@{{ materias.materia }}</td>
-                                    <td>@{{ materias.name_profesor }}</td>
-                                    <td>@{{ materias.hora }} - @{{ materias.hora_fin }}</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>2</td>
-                                    <td>16</td>
-                                </tr>
-                                <tr v-for="materias in materiasModulo2">
-                                    <th class="text-center" colspan="2">Exámenes</th>
-                                    <th class="text-center">@{{ materias.materia }}</th>
-                                    <th class="text-center"></th>
-                                    <th class="text-center" colspan="8">@{{ semanaExamenes[0].fecha }} de @{{ semanaExamenes[0].mes }}</th>
-                                </tr>
+                                v-if="turno==='Dominical' || turno==='Sabatino vespertino' || turno==='Sabatino matutino'">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">C</th>
+                                        <th scope="col">Asignatura</th>
+                                        <th scope="col">Docente</th>
+                                        <th scope="col">Horario</th>
+                                        <th scope="col" colspan="7" class="text-center">Módulo 2</th>
+                                        <th scope="col" rowspan="2">Total horas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <td colspan="3"></td>
+                                        <template v-for="fe in fechasMo2">
+                                            <td v-for="dia in fe.sabados">@{{ dia }} @{{ fe.mes }}
+                                            </td>
+                                        </template>
+                                        <td></td>
+                                    </tr>
+                                    <tr v-for="materias in materiasModulo2">
+                                        <th scope="row"></th>
+                                        <td>@{{ materias.materia }}</td>
+                                        <td>@{{ materias.name_profesor }}</td>
+                                        <td>@{{ materias.hora }} - @{{ materias.hora_fin }}</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>16</td>
+                                    </tr>
+                                    <tr v-for="materias in materiasModulo2">
+                                        <th class="text-center" colspan="2">Exámenes</th>
+                                        <th class="text-center">@{{ materias.materia }}</th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center" colspan="8">@{{ semanaExamenes2.dia }} de
+                                            @{{ semanaExamenes2.mes }}</th>
+                                    </tr>
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
                             <table class="table table-bordered" v-if="turno === 'Matutino' || turno === 'Nocturno'">
                                 <thead>
@@ -470,9 +474,12 @@
 
     @push('scripts')
         <script type="module" src="js/apis/apiAsignar.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script> --}}
+        <!-- Incluir el script de Day.js -->
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+        <!-- Incluir el script de localización en español -->
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/locale/es.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-
     @endpush
     <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection

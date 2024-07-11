@@ -1,9 +1,9 @@
 var ruta = document.querySelector("[name=route]").value;
 
-var apiMaterias =ruta + "/apiMaterias";
-var apiR =ruta + "/apiR";
+var apiMaterias = ruta + "/apiMaterias";
+var apiR = ruta + "/apiR";
 var importar = ruta + "/importar";
-var importar2= ruta + "/import";
+var importar2 = ruta + "/import";
 
 // Crear una instancia de Vue
 const app = Vue.createApp({
@@ -15,7 +15,7 @@ const app = Vue.createApp({
             nMateria: "",
             cuatrimestre: "",
             licenciatura: "",
-            id_rvoe:'',
+            id_rvoe: "",
         };
     },
     created() {
@@ -78,7 +78,6 @@ const app = Vue.createApp({
             const formData = new FormData();
             formData.append("file", this.$refs.fileInput.files[0]);
             formData.append("id_rvoe", this.id_rvoe); // Agregar id_rvoe al FormData
-
 
             axios
                 .post(importar2, formData, {
