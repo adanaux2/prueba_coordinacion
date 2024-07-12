@@ -20,8 +20,8 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>Ir a</h3>
-                            <p>Visualizar</p>
+                            <h3>Ver </h3>
+                            <p>Licenciaturas</p>
                         </div>
                         <div class="icon">
                             <i class="fa-regular fa-eye"></i>

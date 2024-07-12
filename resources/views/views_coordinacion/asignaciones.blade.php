@@ -18,9 +18,9 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>Crear</h3>
 
-                            <p>Crear grupos</p>
+                            <p>grupos</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
@@ -274,8 +274,8 @@
 
                                         <th>Nombre</th>
                                         <th>Licenciatura</th>
-                                        <th>Correo Electrónico</th>
-                                        <th>Curp</th>
+                                        {{-- <th>Correo Electrónico</th> --}}
+                                        {{-- <th>Curp</th> --}}
                                         <th>Acción</th>
 
                                 </thead>
@@ -283,8 +283,8 @@
                                     <tr v-for="m in ProfesObtenidos" :key="m.id">
                                         <td>@{{ m.nombre_c }}</td>
                                         <td>@{{ m.licenciatura }}</td>
-                                        <td>@{{ m.correo_institucional }}</td>
-                                        <td>@{{ m.curp }}</td>
+                                        {{-- <td>@{{ m.correo_institucional }}</td> --}}
+                                        {{-- <td>@{{ m.curp }}</td> --}}
                                         <td><button class="btn btn-danger" @click="agregarUsuario(m)">Agregar</button>
                                         </td>
                                     </tr>

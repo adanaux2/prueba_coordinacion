@@ -126,31 +126,31 @@
                                     <li class="nav-item">
                                         <a href="coordinacion_maestros" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Maestros</p>
+                                            <p>1. Maestros</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="licenciaturas" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Licenciaturas y RVOES</p>
+                                            <p>2. Licenciaturas y RVOES</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="mate" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Materias</p>
+                                            <p>3. Subir materias</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="asignacion" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Asignaciones</p>
+                                            <p>4. Crear grupos</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="asignar" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Asignar</p>
+                                            <p>5. Asignar</p>
                                         </a>
                                     </li>
                                 </ul>

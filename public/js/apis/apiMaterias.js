@@ -75,6 +75,7 @@ const app = Vue.createApp({
             $(exampleModal).modal("hide");
         },
         importarUsuarios: function () {
+           
             const formData = new FormData();
             formData.append("file", this.$refs.fileInput.files[0]);
             formData.append("id_rvoe", this.id_rvoe); // Agregar id_rvoe al FormData
@@ -87,11 +88,24 @@ const app = Vue.createApp({
                 })
                 .then((response) => {
                     console.log(response.data);
-                    alert("Usuarios importados exitosamente.");
+                    // alert("Usuarios importados exitosamente.");
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Usuarios importados exitosamente.",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 })
                 .catch((error) => {
                     console.error("Error al importar usuarios:", error);
-                    alert("Hubo un error al importar usuarios.");
+                    // alert("No se pudieron importar los usuarios.");
+                    
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "No se pudieron importar los usuarios. Asegurate de que el archivo se encuentra en el formato correcto.",
+                      });
                 });
         },
     },
