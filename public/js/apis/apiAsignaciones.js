@@ -150,7 +150,21 @@ const app = Vue.createApp({
                 fecha_inicio: this.fechaInicio,
                 fecha_fin: this.fechaFin,
             };
-            console.log(grupo);
+            // console.log(grupo);
+            // Validar que ningún campo del objeto grupo sea nulo o vacío
+            for (const [key, value] of Object.entries(grupo)) {
+                if (!value) {
+                    // alert(
+                    //     `El campo '${key}' es obligatorio y no puede estar vacío.`
+                    // );
+                    Swal.fire({
+                        title: "Oops...",
+                        text: "El campo '" + key + "' es obligatorio y no puede estar vacío.",
+                        icon: "question"
+                      });
+                    return;
+                }
+            }
 
             axios
                 .post(apiGrupo, grupo)

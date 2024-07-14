@@ -46,6 +46,9 @@
 
                 </div>
             </div>
+
+
+
             <div class="row" v-if="principal==1">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
@@ -87,6 +90,10 @@
                                                 title="Seleccionar profesor"><i
                                                     class="fa-solid fa-magnifying-glass"></i></button>
 
+                                            <button class="btn btn-warning btn-sm" @click="verModal2(materia.id_materia)">
+                                                hola
+                                            </button>
+
                                         </td>
                                         <td><input type="text" class="form-control" :value="materia.hora" disabled></td>
                                         <td><input type="text" class="form-control" :value="materia.hora_fin" disabled>
@@ -95,9 +102,10 @@
                                         </td>
 
                                         <td>
-                                            <button class="btn btn-dark btn-sm" @click="verModalHyM(materia.id_materia)"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Editar hora y módulo"><i class="fa-solid fa-pen"></i></button>
+                                            <button v-if="materia.name_profesor != null" class="btn btn-dark btn-sm"
+                                                @click="verModalHyM(materia.id_materia)" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Editar hora y módulo"><i
+                                                    class="fa-solid fa-pen"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -125,7 +133,8 @@
                 {{-- <h6>hola</h6> --}}
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <button @click="generarPDF()" class="btn btn-primary">Generar PDF</button>
+                        <button @click="verModalPdf()" class="btn btn-primary">Generar PDF</button>
+                        {{-- <iframe id="pdfPreview" width="100%" height="600px"></iframe> --}}
                         {{-- <h5 class="card-title">Módulo 1</h5> --}}
                         <p class="card-text">
                         <div class="table-responsive">
@@ -400,6 +409,57 @@
                 </div>
             </div>
             {{-- fin de modal --}}
+            {{-- modal 2 --}}
+            <div class="modal fade" id="modalP2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                            <table id="dataTableTodos">
+                                <thead>
+                                    <tr>
+
+                                        <th>Nombre</th>
+                                        <th>Licenciatura</th>
+                                        {{-- <th>Correo Electrónico</th> --}}
+                                        {{-- <th>Curp</th> --}}
+                                        <th>Acción</th>
+
+                                </thead>
+                                <tbody>
+                                    <tr v-for="m in todosProfes" :key="m">
+                                        <td>@{{ m.nombre_c }}</td>
+                                        <td>@{{ m.licenciatura }}</td>
+                                        {{-- <td>@{{ m.profesor[0].nombre_c }}</td> --}}
+                                        {{-- <td>@{{ m }}</td>
+                                        <td>@{{ m.licenciatura }}</td> --}}
+                                        {{-- <td>@{{ m.correo_institucional }}</td> --}}
+                                        {{-- <td>@{{ m.curp }}</td> --}}
+                                        {{-- <td><button class="btn btn-danger"
+                                                @click="agregarProfe(m.id_profe)">Agregar</button>
+                                        </td> --}}
+                                        <td><button class="btn btn-danger"
+                                                @click="agregarProfe2(m.id_profe)">Agregar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- fin de modal2 --}}
             {{-- modal hora y modulo --}}
             <div class="modal fade" id="modalHyM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -442,6 +502,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <td><input type="time" class="form-control" v-model="hora_fin"></td>
+                                    {{-- <td><input disabled class="form-control" :value="hora_fin"></td> --}}
                                 </div>
 
                             </div>
@@ -467,6 +528,19 @@
                     </div>
                 </div>
             </div>
+            {{-- modal pedfile --}}
+            <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+
+
+                        <div class="modal-body">
+                            <iframe id="pdfPreview" width="100%" height="600px"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     @else
         <h1>No tienes accesos para este panel</h1>
@@ -480,6 +554,8 @@
         <!-- Incluir el script de localización en español -->
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/locale/es.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
     @endpush
     <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection

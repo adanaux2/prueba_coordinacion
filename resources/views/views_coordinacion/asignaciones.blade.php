@@ -29,7 +29,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6 mt-4">
+                {{-- <div class="col-lg-3 col-6 mt-4">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -43,7 +43,7 @@
                         <a href="#" class="small-box-footer" @click="vista1()">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
 
