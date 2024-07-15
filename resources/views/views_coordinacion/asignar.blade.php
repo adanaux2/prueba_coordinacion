@@ -91,7 +91,7 @@
                                                     class="fa-solid fa-magnifying-glass"></i></button>
 
                                             <button class="btn btn-warning btn-sm" @click="verModal2(materia.id_materia)">
-                                                hola
+                                                <i class="fa-solid fa-list"></i>
                                             </button>
 
                                         </td>
@@ -117,7 +117,7 @@
                                 <button @click="updateItem()" class="btn btn-primary">Guardar asignaciones</button><br>
                             </div>
                             <div class="col-2">
-                                <button @click="configurarModulos()" class="btn btn-primary">Configurar Módulos</button>
+                                <button @click="configurarModulos()" class="btn btn-primary">Ver reporte</button>
                             </div>
                         </div>
 
@@ -133,7 +133,11 @@
                 {{-- <h6>hola</h6> --}}
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <button @click="verModalPdf()" class="btn btn-primary">Generar PDF</button>
+                        <button @click="verModalPdf()" class="btn btn-primary"
+                            v-if="turno === 'Matutino' || turno === 'Nocturno'">Generar PDF</button>
+                        <button @click="verModalPdf2()" class="btn btn-primary"
+                            v-if="turno==='Dominical' || turno==='Sabatino vespertino' || turno==='Sabatino matutino'">Generar
+                            PDF</button>
                         {{-- <iframe id="pdfPreview" width="100%" height="600px"></iframe> --}}
                         {{-- <h5 class="card-title">Módulo 1</h5> --}}
                         <p class="card-text">
@@ -555,7 +559,6 @@
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/locale/es.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-
     @endpush
     <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection

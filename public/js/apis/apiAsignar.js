@@ -57,10 +57,11 @@ const app = Vue.createApp({
                     this.claseEntreSemana();
                     break;
                 case "Sabatino vespertino":
+                case "Sabatino matutino":
                     this.claseFinDeSemana();
                     break;
-                case "3":
-                    alert("Turno Nocturno");
+                case "Dominical":
+                    this.claseDominical();
                     break;
                 default:
                     break;
@@ -232,7 +233,7 @@ const app = Vue.createApp({
             this.obtenerProfe2();
         },
         agregarProfe: function (id) {
-            alert(id);
+            // alert(id);
 
             const materia = this.unGrupo.materias.find(
                 (materia) => materia.id_materia === this.buscarCoincidencias
@@ -318,6 +319,13 @@ const app = Vue.createApp({
                             // modulo:modulo
                         })
                         .then((response) => {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Asignaciones guardadas",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
                             console.log("Item actualizado:", response.data);
                             // Aquí puedes manejar la respuesta como desees
                         })
@@ -327,6 +335,12 @@ const app = Vue.createApp({
                                 error
                             );
                             // Manejo de errores
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Error al guardar. Por favor, intenta de nuevo.",
+                                // footer: '<a href="#">Why do I have this issue?</a>'
+                            });
                         });
                 }
             });
@@ -414,6 +428,11 @@ const app = Vue.createApp({
             $("#modalPdf").modal("show");
 
             this.generarPDF();
+        },
+        verModalPdf2: function () {
+            $("#modalPdf").modal("show");
+
+            this.generarPDF2();
         },
         generarPDF() {
             const doc = new window.jspdf.jsPDF();
@@ -1071,6 +1090,480 @@ const app = Vue.createApp({
                     console.error("Hubo un error al obtener los datos:", error);
                 });
         },
+        generarPDF2: function () {
+            const doc = new window.jspdf.jsPDF();
+
+            const data = this.unGrupo;
+
+            // URL de la imagen (puede ser una URL en línea o un Data URL)
+            const imgData = "img/pdf/logo.jpeg"; // Aquí va la cadena base64 de tu imagen
+            const imgData2 = "img/pdf/nas.jpeg"; // Aquí va la cadena base64 de tu imagen
+
+            // Añadir la imagen al PDF
+            doc.addImage(imgData, "JPEG", 40, 20, 30, 30); // (imagen, formato, x, y, ancho, alto)
+            doc.addImage(imgData2, "JPEG", 140, 20, 35, 25); // (imagen, formato, x, y, ancho, alto)
+
+            doc.text("UNIVERSIDAD AZTLÁN", 75, 20);
+            doc.text("PLANTEL CANCÚN 2", 78, 28);
+            doc.text("HORARIO DE CLASES", 76, 36, { fontSize: 8 });
+            doc.setFontSize(80); // Cambiar tamaño de fuente global
+            doc.setTextColor(53, 39, 131); // Establecer color de texto en RGB (azul)
+            doc.text(data.cuatrimestre, 180, 39);
+
+            doc.setFontSize(18); // Cambiar tamaño de fuente global
+            doc.setTextColor(53, 39, 131); // Establecer color de texto en RGB (azul)
+            doc.text("MÓDULO 1", 18, 93);
+            doc.text("MÓDULO 2", 18, 180);
+            // doc.text("MÓDULO 1", 40, 107);
+
+            doc.setFontSize(12); // Cambiar tamaño de fuente global
+            // doc.setTextColor(53, 39, 131); // Establecer color de texto en RGB (azul)
+            doc.text("TOTAL DE CRÉDITOS:     0 CRÉDITOS", 18, 280);
+            doc.text(
+                "NOTA: Éste horario podrá sufrir cambios sin previo aviso",
+                18,
+                285
+            );
+            //crear tabla
+
+            // Datos dinámicos
+            const licenciatura = data.name[0].licenciatura;
+            const anio = data.anio;
+            const turno = data.turno;
+            const cuatrimestre = data.cuatrimestre;
+            const clave = data.id_grupo;
+
+            // Datos para la tabla
+            const head = [["PROGRAMA ACADÉMICO", licenciatura, "CICLO", anio]];
+            const body = [
+                ["TIPO DE CICLO", "CUATRIMESTRAL", "CLAVE DE GRUPO", clave],
+                ["MODALIDAD", "NO ESCOLARIZADA", "AULA"],
+                ["TURNO", turno, "CUATRIMESTRE", cuatrimestre],
+            ];
+
+            // Crear tabla
+            doc.autoTable({
+                head: head,
+                body: body,
+                startY: 55, // Posición inicial después del encabezado
+                theme: "grid",
+                styles: { fontSize: 8 },
+                headStyles: { fillColor: [255, 0, 0] },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+            });
+
+            // segunda tabla
+            // variables para la tabla2
+            // Datos para la tabla2
+            const materiasModulo1 = this.materiasModulo1;
+
+            const head2 = [["C", "ASIGNATURA", "DOCENTE", "HORARIO"]];
+            // const body2 = [
+            //     ["", "CUATRIMESTRAL", "CLAVE DE GRUPO", materiasModulo1],
+            // ];
+
+            const body2 = [];
+
+            materiasModulo1.forEach((materia) => {
+                body2.push([
+                    "",
+                    materia.materia,
+                    materia.name_profesor,
+                    materia.hora + " - " + materia.hora_fin,
+                ]);
+            });
+
+            // Crear tabla asignaturas docentes
+            doc.autoTable({
+                head: head2,
+                body: body2,
+                startY: 95, // Posición inicial después del encabezado
+                theme: "grid",
+                styles: { fontSize: 10 },
+                headStyles: { fillColor: [255, 0, 0] },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 14 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 5 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 47 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 25 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 24 }, // Ancho específico para la cuarta columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 8,
+                },
+            });
+
+            //crear tabla fechas modalidad nocturna y matutina
+            const mes1Modulo1 = this.fechasMo1[0];
+            const mes2Modulo1 = this.fechasMo1[1];
+            const head3 = [];
+            mes1Modulo1.sabados.forEach((element) => {
+                // console.log(element + " - " + mes1Modulo1.mes);
+                head3.push([element + " " + mes1Modulo1.mes]);
+            });
+            mes2Modulo1.sabados.forEach((element) => {
+                head3.push([element + " " + mes2Modulo1.mes]);
+            });
+
+            // Datos para el cuerpo de la tabla
+            const body3 = [
+                ["2", "2", "2", "2", "2", "2", "2"],
+                ["2", "2", "2", "2", "2", "2", "2"],
+                ["2", "2", "2", "2", "2", "2", "2"],
+            ];
+
+            doc.autoTable({
+                head: [head3],
+                body: body3,
+                startY: 95, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: { fillColor: [255, 0, 0], fontSize: 8 },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 115 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 12 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 12 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 12 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 12 }, // Ancho específico para la cuarta columna
+                    4: { cellWidth: 12 }, // Ancho específico para la quinta columna
+                    5: { cellWidth: 12 }, // Ancho específico para la sexta columna
+                    6: { cellWidth: 12 }, // Ancho específico para la septima columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 9,
+                    minCellHeight: 9,
+                },
+            });
+
+            //crear tabla examenes modulo1
+
+            const head4 = [["ACTIVIDAD", "ASIGNATURA", "HORARIO"]];
+            const body4 = [];
+
+            materiasModulo1.forEach((materia) => {
+                body4.push([
+                    "EXÁMENES",
+                    materia.materia,
+                    // materia.name_profesor,
+                    materia.hora + " - " + materia.hora_fin,
+                ]);
+            });
+
+            doc.autoTable({
+                head: head4,
+                body: body4,
+                startY: 138, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: { fillColor: [255, 0, 0], fontSize: 8 },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 14 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 22 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 55 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 24 }, // Ancho específico para la tercera columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 7,
+                    minCellHeight: 8,
+                },
+            });
+            //CREAR TABLA FECHAS DE EXAMENES MODULO 1
+            const semanaExamenesModulo1 = this.semanaExamenes;
+            const head5 = [["FECHA DE EXÁMENES"]];
+            const body5 = [
+                [
+                    semanaExamenesModulo1.dia +
+                        " de " +
+                        semanaExamenesModulo1.mes,
+                ],
+            ];
+            // semanaExamenesModulo1.forEach((fecha) => {
+            //     body5.push([fecha.fecha + " de " + fecha.mes]);
+            // });
+            doc.autoTable({
+                head: head5,
+                body: body5,
+                startY: 138, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: {
+                    fillColor: [255, 0, 0],
+                    fontSize: 8,
+                    minCellHeight: 8,
+                },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 115 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 81, halign: "center" }, // Ancho específico para la primera columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 25,
+                    minCellHeight: 24,
+                },
+            });
+
+            //modulo 2
+            const materiasModulo2 = this.materiasModulo2;
+
+            const head6 = [["C", "ASIGNATURA", "DOCENTE", "HORARIO"]];
+            // const body2 = [
+            //     ["", "CUATRIMESTRAL", "CLAVE DE GRUPO", materiasModulo1],
+            // ];
+
+            const body6 = [];
+
+            materiasModulo2.forEach((materia) => {
+                body6.push([
+                    "",
+                    materia.materia,
+                    materia.name_profesor,
+                    materia.hora + " - " + materia.hora_fin,
+                ]);
+            });
+
+            // Crear tabla asignaturas docentes
+            doc.autoTable({
+                head: head6,
+                body: body6,
+                startY: 182, // Posición inicial después del encabezado
+                theme: "grid",
+                styles: { fontSize: 10 },
+                headStyles: { fillColor: [255, 0, 0] },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 14 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 5 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 47 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 25 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 24 }, // Ancho específico para la cuarta columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 8,
+                },
+            });
+
+            //crear tabla fechas modalidad nocturna y matutina
+            const mes1Modulo2 = this.fechasMo2[0];
+            const mes2Modulo2 = this.fechasMo2[1];
+            const head7 = [];
+            mes1Modulo2.sabados.forEach((element) => {
+                // console.log(element + " - " + mes1Modulo1.mes);
+                head7.push([element + " " + mes1Modulo2.mes]);
+            });
+            mes2Modulo2.sabados.forEach((element) => {
+                head7.push([element + " " + mes2Modulo2.mes]);
+            });
+
+            // Datos para el cuerpo de la tabla
+            const body7 = [
+                ["2", "2", "2", "2", "2", "2", "2"],
+                ["2", "2", "2", "2", "2", "2", "2"],
+                ["2", "2", "2", "2", "2", "2", "2"],
+            ];
+
+            doc.autoTable({
+                head: [head7],
+                body: body7,
+                startY: 182, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: { fillColor: [255, 0, 0], fontSize: 8 },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 50, left: 115 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 12 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 12 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 12 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 12 }, // Ancho específico para la cuarta columna
+                    4: { cellWidth: 12 }, // Ancho específico para la quinta columna
+                    5: { cellWidth: 12 }, // Ancho específico para la sexta columna
+                    6: { cellWidth: 12 }, // Ancho específico para la septima columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 9,
+                    minCellHeight: 9,
+                },
+            });
+
+            //crear tabla examenes modulo1
+
+            const head8 = [["ACTIVIDAD", "ASIGNATURA", "HORARIO"]];
+            const body8 = [];
+
+            materiasModulo2.forEach((materia) => {
+                body8.push([
+                    "EXÁMENES",
+                    materia.materia,
+                    // materia.name_profesor,
+                    materia.hora + " - " + materia.hora_fin,
+                ]);
+            });
+
+            doc.autoTable({
+                head: head8,
+                body: body8,
+                startY: 225, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: { fillColor: [255, 0, 0], fontSize: 8 },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 5, left: 14 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 22 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 55 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 24 }, // Ancho específico para la tercera columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 7,
+                    minCellHeight: 8,
+                },
+            });
+            //CREAR TABLA FECHAS DE EXAMENES MODULO 1
+            const semanaExamenesModulo2 = this.semanaExamenes2;
+            const head9 = [["FECHA DE EXÁMENES"]];
+            const body9 = [
+                [
+                    semanaExamenesModulo2.dia +
+                        " de " +
+                        semanaExamenesModulo2.mes,
+                ],
+            ];
+            // semanaExamenesModulo1.forEach((fecha) => {
+            //     body5.push([fecha.fecha + " de " + fecha.mes]);
+            // });
+            doc.autoTable({
+                head: head9,
+                body: body9,
+                startY: 225, // Posición inicial después del encabezado
+                theme: "grid",
+
+                headStyles: {
+                    fillColor: [255, 0, 0],
+                    fontSize: 8,
+                    minCellHeight: 8,
+                },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
+                cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
+                margin: { top: 50, right: 0, bottom: 5, left: 115 }, // Márgenes de la tabla
+                columnStyles: {
+                    0: { cellWidth: 81, halign: "center" }, // Ancho específico para la primera columna
+                },
+                styles: {
+                    overflow: "linebreak", // Permitir salto de línea en las celdas
+                    fontSize: 25,
+                    minCellHeight: 24,
+                },
+            });
+
+            const pdfDataUrl = doc.output("dataurlstring");
+
+            // Mostrar el PDF en un iframe
+            const iframe = document.getElementById("pdfPreview");
+            iframe.src = pdfDataUrl;
+            console.log(semanaExamenesModulo2);
+        },
+        claseDominical: function () {
+            alert("Clase Dominical");
+            dayjs.locale("es");
+            const inicio = this.GrupoFI;
+            const fechaInicial = dayjs(inicio);
+            const fechaFin = dayjs(this.GrupoFF);
+
+            const DOMINGO = 0;
+            const mesesObjetos = [];
+            const semanaExamenes = [];
+
+            let fechaActual = fechaInicial;
+
+            while (
+                fechaActual.isBefore(fechaFin) ||
+                fechaActual.isSame(fechaFin)
+            ) {
+                if (fechaActual.day() === DOMINGO) {
+                    const mes = fechaActual.format("MMMM");
+                    const dia = fechaActual.format("DD");
+
+                    let mesObjeto = mesesObjetos.find((m) => m.mes === mes);
+                    if (!mesObjeto) {
+                        mesObjeto = { mes, sabados: [] };
+                        mesesObjetos.push(mesObjeto);
+                    }
+                    mesObjeto.sabados.push(dia);
+
+                    semanaExamenes.push({
+                        dia: fechaActual.format("dddd"),
+                        diaNumero: dia,
+                        mes,
+                    });
+                }
+                fechaActual = fechaActual.add(1, "day");
+            }
+
+            // Dividir los meses en dos arreglos de a dos meses cada uno
+            const grupo1 = mesesObjetos.slice(0, 2);
+            const grupo2 = mesesObjetos.slice(2, 4);
+
+            // Quitar la última fecha de cada bimestre y guardarlas en las variables correspondientes
+            let fechaExamenes1 = null;
+            let fechaExamenes2 = null;
+
+            if (
+                grupo1.length > 0 &&
+                grupo1[grupo1.length - 1].sabados.length > 0
+            ) {
+                const ultimoSabadoGrupo1 =
+                    grupo1[grupo1.length - 1].sabados.pop();
+                fechaExamenes1 = {
+                    dia: ultimoSabadoGrupo1,
+                    mes: grupo1[grupo1.length - 1].mes,
+                };
+            }
+
+            if (
+                grupo2.length > 0 &&
+                grupo2[grupo2.length - 1].sabados.length > 0
+            ) {
+                const ultimoSabadoGrupo2 =
+                    grupo2[grupo2.length - 1].sabados.pop();
+                fechaExamenes2 = {
+                    dia: ultimoSabadoGrupo2,
+                    mes: grupo2[grupo2.length - 1].mes,
+                };
+            }
+
+            this.fechasMo1 = grupo1;
+            this.fechasMo2 = grupo2;
+            // this.fechaExamenes1 = fechaExamenes1;
+            // this.fechaExamenes2 = fechaExamenes2;
+            this.semanaExamenes = fechaExamenes1;
+            this.semanaExamenes2 = fechaExamenes2;
+
+        }
     },
     computed: {
         materiasModulo1() {
