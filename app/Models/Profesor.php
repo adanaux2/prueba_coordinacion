@@ -12,6 +12,12 @@ class Profesor extends Model
     protected $table = "profesores";
 
     protected $primaryKey = "id_profe";
+    protected $with = ['disponibilidad'];
+    protected $fillable = ['nombre_c', 'curp'];
 
-    protected $fillable = ['nombre', 'curp'];
+    public function disponibilidad()
+    {
+        //  Obtener el ID de licenciatura asociado con esta instancia de Licenciatura
+        return $this->hasMany(Disponibilidad::class, 'id_profe', 'id_profe');
+    }
 }

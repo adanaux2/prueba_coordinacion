@@ -64,7 +64,7 @@ const app = Vue.createApp({
                     Swal.fire({
                         position: "top-center",
                         icon: "success",
-                        title: "Asignatura registrada",
+                        title: "Asignaturas registradas",
                         showConfirmButton: false,
                         timer: 1500,
                     });

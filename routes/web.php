@@ -102,7 +102,7 @@ Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
 Route::get('getDisposicion/{id}', [disponibilidadController::class, 'ConsultaP']);
 Route::get('getMaterias/{cuatri}/{id_rvoe}', [liscController::class, 'getLiscMaterias']);
 Route::get('getMate/{id}', [gruposController::class, 'getMaterias']);
-Route::get('getConsultaProfe/{id_materia}', [profesorController::class, 'consultaProfesor']);
+Route::get('getConsultaProfe/{id_materia}/{dia}', [profesorController::class, 'consultaProfesor']);
 // importar exel
 
 Route::get('/import', [importController::class, 'import']);

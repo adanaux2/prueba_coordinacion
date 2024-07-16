@@ -14,7 +14,7 @@
             <div class="row" v-show="vista==0">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>@{{ maestrosObtenidos.length }}</h3>
 
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-danger">
                         <div class="inner">
                             <h3> <i class="fa-solid fa-plus"></i></h3>
 
@@ -48,7 +48,7 @@
             <div class="row" v-show="vista==1">
                 {{-- <h1>@{{ maestrosObtenidos }}</h1> --}}
 
-                <div class="col-md-10" >
+                <div class="col-md-10">
                     <table id="dataTable">
                         <thead>
                             <tr>
@@ -99,17 +99,14 @@
                                             v-model="name">
                                     </div>
                                     <br>
-                                    <div class="col-md-12">
-                                        <input type="email" placeholder="Correo" class="form-control" v-model="email">
-                                    </div>
-                                    <br>
+                                    {{-- <div class="col-md-12">
+                                        <input type="email" placeholder="Correo institucional" class="form-control" v-model="email">
+                                    </div> --}}
+                                    {{-- <br> --}}
                                     <div class="col-md-12">
                                         <input type="password" placeholder="Contraseña" class="form-control"
                                             v-model="password">
                                     </div>
-                                    {{-- <div class="col-md-12">
-                                        <input type="number" placeholder="Matricula" class="form-control" v-model="matricula">
-                                    </div> --}}
                                     <br>
                                     <h6>Grado de estudios</h6>
                                     <div class="col-md-12">
@@ -121,7 +118,7 @@
                                         <input type="text" placeholder="Cedula profecional licenciatura"
                                             class="form-control" v-model="c_licenciatura">
                                     </div>
-                                    <br>
+                                    {{-- <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Maestría" class="form-control"
                                             v-model="maestria">
@@ -130,8 +127,8 @@
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Cedula profecional Maestria" class="form-control"
                                             v-model="c_maestria">
-                                    </div>
-                                    <br>
+                                    </div> --}}
+                                    {{-- <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Doctorado" class="form-control"
                                             v-model="doctorado">
@@ -140,8 +137,8 @@
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Cedula profecional Doctorado"
                                             class="form-control" v-model="c_doctorado">
-                                    </div>
-                                    <br>
+                                    </div> --}}
+                                    {{-- <br>
                                     <h6>Inglés</h6>
                                     <div class="form-group">
                                         <label>Habla:</label>
@@ -160,7 +157,7 @@
                                         <input type="range" class="form-control-range" id="valor" name="valor"
                                             min="0" max="100" value="50" v-model="valorLee">
                                         <output>@{{ valorLee }}%</output>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="col-6">
@@ -169,51 +166,61 @@
                                         <input type="text" placeholder="Nombre completo" class="form-control"
                                             v-model="nombre_c">
                                     </div>
-                                    <br>
-                                    <div class="col-md-12">
+                                    {{-- <br> --}}
+                                    {{-- <div class="col-md-12">
                                         <input type="domicilio" placeholder="Domicilio" class="form-control"
                                             v-model="domicilio">
-                                    </div>
-                                    <br>
+                                    </div> --}}
+                                    {{-- <br>
                                     <div class="col-md-12">
                                         <input type="number" placeholder="Teléfono" class="form-control"
                                             v-model="telefono">
-                                    </div>
+                                    </div> --}}
                                     <br>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Correo institucional" class="form-control"
-                                            v-model="correo_institucional">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" placeholder="Correo institucional"
+                                                    class="form-control" v-model="correo_institucional">
+                                            </div>
+                                        </div>
+                                        {{-- <div class="row">
+                                            <div class="col-12">
+                                             @{{ emailFormatted }}
+                                            </div>
+                                        </div> --}}
                                     </div>
+
+
                                     <br>
-                                    <div class="col-md-12">
-                                        {{-- <input type="text" placeholder="Género" class="form-control"
-                                            v-model="genero"> --}}
+                                    {{-- <div class="col-md-12">
+                                       
                                         <select class="form-control" :value v-model="genero">
                                             <option disabled>Selecciona una opcion</option>
                                             <option value="Masculino">Masculino</option>
                                             <option value="Femenino">Femenino</option>
                                         </select>
                                     </div>
-                                    <br>
-                                    <div class="col-md-12">
+                                    <br> --}}
+                                    {{-- <div class="col-md-12">
                                         <input type="date" placeholder="Fecha de nacimiento" class="form-control"
                                             v-model="f_nacimiento">
-                                    </div>
-                                    <br>
+                                    </div> --}}
+                                    {{-- <br>
                                     <div class="col-md-12">
                                         <input type="text" placeholder="Lugar de nacimiento" class="form-control"
                                             v-model="l_nacimiento">
                                     </div>
-                                    <br>
-                                    <div class="col-md-12">
+                                    <br> --}}
+                                    {{-- <div class="col-md-12">
                                         <input type="text" placeholder="RFC" class="form-control" v-model="rfc">
                                     </div>
-                                    <br>
+                                    <br> --}}
                                     <div class="col-md-12">
                                         <input type="text" placeholder="CURP" class="form-control" v-model="curp">
                                     </div>
                                     <br>
-                                    <h6>Números de contacto</h6>
+                                    {{-- <h6>Números de contacto</h6>
 
                                     <h6>Contácto 1</h6>
                                     <div class="col-md-12">
@@ -245,7 +252,7 @@
                                     <div class="col-md-12">
                                         <input type="number" placeholder="Teléfono" class="form-control"
                                             v-model="telefono_contacto2">
-                                    </div>
+                                    </div> --}}
 
 
 
@@ -285,5 +292,5 @@
     @push('scripts')
         <script type="module" src="js/apis/apiMaestrosCoordinacion.js"></script>
     @endpush
-    <input type="hidden" name="route" value="{{url('/')}}">
+    <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection

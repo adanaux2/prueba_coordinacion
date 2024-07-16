@@ -336,7 +336,7 @@
                                                             class="form-control" v-model="maestro.c_licenciatura"
                                                             disabled>
                                                     </div>
-                                                    <br>
+                                                    {{-- <br>
                                                     <div class="col-md-12">
                                                         <input type="text" placeholder="Maestría" class="form-control"
                                                             v-model="maestro.maestria" disabled>
@@ -345,8 +345,8 @@
                                                     <div class="col-md-12">
                                                         <input type="text" placeholder="Cedula profecional Maestria"
                                                             class="form-control" v-model="maestro.c_maestria" disabled>
-                                                    </div>
-                                                    <br>
+                                                    </div> --}}
+                                                    {{-- <br>
                                                     <div class="col-md-12">
                                                         <input type="text" placeholder="Doctorado"
                                                             class="form-control" v-model="maestro.doctorado" disabled>
@@ -356,8 +356,8 @@
                                                         <input type="text" placeholder="Cedula profecional Doctorado"
                                                             class="form-control" v-model="maestro.c_doctorado" disabled>
                                                     </div>
-                                                    <br>
-                                                    <h6>Inglés</h6>
+                                                    <br> --}}
+                                                    {{-- <h6>Inglés</h6>
                                                     <div class="form-group">
                                                         <label>Habla:</label>
                                                         <input type="text" class="form-control"
@@ -375,7 +375,7 @@
                                                         <input type="text" class="form-control" v-model="maestro.lee"
                                                             disabled>
 
-                                                    </div>
+                                                    </div> --}}
 
                                                 </div>
                                                 <div class="col-6">
@@ -384,7 +384,7 @@
                                                         <input type="text" placeholder="Nombre completo"
                                                             class="form-control" v-model="maestro.nombre_c" disabled>
                                                     </div>
-                                                    <br>
+                                                    {{-- <br>
                                                     <div class="col-md-12">
                                                         <input type="domicilio" placeholder="Domicilio"
                                                             class="form-control" v-model="maestro.domicilio" disabled>
@@ -393,7 +393,7 @@
                                                     <div class="col-md-12">
                                                         <input type="number" placeholder="Teléfono" class="form-control"
                                                             v-model="maestro.telefono" disabled>
-                                                    </div>
+                                                    </div> --}}
                                                     <br>
                                                     <div class="col-md-12">
                                                         <input type="text" placeholder="Correo institucional"
@@ -401,15 +401,14 @@
                                                             disabled>
                                                     </div>
                                                     <br>
-                                                    <div class="col-md-12">
-                                                        {{-- <input type="text" placeholder="Género" class="form-control"
-                                                        v-model="genero"> --}}
+                                                    {{-- <div class="col-md-12">
+                                                        
                                                         <input type="text" class="form-control"
                                                             v-model="maestro.genero" disabled>
 
                                                     </div>
-                                                    <br>
-                                                    <div class="col-md-12">
+                                                    <br> --}}
+                                                    {{-- <div class="col-md-12">
                                                         <input type="text" class="form-control"
                                                             v-model="maestro.f_nacimiento" disabled>
                                                     </div>
@@ -418,17 +417,17 @@
                                                         <input type="text" placeholder="Lugar de nacimiento"
                                                             class="form-control" v-model="maestro.l_nacimiento" disabled>
                                                     </div>
-                                                    <br>
-                                                    <div class="col-md-12">
+                                                    <br> --}}
+                                                    {{-- <div class="col-md-12">
                                                         <input type="text" placeholder="RFC" class="form-control"
                                                             v-model="maestro.rfc" disabled>
                                                     </div>
-                                                    <br>
+                                                    <br> --}}
                                                     <div class="col-md-12">
                                                         <input type="text" placeholder="CURP" class="form-control"
                                                             v-model="maestro.curp" disabled>
                                                     </div>
-                                                    <br>
+                                                    {{-- <br>
                                                     <h6>Números de contacto</h6>
 
                                                     <h6>Contácto 1</h6>
@@ -463,7 +462,7 @@
                                                     <div class="col-md-12">
                                                         <input type="number" placeholder="Teléfono" class="form-control"
                                                             v-model="maestro.telefono_contacto2" disabled>
-                                                    </div>
+                                                    </div> --}}
 
 
 

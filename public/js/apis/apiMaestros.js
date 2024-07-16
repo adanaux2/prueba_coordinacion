@@ -123,7 +123,7 @@ const app = Vue.createApp({
                     // console.log(value)
 
                     const disp = {
-                        id_profesor: this.maestro.id_profe,
+                        id_profe: this.maestro.id_profe,
                         id_horario: value,
                     };
 
@@ -165,20 +165,50 @@ const app = Vue.createApp({
             // });
         },
         eliminarDisp: function () {
-            // alert('eliminar dispo')
-            this.disp.forEach((element) => {
-                // console.log(element.id_disp);
-                axios
-                    .delete(apiDisposicion + "/" + element.id_disp)
-                    .then((response) => {
-                        console.log(response.data.message);
-                        // Aquí puedes emitir un evento o actualizar la lista de elementos
-                        location.reload();
-                    })
-                    .catch((error) => {
-                        console.error(error.response.data.message);
+            Swal.fire({
+                title: "Eliminar?",
+                text: "Estas seguro de eliminar tu mapa disponibilidad de horarios?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminar!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.disp.forEach((element) => {
+                        // console.log(element.id_disp);
+                        axios
+                            .delete(apiDisposicion + "/" + element.id_disp)
+                            .then((response) => {
+                                console.log(response.data.message);
+                                // Aquí puedes emitir un evento o actualizar la lista de elementos
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success",
+                                });
+                                location.reload();
+                            })
+                            .catch((error) => {
+                                console.error(error.response.data.message);
+                            });
                     });
+                   
+                }
             });
+            // this.disp.forEach((element) => {
+            //     // console.log(element.id_disp);
+            //     axios
+            //         .delete(apiDisposicion + "/" + element.id_disp)
+            //         .then((response) => {
+            //             console.log(response.data.message);
+            //             // Aquí puedes emitir un evento o actualizar la lista de elementos
+            //             location.reload();
+            //         })
+            //         .catch((error) => {
+            //             console.error(error.response.data.message);
+            //         });
+            // });
         },
         obtenerLisc: function () {
             window.axios
@@ -193,8 +223,8 @@ const app = Vue.createApp({
                 });
         },
         saveSelected: function () {
-            alert("guardar");
-            console.log(this.MateriasSeleccionadas);
+            // alert("guardar");
+            // console.log(this.MateriasSeleccionadas);
             // console.log(this.id_maestro);
             // this.maestro;
             axios
@@ -255,7 +285,6 @@ const app = Vue.createApp({
                             .delete(apiMapa + "/" + element.id_mapa)
                             .then((response) => {
                                 console.log(response.data.message);
-                                
                             })
                             .catch((error) => {
                                 console.error(error.response.data.message);

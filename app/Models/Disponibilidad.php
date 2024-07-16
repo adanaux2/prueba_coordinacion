@@ -16,7 +16,7 @@ class Disponibilidad extends Model
 
     protected $with = ['horario'];
     // Define los atributos que pueden ser asignados en masa
-    protected $fillable = ['id_profesor','id_horario'];
+    protected $fillable = ['id_profesor','id_horario','turno'];
 
 
     public function horario()

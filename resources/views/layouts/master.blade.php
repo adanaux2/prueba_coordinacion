@@ -29,32 +29,30 @@
         </div>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    @if (auth()->user()->id_rol == 1)
-                        <!-- Código a ejecutar si $condition1 es verdadero -->
-                        <a href="admin" class="nav-link">Home</a>
-                    @elseif (auth()->user()->id_rol == 2)
-                        <!-- Código a ejecutar si $condition1 es falso y $condition2 es verdadero -->
-                        <a href="coordinacion" class="nav-link">Home</a>
-                    @elseif(auth()->user()->id_rol == 3)
-                        <!-- Código a ejecutar si ninguna de las condiciones anteriores es verdadera -->
-                        <a href="maestros" class="nav-link">Home</a>
-                    @endif
-
-                </li>
-            </ul>
+           <!-- Left navbar links -->
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-block d-sm-inline-block">
+        @if (auth()->user()->id_rol == 1)
+            <!-- Código a ejecutar si $condition1 es verdadero -->
+            <a href="admin" class="nav-link">Home</a>
+        @elseif (auth()->user()->id_rol == 2)
+            <!-- Código a ejecutar si $condition1 es falso y $condition2 es verdadero -->
+            <a href="coordinacion" class="nav-link">Home</a>
+        @elseif(auth()->user()->id_rol == 3)
+            <!-- Código a ejecutar si ninguna de las condiciones anteriores es verdadera -->
+            <a href="maestros" class="nav-link">Home</a>
+        @endif
+    </li>
+</ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
 
-                <a class="nav-link">{{ auth()->user()->name }}</a>
+                {{-- <a class="nav-link">{{ auth()->user()->name }}</a> --}}
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login.destroy') }}" role="button">
@@ -98,7 +96,7 @@
                           <img src="img/logo-aztlan.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                          <a href="#" class="d-block">Alexander Pierce</a>
+                          <a href="#" class="d-block">{{ auth()->user()->email }}</a>
                         </div>
                       </div>
                    

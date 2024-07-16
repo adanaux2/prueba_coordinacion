@@ -42,6 +42,9 @@ const app = Vue.createApp({
             fechasMo2: [],
             semanaExamenes: [],
             semanaExamenes2: [],
+
+            //variable de dia para filtro exacto
+            diaFiltro: "",
         };
     },
     created() {
@@ -53,14 +56,23 @@ const app = Vue.createApp({
         turno(newValue) {
             switch (newValue) {
                 case "Nocturno":
+                    // this.diaFiltro = "Nocturno";
+                    this.claseEntreSemana();
+                    break;
                 case "Matutino":
+                    // this.diaFiltro = "Matutino";
                     this.claseEntreSemana();
                     break;
                 case "Sabatino vespertino":
+                    // this.diaFiltro = "Sabatino vespertino";
+                    this.claseFinDeSemana();
+                    break;
                 case "Sabatino matutino":
+                    // this.diaFiltro = "Sabatino matutino";
                     this.claseFinDeSemana();
                     break;
                 case "Dominical":
+                    // this.diaFiltro = "Dominical";
                     this.claseDominical();
                     break;
                 default:
@@ -190,8 +202,11 @@ const app = Vue.createApp({
         },
         obtenerProfe: function () {
             // alert("buscando");
+            const diaConsulta = this.unGrupo.turno;
+            // console.log(this.unGrupo);
+            console.log(diaConsulta);
             window.axios
-                .get(getConsulta + this.buscarCoincidencias)
+                .get(getConsulta + this.buscarCoincidencias + "/" + diaConsulta)
                 .then((response) => {
                     // console.log(response.data);
                     this.ProfesObtenidos = [];
@@ -1488,7 +1503,7 @@ const app = Vue.createApp({
             console.log(semanaExamenesModulo2);
         },
         claseDominical: function () {
-            alert("Clase Dominical");
+            // alert("Clase Dominical");
             dayjs.locale("es");
             const inicio = this.GrupoFI;
             const fechaInicial = dayjs(inicio);
@@ -1562,8 +1577,7 @@ const app = Vue.createApp({
             // this.fechaExamenes2 = fechaExamenes2;
             this.semanaExamenes = fechaExamenes1;
             this.semanaExamenes2 = fechaExamenes2;
-
-        }
+        },
     },
     computed: {
         materiasModulo1() {

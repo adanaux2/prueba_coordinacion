@@ -68,7 +68,7 @@ const app = Vue.createApp({
                 id_licenciatura: this.licenciatura_rvoe,
             };
 
-            console.log(rvoe);
+            // console.log(rvoe);
             axios
                 .post(apiRvoe, rvoe)
                 .then((response) => {

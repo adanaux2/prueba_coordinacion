@@ -1,7 +1,8 @@
-var apiUser = "http://localhost/prueba_coordinacion/public/apiUser";
-var saveUser = "http://localhost/prueba_coordinacion/public/register2";
+var ruta = document.querySelector("[name=route]").value;
+var apiUser = ruta + "/apiUser";
+var saveUser = ruta + "/register2";
 // var apiroles = "http://localhost/prueba_coordinacion/public/apiRoles";
-var apiMaestros = "http://localhost/prueba_coordinacion/public/apiProfe";
+var apiMaestros = ruta + "/apiProfe";
 
 // import axios from "axios";
 
@@ -14,41 +15,41 @@ const app = Vue.createApp({
             maestrosObtenidos: [],
 
             //nivel de ingles
-            valorHabla: 50,
-            valorEscribe: 50,
-            valorLee: 50,
+            // valorHabla: 50,
+            // valorEscribe: 50,
+            // valorLee: 50,
 
             // datos de sesion
             name: "",
-            email: "",
+            // email: "",
             password: "",
 
             //grado de estudios
             licenciatura: "",
             c_licenciatura: "",
-            maestria: "",
-            c_maestria: "",
-            doctorado: "",
-            c_doctorado: "",
+            // maestria: "",
+            // c_maestria: "",
+            // doctorado: "",
+            // c_doctorado: "",
 
             //datos generales
             nombre_c: "",
-            domicilio: "",
-            telefono: "",
+            // domicilio: "",
+            // telefono: "",
             correo_institucional: "",
-            genero: "",
-            f_nacimiento: "",
-            l_nacimiento: "",
-            rfc: "",
+            // genero: "",
+            // f_nacimiento: "",
+            // l_nacimiento: "",
+            // rfc: "",
             curp: "",
             //numeros de contacto
-            nombre_contacto: "",
-            relacion_contacto: "",
-            telefono_contacto: "",
+            // nombre_contacto: "",
+            // relacion_contacto: "",
+            // telefono_contacto: "",
 
-            nombre_contacto2: "",
-            relacion_contacto2: "",
-            telefono_contacto2: "",
+            // nombre_contacto2: "",
+            // relacion_contacto2: "",
+            // telefono_contacto2: "",
         };
     },
     created() {
@@ -97,7 +98,7 @@ const app = Vue.createApp({
         guardarUsuario: function () {
             const user = {
                 name: this.name,
-                email: this.email,
+                email: this.correo_institucional,
                 password: this.password,
                 id_rol: 3,
                 curp: this.curp,
@@ -123,41 +124,50 @@ const app = Vue.createApp({
             this.guardarMaestro();
             this.destruirDT();
             this.obtenerDatos();
-            
+            this.limpiar();
+        },
+        limpiar: function () {
+            this.name = "";
+            this.correo_institucional = "";
+            this.password = "";
+            this.curp = "";
+            this.nombre_c = "";
+            this.c_licenciatura = "";
+            this.licenciatura = "";
         },
         guardarMaestro: function () {
             const maestro = {
                 // nivel de ingles
-                habla: this.valorHabla,
-                escribe: this.valorEscribe,
-                lee: this.valorLee,
+                // habla: this.valorHabla,
+                // escribe: this.valorEscribe,
+                // lee: this.valorLee,
                 //grado de estudios
                 licenciatura: this.licenciatura,
                 c_licenciatura: this.c_licenciatura,
-                maestria: this.maestria,
-                c_maestria: this.c_maestria,
-                doctorado: this.doctorado,
-                c_doctorado: this.c_doctorado,
+                // maestria: this.maestria,
+                // c_maestria: this.c_maestria,
+                // doctorado: this.doctorado,
+                // c_doctorado: this.c_doctorado,
 
                 //datos generales
                 nombre_c: this.nombre_c,
-                domicilio: this.domicilio,
-                telefono: this.telefono,
+                // domicilio: this.domicilio,
+                // telefono: this.telefono,
                 correo_institucional: this.correo_institucional,
-                genero: this.genero,
-                f_nacimiento: this.f_nacimiento,
-                l_nacimiento: this.l_nacimiento,
-                rfc: this.rfc,
+                // genero: this.genero,
+                // f_nacimiento: this.f_nacimiento,
+                // l_nacimiento: this.l_nacimiento,
+                // rfc: this.rfc,
                 curp: this.curp,
 
                 //numeros de contacto
-                nombre_contacto: this.nombre_contacto,
-                relacion_contacto: this.relacion_contacto,
-                telefono_contacto: this.telefono_contacto,
+                // nombre_contacto: this.nombre_contacto,
+                // relacion_contacto: this.relacion_contacto,
+                // telefono_contacto: this.telefono_contacto,
 
-                nombre_contacto2: this.nombre_contacto2,
-                relacion_contacto2: this.relacion_contacto2,
-                telefono_contacto2: this.telefono_contacto2,
+                // nombre_contacto2: this.nombre_contacto2,
+                // relacion_contacto2: this.relacion_contacto2,
+                // telefono_contacto2: this.telefono_contacto2,
             };
 
             console.log(maestro);
@@ -166,18 +176,19 @@ const app = Vue.createApp({
                 .post(apiMaestros, maestro)
                 .then((response) => {
                     console.log(response.data);
-                    // Swal.fire({
-                    //     position: "top-center",
-                    //     icon: "success",
-                    //     title: "Usuario registrado",
-                    //     showConfirmButton: false,
-                    //     timer: 1500,
-                    // });
+                    //
                 })
                 .catch((error) => {
-                    console.error("Error submitting form:");
+                    // console.error("Error submitting form:");7
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Usuario no registrado",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 });
-                $("#exampleModal").modal("hide");
+            $("#exampleModal").modal("hide");
         },
         destruirDT: function () {
             $(document).ready(function () {
@@ -187,6 +198,12 @@ const app = Vue.createApp({
                 // Destruir el DataTable
                 dataTable.destroy();
             });
+        },
+    },
+    computed: {
+        emailFormatted: function () {
+            const cor = this.correo_institucional;
+            return cor + "@universidadaztlan.edu.mx";
         },
     },
 });

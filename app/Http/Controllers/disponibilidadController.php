@@ -16,7 +16,7 @@ class disponibilidadController extends Controller
     public function index()
     {
         //
-       return  Disponibilidad::all();
+        return  Disponibilidad::all();
     }
 
     /**
@@ -32,17 +32,15 @@ class disponibilidadController extends Controller
 
 
             // nivel de ingles
-            'id_profesor' => 'required',//required obliga a que este valor no este vacio
+            'id_profe' => 'required', //required obliga a que este valor no este vacio
             'id_horario' => 'required',
-            
+
 
         ]);
 
         DB::table('disponibilidad')->insert($validatedData);
         // Retornar una respuesta
         return response()->json(['message' => $validatedData, 'xd' => $request],  201);
-
-        
     }
 
     /**
@@ -54,7 +52,7 @@ class disponibilidadController extends Controller
     public function show($id)
     {
         //
-      
+
     }
 
     /**
@@ -88,13 +86,13 @@ class disponibilidadController extends Controller
         } else {
             return response()->json(['message' => 'Elemento no encontrado.'], 404);
         }
-    
     }
-    public function ConsultaP($request){
+    public function ConsultaP($request)
+    {
         // return $request;
 
-        $resultados = Disponibilidad::where('id_profesor', $request)->get();
-        $respuesta="No has establecido tu disposicion";
+        $resultados = Disponibilidad::where('id_profe', $request)->get();
+        $respuesta = "No has establecido tu disposicion";
 
         // Verifica si los resultados están vacíos
         if ($resultados->isEmpty()) {
@@ -102,7 +100,5 @@ class disponibilidadController extends Controller
         } else {
             return response()->json($resultados); // Devuelve los resultados si no están vacíos
         }
-        
-      
     }
 }

@@ -1,6 +1,9 @@
-var apiUser = "http://localhost/prueba_coordinacion/public/apiUser";
-var saveUser = "http://localhost/prueba_coordinacion/public/register2";
-var apiroles = "http://localhost/prueba_coordinacion/public/apiRoles";
+
+var ruta = document.querySelector("[name=route]").value;
+
+var apiUser = ruta + "/apiUser";
+var saveUser = ruta + "/register2";
+var apiroles = ruta + "/apiRoles";
 
 // import axios from "axios";
 
@@ -83,7 +86,20 @@ const app = Vue.createApp({
                 id_rol: this.rol_S,
             };
 
-            console.log(user);
+            // console.log(user);
+            for (const [key, value] of Object.entries(user)) {
+                if (!value) {
+                    // alert(
+                    //     `El campo '${key}' es obligatorio y no puede estar vacío.`
+                    // );
+                    Swal.fire({
+                        title: "Oops...",
+                        text: "El campo '" + key + "' es obligatorio y no puede estar vacío.",
+                        icon: "question"
+                      });
+                    return;
+                }
+            }
 
             axios
                 .post(saveUser, user)

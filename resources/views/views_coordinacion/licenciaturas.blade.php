@@ -18,7 +18,7 @@
             {{-- vista 0 --}}
             <div class="row" v-show="principal==0">
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>Ver </h3>
                             <p>Licenciaturas</p>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>Agregar</h3>
                             <p>RVOES</p>

@@ -128,9 +128,12 @@
             </div>
             <!-- /.modal -->
         </div>
+
+        <input type="hidden" name="route" value="{{ url('/') }}">
     @else
         <h1>No tienes accesos para este panel</h1>
     @endif
+
 
     @push('scripts')
         <script type="module" src="js/apis/apiAdmin.js"></script>
@@ -140,8 +143,5 @@
             });
         </script> --}}
     @endpush
-
-
-
-
+   
 @endsection

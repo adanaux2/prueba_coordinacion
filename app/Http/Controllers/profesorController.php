@@ -34,41 +34,41 @@ class profesorController extends Controller
 
 
             // nivel de ingles
-            'habla' => 'required', //required obliga a que este valor no este vacio
-            'escribe' => 'required',
-            'lee' => 'required',
+            // 'habla' => 'required', //required obliga a que este valor no este vacio
+            // 'escribe' => 'required',
+            // 'lee' => 'required',
 
 
             //grado de estudios
 
             'licenciatura' => 'required',
             'c_licenciatura' => 'required',
-            'maestria' => 'nullable', //nullable permite que el valor pueda ser vacio
-            'c_maestria' => 'nullable',
-            'doctorado' => 'nullable',
-            'c_doctorado' => 'nullable',
+            // 'maestria' => 'nullable', //nullable permite que el valor pueda ser vacio
+            // 'c_maestria' => 'nullable',
+            // 'doctorado' => 'nullable',
+            // 'c_doctorado' => 'nullable',
 
 
             //datos generales
 
             'nombre_c' => 'required',
-            'domicilio' => 'required',
-            'telefono' => 'required',
+            // 'domicilio' => 'required',
+            // 'telefono' => 'required',
             'correo_institucional' => 'required',
-            'genero' => 'required',
-            'f_nacimiento' => 'required',
-            'l_nacimiento' => 'required',
-            'rfc' => 'required',
+            // 'genero' => 'required',
+            // 'f_nacimiento' => 'required',
+            // 'l_nacimiento' => 'required',
+            // 'rfc' => 'required',
             'curp' => 'required',
 
             //numeros de contacto
 
-            'nombre_contacto' => 'nullable',
-            'relacion_contacto' => 'nullable',
-            'telefono_contacto' => 'nullable',
-            'nombre_contacto2' => 'nullable',
-            'relacion_contacto2' => 'nullable',
-            'telefono_contacto2' => 'nullable'
+            // 'nombre_contacto' => 'nullable',
+            // 'relacion_contacto' => 'nullable',
+            // 'telefono_contacto' => 'nullable',
+            // 'nombre_contacto2' => 'nullable',
+            // 'relacion_contacto2' => 'nullable',
+            // 'telefono_contacto2' => 'nullable'
 
         ]);
 
@@ -124,16 +124,23 @@ class profesorController extends Controller
 
         return $maestros[0];
     }
-    public function consultaProfesor($id_materia)
+    public function consultaProfesor($id_materia, $dia)
     {
-        $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
+        // $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
+        // return $consulta;
+
+        $consulta = MapaCurricular::where('id_materia', $id_materia)
+            ->whereHas('profesor.disponibilidad.horario', function ($query) use ($dia) {
+                $query->where('turno', $dia);
+            })
+            ->get();
         return $consulta;
-    //     $p =[];
-    //     foreach ($consulta as $key => $value) {
-    //         array_push($p, $value->profesor);
-    //         // $key = $value->id_profesor;
-           
-    //     }
-    //     return $p;
+        //     $p =[];
+        //     foreach ($consulta as $key => $value) {
+        //         array_push($p, $value->profesor);
+        //         // $key = $value->id_profesor;
+
+        //     }
+        //     return $p;
     }
 }

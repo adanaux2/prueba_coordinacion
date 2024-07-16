@@ -11,45 +11,69 @@
         </h1> --}}
         <div class="row">
 
-            <div class="col-3">
-                <div class="small-box bg-warning">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>Maestros</h3>
-                        <p>usuarios registrados</p>
+                        <p>creación</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-address-card"></i>
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </div>
                     <a class="small-box-footer" href="coordinacion_maestros">Ver más <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="small-box bg-warning">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>Materias</h3>
-                        <p>usuarios registrados</p>
+                        <h3>Licenciatura</h3>
+                        <p> y RVOES</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-address-card"></i>
+                        <i class="fa-brands fa-slack"></i>
                     </div>
-                    <a class="small-box-footer" >Ver más <i class="fas fa-arrow-circle-right"></i></a>
+                    <a class="small-box-footer" href="coordinacion_maestros">Ver más <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="small-box bg-warning">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>Asignaciones</h3>
-                        <p>usuarios registrados</p>
+                        <h3>Subir </h3>
+                        <p>materias</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-address-card"></i>
+                        <i class="fa-solid fa-clipboard"></i>
                     </div>
-                    <a class="small-box-footer" >Ver más <i class="fas fa-arrow-circle-right"></i></a>
+                    <a class="small-box-footer" href="mate">Ver más <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>Crear</h3>
+                        <p>grupos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                    <a class="small-box-footer" href="asignacion">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>Asignar</h3>
+                        <p>horas y módulos</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <a class="small-box-footer" href="asignar">Ver más <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
         </div>
     @else
         <h1>No tienes accesos para este panel</h1>
     @endif
+    <input type="hidden" name="route" value="{{ url('/') }}">
 @endsection
