@@ -86,7 +86,7 @@ const app = Vue.createApp({
                 id_rol: this.rol_S,
             };
 
-            // console.log(user);
+            console.log(user);
             for (const [key, value] of Object.entries(user)) {
                 if (!value) {
                     // alert(
@@ -118,6 +118,7 @@ const app = Vue.createApp({
                 });
             this.destruirDT();
             this.obtenerDatos();
+            window.location.reload();
         },
         validarInputs: function () {
             if (!this.name) {
