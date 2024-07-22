@@ -8,7 +8,7 @@
             <div v-show="vista==0">
                 <div class="row">
                     <div class="col-3">
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-danger">
                             <div class="inner">
                                 <h3>@{{ usuarios.length }}</h3>
                                 <p>usuarios registrados</p>
@@ -22,15 +22,15 @@
                     </div>
                     {{-- Caja para registrar usuarios --}}
                     <div class="col-3">
-                        <div class="small-box bg-warning">
-                            <div class="inner" style="background:rgb(29, 194, 70)">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
                                 <h3>+</h3>
                                 <p>Registar Usuarios</p>
                             </div>
                             <div class="icon">
                                 <i class="fa-solid fa-address-book"></i>
                             </div>
-                            <a class="small-box-footer" style="background:rgb(25, 165, 60)" @click="openModal()">Ver más <i
+                            <a class="small-box-footer" @click="openModal()">Ver más <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

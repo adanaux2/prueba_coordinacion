@@ -92,19 +92,19 @@ const app = Vue.createApp({
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Usuarios importados exitosamente.",
+                        title: "Materias cargadas exitosamente.",
                         showConfirmButton: false,
                         timer: 1500
                       });
                 })
                 .catch((error) => {
-                    console.error("Error al importar usuarios:", error);
+                    console.error("Error al cargar materias:", error);
                     // alert("No se pudieron importar los usuarios.");
                     
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "No se pudieron importar los usuarios. Asegurate de que el archivo se encuentra en el formato correcto.",
+                        text: "No se pudieron cargar las materias. Asegurate de que el archivo se encuentra en el formato correcto.",
                       });
                 });
         },

@@ -374,17 +374,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <table id="dataTable">
+                            <table id="dataTable" class="table w-100">
                                 <thead>
                                     <tr>
 
                                         <th>Nombre</th>
                                         <th>Licenciatura</th>
                                         {{-- <th>Correo Electrónico</th> --}}
-                                        {{-- <th>Curp</th> --}}
+                                        <th>Disposición</th>
                                         {{-- <tr>Disposición</tr> --}}
                                         <th>Acción</th>
-                                       
+                                    </tr> 
 
                                 </thead>
                                 <tbody>
@@ -399,9 +399,14 @@
                                         {{-- <td><button class="btn btn-danger"
                                                 @click="agregarProfe(m.id_profe)">Agregar</button>
                                         </td> --}}
-                                        {{-- <td>
-                                            <p>@{{ m.profesor[0].disponibilidad[0].id_profe }}</p><span></span>
-                                        </td> --}}
+                                        <td>
+                                            <div v-for="disp in m.profesor[0].disponibilidad" :key="disp.id_disp">
+                                                <p>@{{ disp.horario[0].dia }} <span>@{{ disp.horario[0].hora }}</span></p>
+                                                {{-- <p>Hora: @{{ disp.horario[0].hora }}</p> --}}
+                                                {{-- <p>Turno: @{{ disp.horario[0].turno }}</p> --}}
+                                                <hr>
+                                            </div>
+                                        </td>
 
                                         <td><button class="btn btn-danger"
                                                 @click="agregarProfe(m.id_profe)">Agregar</button>

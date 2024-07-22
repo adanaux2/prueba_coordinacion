@@ -202,11 +202,11 @@ const app = Vue.createApp({
         },
         obtenerProfe: function () {
             // alert("buscando");
-            const diaConsulta = this.unGrupo.turno;
+            // const diaConsulta = this.unGrupo.turno;
             // console.log(this.unGrupo);
-            console.log(diaConsulta);
+
             window.axios
-                .get(getConsulta + this.buscarCoincidencias + "/" + diaConsulta)
+                .get(getConsulta + this.buscarCoincidencias)
                 .then((response) => {
                     // console.log(response.data);
                     this.ProfesObtenidos = [];

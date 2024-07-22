@@ -19,10 +19,7 @@ const app = Vue.createApp({
         this.obtenerLisc();
         this.obtenerLiscenciaturas();
     },
-    watch:{
-
-        
-    },
+    watch: {},
 
     methods: {
         openModal: function () {
@@ -62,11 +59,29 @@ const app = Vue.createApp({
                 });
         },
         guardarRvoe: function () {
+            // Verificar que los campos no estén vacíos
+
             const rvoe = {
                 id_rvoe: this.id_rvoe,
                 nombre: this.id_rvoe,
                 id_licenciatura: this.licenciatura_rvoe,
             };
+            for (const [key, value] of Object.entries(rvoe)) {
+                if (!value) {
+                    // alert(
+                    //     `El campo '${key}' es obligatorio y no puede estar vacío.`
+                    // );
+                    Swal.fire({
+                        title: "Oops...",
+                        text:
+                            "El campo '" +
+                            key +
+                            "' es obligatorio y no puede estar vacío.",
+                        icon: "question",
+                    });
+                    return;
+                }
+            }
 
             // console.log(rvoe);
             axios

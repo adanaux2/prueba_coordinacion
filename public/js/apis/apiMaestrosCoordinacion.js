@@ -73,6 +73,7 @@ const app = Vue.createApp({
                     this.maestrosObtenidos = [];
                     this.maestrosObtenidos = response.data;
                     // console.log(this.usuarios);
+                    this.destruirDT();
                     $(document).ready(function () {
                         $("#dataTable").DataTable({
                             language: {
@@ -117,14 +118,17 @@ const app = Vue.createApp({
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    this.guardarMaestro();
+                    this.destruirDT();
+                    this.limpiar();
+                    // this.obtenerDatos();
                 })
                 .catch((error) => {
                     console.error("Error submitting form:", error);
                 });
-            this.guardarMaestro();
-            this.destruirDT();
-            this.obtenerDatos();
-            this.limpiar();
+           
+            // window.location.reload();
+            // this.obtenerDatos();
         },
         limpiar: function () {
             this.name = "";
@@ -134,6 +138,8 @@ const app = Vue.createApp({
             this.nombre_c = "";
             this.c_licenciatura = "";
             this.licenciatura = "";
+            // this.obtenerDatos();
+            window.location.reload();
         },
         guardarMaestro: function () {
             const maestro = {

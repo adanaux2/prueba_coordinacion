@@ -13,7 +13,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\rolesController;
 use App\Http\Controllers\sessionsController;
 use App\Http\Controllers\userController;
-use App\Http\Controllers\ImportController;
+use App\Http\Controllers\importController;
 use App\Http\Controllers\licenciaturas_rvoeController;
 use App\Http\Controllers\liscController;
 use App\Http\Controllers\MapaController;
@@ -102,7 +102,7 @@ Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
 Route::get('getDisposicion/{id}', [disponibilidadController::class, 'ConsultaP']);
 Route::get('getMaterias/{cuatri}/{id_rvoe}', [liscController::class, 'getLiscMaterias']);
 Route::get('getMate/{id}', [gruposController::class, 'getMaterias']);
-Route::get('getConsultaProfe/{id_materia}/{dia}', [profesorController::class, 'consultaProfesor']);
+Route::get('getConsultaProfe/{id_materia}', [profesorController::class, 'consultaProfesor']);
 // importar exel
 
 Route::get('/import', [importController::class, 'import']);

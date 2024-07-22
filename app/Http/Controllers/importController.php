@@ -23,7 +23,7 @@ class ImportController extends Controller
         //    dd("imp");
          // Validar el request
          $request->validate([
-            'file' => 'required|file|mimes:xls,xlsx',
+            'file' => 'required|file',
             'id_rvoe' => 'required|string',
         ]);
          // Obtener el archivo y el id_rvoe

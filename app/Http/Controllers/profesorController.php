@@ -124,17 +124,12 @@ class profesorController extends Controller
 
         return $maestros[0];
     }
-    public function consultaProfesor($id_materia, $dia)
+    public function consultaProfesor($id_materia)
     {
-        // $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
-        // return $consulta;
-
-        $consulta = MapaCurricular::where('id_materia', $id_materia)
-            ->whereHas('profesor.disponibilidad.horario', function ($query) use ($dia) {
-                $query->where('turno', $dia);
-            })
-            ->get();
+        $consulta = MapaCurricular::where('id_materia', $id_materia)->get();
         return $consulta;
+
+     
         //     $p =[];
         //     foreach ($consulta as $key => $value) {
         //         array_push($p, $value->profesor);

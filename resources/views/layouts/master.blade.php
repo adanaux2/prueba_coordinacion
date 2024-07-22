@@ -29,24 +29,25 @@
         </div>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-           <!-- Left navbar links -->
-<ul class="navbar-nav">
-    <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-block d-sm-inline-block">
-        @if (auth()->user()->id_rol == 1)
-            <!-- Código a ejecutar si $condition1 es verdadero -->
-            <a href="admin" class="nav-link">Home</a>
-        @elseif (auth()->user()->id_rol == 2)
-            <!-- Código a ejecutar si $condition1 es falso y $condition2 es verdadero -->
-            <a href="coordinacion" class="nav-link">Home</a>
-        @elseif(auth()->user()->id_rol == 3)
-            <!-- Código a ejecutar si ninguna de las condiciones anteriores es verdadera -->
-            <a href="maestros" class="nav-link">Home</a>
-        @endif
-    </li>
-</ul>
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-block d-sm-inline-block">
+                    @if (auth()->user()->id_rol == 1)
+                        <!-- Código a ejecutar si $condition1 es verdadero -->
+                        <a href="admin" class="nav-link">Home</a>
+                    @elseif (auth()->user()->id_rol == 2)
+                        <!-- Código a ejecutar si $condition1 es falso y $condition2 es verdadero -->
+                        <a href="coordinacion" class="nav-link">Home</a>
+                    @elseif(auth()->user()->id_rol == 3)
+                        <!-- Código a ejecutar si ninguna de las condiciones anteriores es verdadera -->
+                        <a href="maestros" class="nav-link">Home</a>
+                    @endif
+                </li>
+            </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -93,13 +94,13 @@
                     </div> --}}
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                          <img src="img/logo-aztlan.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="img/logo-aztlan.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                          <a href="#" class="d-block">{{ auth()->user()->email }}</a>
+                            <a href="#" class="d-block">{{ auth()->user()->email }}</a>
                         </div>
-                      </div>
-                   
+                    </div>
+
                 </div>
 
 
@@ -153,6 +154,17 @@
                                     </li>
                                 </ul>
                             @endif
+                            @if (auth()->user()->id_rol == 3)
+                                <!-- Código a ejecutar si $condition1 es verdadero -->
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="maestros" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Inicio</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endif
                         </li>
                     </ul>
                 </nav>
@@ -189,7 +201,7 @@
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-           
+
         </aside>
         <!-- /.control-sidebar -->
     </div>
