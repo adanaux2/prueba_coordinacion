@@ -54,8 +54,7 @@
                             <ul class="nav nav-pills ml-auto p-2">
                                 <li class="nav-item"><a class="nav-link active" href="#tab_1"
                                         data-toggle="tab">Disponibilidad</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Mapa
-                                        curricular</a>
+                                <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Cargar materias</a>
                                 </li>
 
                             </ul>
@@ -208,7 +207,7 @@
                         
                                                         <div class="card-tools">
                                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                                <i class="fas fa-minus"></i>
+                                                                <i class="fa-solid fa-arrow-down-wide-short"></i>
                                                             </button>
                                                         </div>
                                                         <!-- /.card-tools -->
@@ -223,7 +222,7 @@
                                                                      
                                                                         <div class="card-tools">
                                                                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                                                <i class="fas fa-minus"></i>
+                                                                                <i class="fa-solid fa-arrow-down-wide-short"></i>
                                                                             </button>
                                                                             
                                                                         </div>
@@ -271,7 +270,7 @@
                                     </div>
                                     <button class="btn btn-default" v-if="mostrar2==0" @click="saveSelected()">Guardar Seleccionados</button>
                                     <div class="row" v-if="mostrar2==1">
-                                        <h3>Eliminar mapa curricular actual</h3>
+                                        <h3>Eliminar materias actuales</h3>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +294,7 @@
                                     personales</a></li>
                             <li class="nav-item"><a class="nav-link" href="#tab_4" data-toggle="tab">Disponibilidad</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="#tab_5" data-toggle="tab">Mapa curricular</a>
+                            <li class="nav-item"><a class="nav-link" href="#tab_5" data-toggle="tab">Carga de materias</a>
                             </li>
 
                         </ul>
@@ -507,10 +506,10 @@
                                     
                                 </div>
                                 <div v-if="mostrar2==1" @clicK="EliminarMapa()">
-                                    <button class="btn btn-dark">Eliminar mapa curricular</button>
+                                    <button class="btn btn-dark">Eliminar materias</button>
                                 </div>
                                 <div v-if="mostrar2==0">
-                                    <h3>Aún no llenas tu mapa curricular</h3>
+                                    <h3>Aún no seleccionas tus materias</h3>
                                 </div>
                             </div>
                         </div>
