@@ -59,12 +59,14 @@
                     <form method="POST" action="{{ route('login.store') }}">
                         @csrf <!-- Token CSRF -->
                         <label for="name">Usuario</label>
-                        <input id="name" type="text" name="name" placeholder="name">
+                        <input id="name" type="text" name="name" placeholder="Usuario">
                         
                         <label for="password">Contraseña</label>
                         <input id="password" type="password" placeholder="Contraseña" name="password">
-                        
-                        <button type="submit">Login</button>
+                        <button type="button" id="togglePassword">
+                            Mostrar
+                        </button>
+                        <button type="submit">Ingresar</button>
                     </form>
                     @error('message')
 	                <p>{{$message}}</p>
@@ -88,6 +90,19 @@
         </div>
         
     </body>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            var passwordField = document.getElementById('password');
+            var passwordFieldType = passwordField.getAttribute('type');
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
+                this.textContent = 'Ocultar contraseña';
+            } else {
+                passwordField.setAttribute('type', 'password');
+                this.textContent = 'Mostrar contraseña';
+            }
+        });
+    </script>
 </html>
 
 

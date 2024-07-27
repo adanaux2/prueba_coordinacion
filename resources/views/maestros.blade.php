@@ -189,7 +189,7 @@
 
 
                                     </div>
-                                    <button class="btn btn-dark"  v-if="mostrar==0" @click="guardarDisposicion()">
+                                    <button class="btn btn-warning"  v-if="mostrar==0" @click="guardarDisposicion()">
                                         Guardar
                                     </button>
                                     <div class="row" v-if="mostrar==1">
@@ -268,7 +268,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-default" v-if="mostrar2==0" @click="saveSelected()">Guardar Seleccionados</button>
+                                    <button class="btn btn-warning" v-if="mostrar2==0" @click="saveSelected()">Guardar Seleccionados</button>
                                     <div class="row" v-if="mostrar2==1">
                                         <h3>Eliminar materias actuales</h3>
                                     </div>
@@ -488,7 +488,7 @@
 
                                 </div>
                                 <div v-if="mostrar==1">
-                                    <button class="btn btn-dark" @clicK="eliminarDisp()">Eliminar disponibilidad</button>
+                                    <button class="btn btn-warning" @clicK="eliminarDisp()">Eliminar disponibilidad</button>
                                 </div>
                                 <div v-if="mostrar==0">
                                     <h3>Aún no llenas tu disponibilidad</h3>
@@ -506,7 +506,7 @@
                                     
                                 </div>
                                 <div v-if="mostrar2==1" @clicK="EliminarMapa()">
-                                    <button class="btn btn-dark">Eliminar materias</button>
+                                    <button class="btn btn-warning">Eliminar materias</button>
                                 </div>
                                 <div v-if="mostrar2==0">
                                     <h3>Aún no seleccionas tus materias</h3>
