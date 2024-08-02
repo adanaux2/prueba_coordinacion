@@ -18,6 +18,7 @@ use App\Http\Controllers\licenciaturas_rvoeController;
 use App\Http\Controllers\liscController;
 use App\Http\Controllers\MapaController;
 use App\Http\Controllers\materiasGruposController;
+use App\Http\Controllers\pdfMapaDisposicionController;
 use App\Http\Controllers\rvoeController;
 
 /*
@@ -60,7 +61,7 @@ Route::view('coordinacion_maestros', '/views_coordinacion/maestros');
 Route::view('mate', '/views_coordinacion/materias');
 Route::view('asignacion', '/views_coordinacion/asignaciones');
 Route::view('licenciaturas', '/views_coordinacion/licenciaturas');
-Route::view('asignar','/views_coordinacion/asignar');
+Route::view('asignar', '/views_coordinacion/asignar');
 
 Route::get('/register', [registerController::class, 'create'])
     ->name('register.index');
@@ -93,9 +94,9 @@ Route::apiResource('apiLisc', liscController::class);
 Route::apiResource('apiR', rvoeController::class);
 Route::apiResource('apiL', licenciaturas_rvoeController::class);
 Route::apiResource('apiDisp', disponibilidadController::class);
-Route::apiResource('apiMapa',MapaController::class);
-Route::apiResource('apiGrupo',gruposController::class);
-Route::apiResource('apimatG',materiasGruposController::class);
+Route::apiResource('apiMapa', MapaController::class);
+Route::apiResource('apiGrupo', gruposController::class);
+Route::apiResource('apimatG', materiasGruposController::class);
 // rutas parametrizadas
 
 Route::get('getMaestro/{id}', [ProfesorController::class, 'getMaestro']);
@@ -107,3 +108,16 @@ Route::get('getConsultaProfe/{id_materia}', [profesorController::class, 'consult
 
 Route::get('/import', [importController::class, 'import']);
 Route::post('/import', [importController::class, 'import2']);
+
+// app/Http/routes.php | app/routes/web.php
+
+// Route::get('/pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
+
+//     $fpdf->AddPage();
+//     $fpdf->SetFont('Courier', 'B', 18);
+//     $fpdf->Cell(50, 25, 'Hello World!');
+//     $fpdf->Output();
+//     exit;
+
+// });
+Route::get('/pdf/{maestro}', [pdfMapaDisposicionController::class, 'pdfMaestro']);

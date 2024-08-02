@@ -38,13 +38,13 @@
                 <li class="nav-item d-block d-sm-inline-block">
                     @if (auth()->user()->id_rol == 1)
                         <!-- Código a ejecutar si $condition1 es verdadero -->
-                        <a href="admin" class="nav-link">Home</a>
+                        <a href="admin" class="nav-link">Inicio</a>
                     @elseif (auth()->user()->id_rol == 2)
                         <!-- Código a ejecutar si $condition1 es falso y $condition2 es verdadero -->
-                        <a href="coordinacion" class="nav-link">Home</a>
+                        <a href="coordinacion" class="nav-link">Inicio</a>
                     @elseif(auth()->user()->id_rol == 3)
                         <!-- Código a ejecutar si ninguna de las condiciones anteriores es verdadera -->
-                        <a href="maestros" class="nav-link">Home</a>
+                        <a href="maestros" class="nav-link">Inicio</a>
                     @endif
                 </li>
             </ul>
@@ -55,23 +55,25 @@
 
                 {{-- <a class="nav-link">{{ auth()->user()->name }}</a> --}}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login.destroy') }}" role="button">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </a>
-                </li>
+               
 
 
 
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
+                    <a class="nav-link" href="#" role="button">
+                        {{-- <i class="fas fa-expand-arrows-alt"></i> --}}
+                        {{ auth ()->user()->email }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
                         role="button">
                         <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login.destroy') }}" role="button">
+                        <i class="fa-solid fa-right-from-bracket"></i>
                     </a>
                 </li>
             </ul>
@@ -97,7 +99,7 @@
                             <img src="img/logo-aztlan.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{ auth()->user()->email }}</a>
+                            <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                         </div>
                     </div>
 

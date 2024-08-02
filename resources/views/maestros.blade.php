@@ -13,12 +13,12 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>Mis datos</h3>
+                            <h3>Ver</h3>
 
-                            {{-- <p>Consultar</p> --}}
+                            <p>mi selección</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fa-solid fa-check"></i>
                         </div>
                         <a href="#" class="small-box-footer" @click="vista2()">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
@@ -30,10 +30,10 @@
                         <div class="inner">
                             <h3>LLenar</h3>
 
-                            {{-- <p>Consultar</p> --}}
+                            <p>mi disposición y materias</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fa-solid fa-pen"></i>
                         </div>
                         <a href="#" class="small-box-footer" @click="vista1()">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>

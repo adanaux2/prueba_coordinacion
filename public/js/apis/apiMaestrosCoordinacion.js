@@ -3,6 +3,7 @@ var apiUser = ruta + "/apiUser";
 var saveUser = ruta + "/register2";
 // var apiroles = "http://localhost/prueba_coordinacion/public/apiRoles";
 var apiMaestros = ruta + "/apiProfe";
+var pdf = ruta + "/pdf/";
 
 // import axios from "axios";
 
@@ -126,7 +127,7 @@ const app = Vue.createApp({
                 .catch((error) => {
                     console.error("Error submitting form:", error);
                 });
-           
+
             // window.location.reload();
             // this.obtenerDatos();
         },
@@ -204,6 +205,13 @@ const app = Vue.createApp({
                 // Destruir el DataTable
                 dataTable.destroy();
             });
+        },
+        openPdf(id) {
+            // alert(id);
+            $("#modalPdf").modal("show");
+            const iframe = document.getElementById("pdfIframe");
+            iframe.src = pdf + `${id}`;
+            iframe.style.display = "block";
         },
     },
     computed: {

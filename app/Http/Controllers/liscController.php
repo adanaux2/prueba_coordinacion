@@ -95,13 +95,13 @@ class liscController extends Controller
                 $query->where('name', 'regexp', '737$|738$|739$|740$|741$|742$');
                 break;
             case 8:
-                $query->where('name', 'regexp', '843$|844$|845$|846$|847$|848$');
+                $query->where('name', 'regexp', '842$|843$|844$|845$|846$|847$|848$');
                 break;
             case 9:
-                $query->where('name', 'regexp', '949$|950$|951$|952$|953$|954$');
+                $query->where('name', 'regexp', '947$|948$|949$|950$|951$|952$|953$|954$');
                 break;
             case 10:
-                $query->where('name', 'regexp', '$1054$|1055$|1056$|1057$|1058$|1059$|1060$');
+                $query->where('name', 'regexp', '1052$|$1053$|$1054$|1055$|1056$|1057$|1058$|1059$|1060$');
                 break;
             default:
                 // Agregar lógica por defecto si es necesario

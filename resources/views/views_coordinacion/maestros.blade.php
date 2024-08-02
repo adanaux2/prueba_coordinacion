@@ -57,6 +57,7 @@
                                 <th>Licenciatura</th>
                                 <th>Correo Electrónico</th>
                                 <th>Curp</th>
+                                <th>Informe</th>
 
                         </thead>
                         <tbody>
@@ -65,10 +66,15 @@
                                 <td>@{{ m.licenciatura }}</td>
                                 <td>@{{ m.correo_institucional }}</td>
                                 <td>@{{ m.curp }}</td>
+                                <td><button class="btn btn-danger" @click="openPdf(m.curp)"><i
+                                            class="fa-solid fa-file-pdf"></i>
+                                    </button></td>
 
                             </tr>
                         </tbody>
                     </table>
+                    <!-- Añadir iframe oculto para mostrar el PDF -->
+                    {{-- <iframe id="pdfIframe" style="width: 100%; height: 500px; display: none;"></iframe> --}}
 
                 </div>
             </div>
@@ -284,6 +290,21 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
+
+            {{-- modal pedfile --}}
+            <div class="modal fade" id="modalPdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+
+
+                        <div class="modal-body">
+                            <iframe id="pdfIframe" width="100%" height="600px"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         {{-- fin de objeto vue --}}
     @else
