@@ -109,15 +109,5 @@ Route::get('getConsultaProfe/{id_materia}', [profesorController::class, 'consult
 Route::get('/import', [importController::class, 'import']);
 Route::post('/import', [importController::class, 'import2']);
 
-// app/Http/routes.php | app/routes/web.php
-
-// Route::get('/pdf', function (Codedge\Fpdf\Fpdf\Fpdf $fpdf) {
-
-//     $fpdf->AddPage();
-//     $fpdf->SetFont('Courier', 'B', 18);
-//     $fpdf->Cell(50, 25, 'Hello World!');
-//     $fpdf->Output();
-//     exit;
-
-// });
+//ruta que sirve para generar el pdf
 Route::get('/pdf/{maestro}', [pdfMapaDisposicionController::class, 'pdfMaestro']);
