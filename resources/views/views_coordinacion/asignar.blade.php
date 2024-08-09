@@ -21,7 +21,7 @@
                                     <th>Rvoe</th>
                                     <th>Año</th>
                                     <th>Cuatrimestre</th>
-                                    <th>Periodo</th>
+                                    <th>Identificador</th>
                                     <th>Asignar</th>
                                 </tr>
                             </thead>
@@ -32,7 +32,7 @@
                                     <td>@{{ g.id_rvoe }}</td>
                                     <td>@{{ g.anio }}</td>
                                     <td>@{{ g.cuatrimestre }}</td>
-                                    <td>@{{ g.periodo }}</td>
+                                    <td>@{{ g.grupo }}</td>
                                     <td>
 
                                         <button class="btn" style="background-color: #353281"
@@ -52,16 +52,17 @@
             <div class="row" v-if="principal==1">
                 <div class="card card-primary card-outline">
                     <div class="card-body">
-                        <h5 class="card-title">@{{ unGrupo.name[0].licenciatura }}</h5>
+                        <h5 class="card-title" style="background-color: rgb(36, 113, 201)">@{{ unGrupo.name[0].licenciatura }}</h5>
 
                         <p class="card-text">
-                            <strong>Rvoe:</strong> @{{ unGrupo.id_rvoe }} <strong>Año:</strong> @{{ unGrupo.anio }}
+                            <strong>Rvoe:</strong> <span style="background-color: blueviolet">@{{ unGrupo.id_rvoe }}</span> <strong>Año:</strong> <span style="background-color: blueviolet">@{{ unGrupo.anio }}</span>
                             <strong>Periodo:</strong>
-                            @{{ unGrupo.periodo }} <strong>Cuatrimestre:</strong> @{{ unGrupo.cuatrimestre }}
+                            <span style="background-color: blueviolet">@{{ unGrupo.periodo }} </span><strong>Cuatrimestre:</strong> <span style="background-color: blueviolet">@{{ unGrupo.cuatrimestre }}</span>
                         </p>
                         <p>
-                            <strong>Turno:</strong> @{{ unGrupo.turno }} <strong>Fecha de inicio:</strong>
-                            @{{ unGrupo.fecha_inicio }} <strong>Fecha de fin:</strong> @{{ unGrupo.fecha_fin }}
+                            <strong>Turno:</strong> <span style="background-color: blueviolet">@{{ unGrupo.turno }}</span>  <strong>Fecha de inicio:</strong>
+                           <span style="background-color: blueviolet">@{{ unGrupo.fecha_inicio }}</span>  <strong>Fecha de fin:</strong> <span style="background-color: blueviolet">@{{ unGrupo.fecha_fin }}</span>
+                            <strong>Modalidad:</strong> <span style="background-color: blueviolet">@{{ unGrupo.modalidad }}</span>
                         </p>
 
                         <div class="table-responsive">
@@ -85,7 +86,7 @@
                                         <td>@{{ materia.materia }}</td>
 
                                         <td><input type="text" disabled :value="materia.name_profesor"></td>
-                                        <td><button class="btn btn-dark btn-sm" @click="verModal(materia.id_materia)"
+                                        <td><button class="btn btn-dark btn-sm me-2 custom-margin" @click="verModal(materia.id_materia)"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="Seleccionar profesor"><i
                                                     class="fa-solid fa-magnifying-glass"></i></button>

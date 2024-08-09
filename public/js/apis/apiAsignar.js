@@ -470,8 +470,10 @@ const app = Vue.createApp({
 
             doc.setFontSize(18); // Cambiar tamaño de fuente global
             doc.setTextColor(53, 39, 131); // Establecer color de texto en RGB (azul)
-            doc.text("MÓDULO 1", 18, 93);
-            doc.text("MÓDULO 2", 18, 180);
+            doc.text("MÓDULO 10", 18, 93);
+            doc.text(data.modalidad, 150, 93);
+            doc.text("MÓDULO 20", 18, 180);
+            doc.text(data.modalidad, 150, 180);
             // doc.text("MÓDULO 1", 40, 107);
 
             doc.setFontSize(12); // Cambiar tamaño de fuente global
@@ -551,7 +553,7 @@ const app = Vue.createApp({
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             });
 
@@ -723,7 +725,7 @@ const app = Vue.createApp({
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             });
 
@@ -868,6 +870,8 @@ const app = Vue.createApp({
         },
         claseEntreSemana: function () {
             dayjs.locale("es");
+
+            
 
             // Obtener las fechas del modulo 1
             const fecha_inicio = this.GrupoFI;
@@ -1105,7 +1109,7 @@ const app = Vue.createApp({
                     console.error("Hubo un error al obtener los datos:", error);
                 });
         },
-        generarPDF2: function () {
+        generarPDF2: function () { //este metodo crea el pdf de las clases sabatinas y dominicales
             const doc = new window.jspdf.jsPDF();
 
             const data = this.unGrupo;
@@ -1128,7 +1132,9 @@ const app = Vue.createApp({
             doc.setFontSize(18); // Cambiar tamaño de fuente global
             doc.setTextColor(53, 39, 131); // Establecer color de texto en RGB (azul)
             doc.text("MÓDULO 1", 18, 93);
+            doc.text(data.modalidad,150,93);
             doc.text("MÓDULO 2", 18, 180);
+            doc.text(data.modalidad,150,180);
             // doc.text("MÓDULO 1", 40, 107);
 
             doc.setFontSize(12); // Cambiar tamaño de fuente global
@@ -1199,16 +1205,16 @@ const app = Vue.createApp({
                 alternateRowStyles: { fillColor: [240, 240, 240] },
                 tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
                 cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
-                margin: { top: 50, right: 0, bottom: 50, left: 14 }, // Márgenes de la tabla
+                margin: { top: 50, right: 0, bottom: 50, left: 3 }, // Márgenes de la tabla
                 columnStyles: {
                     0: { cellWidth: 5 }, // Ancho específico para la primera columna
                     1: { cellWidth: 47 }, // Ancho específico para la segunda columna
-                    2: { cellWidth: 25 }, // Ancho específico para la tercera columna
+                    2: { cellWidth: 35 }, // Ancho específico para la tercera columna
                     3: { cellWidth: 24 }, // Ancho específico para la cuarta columna
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             });
 
@@ -1218,10 +1224,10 @@ const app = Vue.createApp({
             const head3 = [];
             mes1Modulo1.sabados.forEach((element) => {
                 // console.log(element + " - " + mes1Modulo1.mes);
-                head3.push([element + " " + mes1Modulo1.mes]);
+                head3.push([element + " " + mes1Modulo1.mes.slice(0, 3)]);
             });
             mes2Modulo1.sabados.forEach((element) => {
-                head3.push([element + " " + mes2Modulo1.mes]);
+                head3.push([element + " " + mes2Modulo1.mes.slice(0, 3)]);
             });
 
             // Datos para el cuerpo de la tabla
@@ -1243,18 +1249,18 @@ const app = Vue.createApp({
                 cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
                 margin: { top: 50, right: 0, bottom: 50, left: 115 }, // Márgenes de la tabla
                 columnStyles: {
-                    0: { cellWidth: 12 }, // Ancho específico para la primera columna
-                    1: { cellWidth: 12 }, // Ancho específico para la segunda columna
-                    2: { cellWidth: 12 }, // Ancho específico para la tercera columna
-                    3: { cellWidth: 12 }, // Ancho específico para la cuarta columna
-                    4: { cellWidth: 12 }, // Ancho específico para la quinta columna
-                    5: { cellWidth: 12 }, // Ancho específico para la sexta columna
-                    6: { cellWidth: 12 }, // Ancho específico para la septima columna
+                    0: { cellWidth: 13 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 13 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 13 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 13 }, // Ancho específico para la cuarta columna
+                    4: { cellWidth: 13 }, // Ancho específico para la quinta columna
+                    5: { cellWidth: 13 }, // Ancho específico para la sexta columna
+                    6: { cellWidth: 13 }, // Ancho específico para la septima columna
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
                     fontSize: 9,
-                    minCellHeight: 9,
+                    minCellHeight: 8,
                 },
             });
 
@@ -1362,16 +1368,16 @@ const app = Vue.createApp({
                 alternateRowStyles: { fillColor: [240, 240, 240] },
                 tableWidth: "wrap", // Ajustar ancho de la tabla al contenido
                 cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
-                margin: { top: 50, right: 0, bottom: 50, left: 14 }, // Márgenes de la tabla
+                margin: { top: 50, right: 0, bottom: 50, left: 3 }, // Márgenes de la tabla
                 columnStyles: {
                     0: { cellWidth: 5 }, // Ancho específico para la primera columna
                     1: { cellWidth: 47 }, // Ancho específico para la segunda columna
-                    2: { cellWidth: 25 }, // Ancho específico para la tercera columna
+                    2: { cellWidth: 35 }, // Ancho específico para la tercera columna
                     3: { cellWidth: 24 }, // Ancho específico para la cuarta columna
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             });
 
@@ -1381,10 +1387,10 @@ const app = Vue.createApp({
             const head7 = [];
             mes1Modulo2.sabados.forEach((element) => {
                 // console.log(element + " - " + mes1Modulo1.mes);
-                head7.push([element + " " + mes1Modulo2.mes]);
+                head7.push([element + " " + mes1Modulo2.mes.slice(0, 3)]);
             });
             mes2Modulo2.sabados.forEach((element) => {
-                head7.push([element + " " + mes2Modulo2.mes]);
+                head7.push([element + " " + mes2Modulo2.mes.slice(0, 3)]);
             });
 
             // Datos para el cuerpo de la tabla
@@ -1406,18 +1412,18 @@ const app = Vue.createApp({
                 cellWidth: "wrap", // Ajustar ancho de las celdas al contenido
                 margin: { top: 50, right: 0, bottom: 50, left: 115 }, // Márgenes de la tabla
                 columnStyles: {
-                    0: { cellWidth: 12 }, // Ancho específico para la primera columna
-                    1: { cellWidth: 12 }, // Ancho específico para la segunda columna
-                    2: { cellWidth: 12 }, // Ancho específico para la tercera columna
-                    3: { cellWidth: 12 }, // Ancho específico para la cuarta columna
-                    4: { cellWidth: 12 }, // Ancho específico para la quinta columna
-                    5: { cellWidth: 12 }, // Ancho específico para la sexta columna
-                    6: { cellWidth: 12 }, // Ancho específico para la septima columna
+                    0: { cellWidth: 13 }, // Ancho específico para la primera columna
+                    1: { cellWidth: 13 }, // Ancho específico para la segunda columna
+                    2: { cellWidth: 13 }, // Ancho específico para la tercera columna
+                    3: { cellWidth: 13 }, // Ancho específico para la cuarta columna
+                    4: { cellWidth: 13 }, // Ancho específico para la quinta columna
+                    5: { cellWidth: 13 }, // Ancho específico para la sexta columna
+                    6: { cellWidth: 13 }, // Ancho específico para la septima columna
                 },
                 styles: {
                     overflow: "linebreak", // Permitir salto de línea en las celdas
                     fontSize: 9,
-                    minCellHeight: 9,
+                    minCellHeight: 8,
                 },
             });
 

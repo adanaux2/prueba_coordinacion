@@ -43,6 +43,7 @@ class gruposController extends Controller
             'turno' => 'required',
             'fecha_inicio' => 'required',
             'fecha_fin' => 'required',
+            'modalidad' => 'required',
 
 
         ]);

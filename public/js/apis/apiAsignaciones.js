@@ -26,6 +26,7 @@ const app = Vue.createApp({
             turnoSelected: "",
             fechaInicio: "",
             fechaFin: "",
+            modalidadSelected: "",
         };
     },
     created() {
@@ -76,20 +77,7 @@ const app = Vue.createApp({
                     this.ProfesObtenidos = response.data;
                     console.log(this.ProfesObtenidos);
 
-                    // $(document).ready(function () {
-                    //     $("#dataTable").DataTable({
-                    //         language: {
-                    //             lengthMenu:
-                    //                 "Mostrando _MENU_ elementos en esta pagina",
-                    //             zeroRecords: "Sin coincidencias",
-                    //             info: "Página _PAGE_ de _PAGES_",
-                    //             infoEmpty: "Sin datos disponibles",
-                    //             infoFiltered:
-                    //                 "(Filtrado de  _MAX_ datos en total)",
-                    //             search: "Buscar:",
-                    //         },
-                    //     });
-                    // });
+                  
                 })
                 .catch((error) => {
                     console.error("Hubo un error al obtener los datos:", error);
@@ -147,8 +135,10 @@ const app = Vue.createApp({
                 anio: this.year,
                 cuatrimestre: this.cuatriSelected,
                 turno: this.turnoSelected,
+                modalidad: this.modalidadSelected,
                 fecha_inicio: this.fechaInicio,
                 fecha_fin: this.fechaFin,
+               
             };
             // console.log(grupo);
             // Validar que ningún campo del objeto grupo sea nulo o vacío

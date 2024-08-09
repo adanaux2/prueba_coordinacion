@@ -29,21 +29,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                {{-- <div class="col-lg-3 col-6 mt-4">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
 
-                            <p>Generar</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer" @click="vista1()">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div> --}}
             </div>
 
 
@@ -385,14 +371,34 @@
                                         <option value="10">Décimo cuatrimestre</option>
                                     </select>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Turno:</h6>
+                                </div>
                                 <div class="col-4">
                                     <select class="form-control" id="" v-model="turnoSelected">
                                         <option disabled>Selecciona el turno</option>
                                         <option value="Matutino">Matutino</option>
-                                        <option value="Nocturno">Nocturo</option>
+                                        <option value="Nocturno">Nocturno</option>
                                         <option value="Sabatino vespertino">Sabatino vespertino</option>
                                         <option value="Sabatino matutino">Sabatino matutino</option>
                                         <option value="Dominical">Dominical</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Modalidad:</h6>
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-control" id="" v-model="modalidadSelected">
+                                        <option disabled>Selecciona la modalidad</option>
+                                        <option value="Presencial">Presencial</option>
+                                        <option value="Virtual">Virtual</option>
+                                        <option value="Híbrida">Híbrida</option>
                                     </select>
                                 </div>
                             </div>
@@ -410,7 +416,7 @@
                                 <div class="col-3">
                                     <input type="date" v-model="fechaFin" class="form-control">
                                 </div>
-                               
+
                             </div>
                             <br>
                             <div class="row">
